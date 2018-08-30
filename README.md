@@ -40,14 +40,31 @@ User or instance: @tastytea@soc.ialis.me
 
 ## Install
 
-### Dependencies
+### Packages
+
+Every [release](https://schlomp.space/tastytea/whyblocked/releases) includes
+a .deb-package, an .rpm-package and a .tar.gz-package with precompiled binaries
+for x86_64(amd64). These are automatically built and not tested. You can install
+them with `dpkg -i` or `rpm -i`, respectively.
+
+Gentoo ebuilds are available via my
+[repository](https://schlomp.space/tastytea/overlay).
+
+### From source
+
+#### Dependencies
 
 * C++ compiler (tested: gcc 6/7/8)
 * [cmake](https://cmake.org/) (at least 3.6)
 * [vsqlite++](http://vsqlite.virtuosic-bytes.com/) (tested: 0.3.13)
 * [libxdg-basedir](http://repo.or.cz/w/libxdg-basedir.git) (tested: 1.2)
 
-### Compile
+#### Get sourcecode
+
+Download the current
+[release](https://schlomp.space/tastytea/whyblocked/releases).
+
+#### Compile
 
 ```SH
 mkdir build
@@ -57,7 +74,7 @@ make
 make install
 ```
 
-# Copyright
+## Copyright
 
 ```PLAIN
 Copyright © 2018 tastytea <tastytea@tastytea.de>.
