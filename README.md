@@ -5,20 +5,30 @@ It has a text interface and uses a SQLite-database.
 
 ## Usage
 
+### Example
+
 ```PLAIN
 $ whyblocked
-This is whyblock 0.1.0.
+This is whyblock 0.4.0.
 Type add, remove, view or details. Or just the first letter.
-: v
- Blocked: @baduser@social.example.com because: Is very mean
-Silenced: @truebelievers.example.com because: Annoying instance
-: d
-Which user?
-@baduser@social.example.com
-@baduser@social.example.com is blocked, because: Is very mean
+Type quit or q to quit the program.
+: add
+User or instance: @tastytea@soc.ialis.me
+Blocked(b) or silenced(s): b
+Reason: Too nice
+Add receipt? [y/n] y
+URL: https://tastytea.de/
+Add receipt? [y/n] n
+: view
+ Blocked: @tastytea@soc.ialis.me because: Too nice
+: details
+User or instance: @tastytea@soc.ialis.me
+@tastytea@soc.ialis.me is blocked, because: Too nice
 Receipts:
-  https:///social.example.com/@baduser/123456789012345678
-: q
+  https://tastytea.de/
+: remove
+User or instance: @tastytea@soc.ialis.me
+: quit
 ```
 
 ## Install

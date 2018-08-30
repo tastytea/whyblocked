@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
                 {
                     string user, reason;
                     int blocked = -1;
-                    cout << "User or Instance: ";
+                    cout << "User or instance: ";
                     cin >> user;
                     while (blocked == -1)
                     {
@@ -113,7 +113,17 @@ int main(int argc, char *argv[])
                 case 'r':
                 case 'R':
                 {
-                    cout << "REMOVE\n";
+                    string user;
+                    cout << "User or instance: ";
+                    cin >> user;
+
+                    sqlite::execute rm_blocks(con, "DELETE FROM blocks WHERE user = ?;");
+                    sqlite::execute rm_urls(con, "DELETE FROM urls WHERE user = ?;");
+                    rm_blocks % user;
+                    rm_urls % user;
+                    rm_blocks();
+                    rm_urls();
+
                     break;
                 }
                 case 'v':
@@ -139,7 +149,7 @@ int main(int argc, char *argv[])
                 case 'd':
                 case 'D':
                 {
-                    cout << "Which user?\n";
+                    cout << "User or instance: ";
                     cin >> answer;
                     {
                         sqlite::query q(con, "SELECT * FROM blocks WHERE user = \'" + answer + "\';");
