@@ -58,7 +58,9 @@ pipeline:
     when:
       event: tag
     commands:
-      - cp -v build/whyblocked*${DRONE_TAG}{.tar.gz,deb,rpm} .
+      - cp -v build/whyblocked-${DRONE_TAG}_x86_64.tar.gz .
+      - cp -v build/whyblocked_${DRONE_TAG}-0_amd64.deb .
+      - cp -v build/whyblocked-${DRONE_TAG}-0.x86_64.rpm .
   gitea_release:
     image: plugins/gitea-release
     pull: true
