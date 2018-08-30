@@ -40,7 +40,7 @@ const string get_filepath()
     filepath += "/whyblocked";
     if (!fs::exists(filepath))
     {
-        fs::create_directory(filepath);
+        fs::create_directories(filepath);
     }
     filepath += "/database.sqlite";
     if (!fs::exists(filepath))
