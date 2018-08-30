@@ -24,10 +24,12 @@ pipeline:
     pull: true
     commands:
       - echo "deb http://deb.debian.org/debian jessie-backports main" >> /etc/apt/sources.list.d/backports.list
+      - echo "deb http://deb.debian.org/debian stretch main" >> /etc/apt/sources.list.d/stretch.list
       - echo "APT::Default-Release \"jessie\";" >> /etc/apt/apt.conf.d/00default_release
       - apt-get update -q
+      - apt-get install -qy -t stretch libvsqlitepp-dev libboost-all-dev
       - apt-get install -qy -t jessie-backports cmake
-      - apt-get install -qy libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev
+      - apt-get install -qy libxdg-basedir-dev
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
       - make VERBOSE=1
@@ -37,10 +39,12 @@ pipeline:
     pull: true
     commands:
       - echo "deb http://deb.debian.org/debian jessie-backports main" >> /etc/apt/sources.list.d/backports.list
+      - echo "deb http://deb.debian.org/debian stretch main" >> /etc/apt/sources.list.d/stretch.list
       - echo "APT::Default-Release \"jessie\";" >> /etc/apt/apt.conf.d/00default_release
       - apt-get update -q
+      - apt-get install -qy -t stretch libvsqlitepp-dev libboost-all-dev
       - apt-get install -qy -t jessie-backports cmake
-      - apt-get install -qy libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev
+      - apt-get install -qy libxdg-basedir-dev
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
       - make VERBOSE=1

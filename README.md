@@ -43,7 +43,7 @@ User or instance: @tastytea@soc.ialis.me
 ### Dependencies
 
 * C++ compiler (tested: gcc 6/7/8)
-* [cmake](https://cmake.org/) (at least 3.7)
+* [cmake](https://cmake.org/) (at least 3.6)
 * [vsqlite++](http://vsqlite.virtuosic-bytes.com/) (tested: 0.3.13)
 * [libxdg-basedir](http://repo.or.cz/w/libxdg-basedir.git) (tested: 1.2)
 
