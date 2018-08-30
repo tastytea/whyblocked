@@ -45,7 +45,6 @@ int main(int argc, char *argv[])
     try
     {
         sqlite::connection con(get_filepath());
-        string answer;
         bool keeprunning = true;
         
         cout << "This is whyblock " << global::version << ".\n";
@@ -53,6 +52,7 @@ int main(int argc, char *argv[])
         cout << "Type quit or q to quit the program.\n";
         while (keeprunning)
         {
+            string answer = "";
             cout << ": ";
             cin >> answer;
             switch (answer[0])
@@ -60,7 +60,54 @@ int main(int argc, char *argv[])
                 case 'a':
                 case 'A':
                 {
-                    cout << "ADD\n";
+                    string user, reason;
+                    int blocked = -1;
+                    cout << "User or Instance: ";
+                    cin >> user;
+                    while (blocked == -1)
+                    {
+                        cout << "Blocked(b) or silenced(s): ";
+                        cin >> answer;
+                        if (answer[0] == 'b' || answer[0] == 'B')
+                        {
+                            blocked = 1;
+                        }
+                        else if (answer[0] == 's' || answer[0] == 'S')
+                        {
+                            blocked = 0;
+                        }
+                    }
+                    cout << "Reason: ";
+                    cin.ignore();
+                    std::getline(cin, reason, '\n');
+
+                    sqlite::execute ins(con, "INSERT INTO blocks VALUES(?, ?, ?);");
+                    ins % user % blocked % reason;
+                    ins();
+
+                    while (true)
+                    {
+                        cout << "Add receipt? [y/n] ";
+                        cin >> answer;
+                        if (answer[0] == 'y' || answer[0] == 'Y')
+                        {
+                            string url;
+                            cout << "URL: ";
+                            cin >> url;
+
+                            sqlite::execute ins(con, "INSERT INTO urls VALUES(?, ?);");
+                            ins % user % url;
+                            ins();
+                        }
+                        else if (answer[0] == 'n' || answer[0] == 'N')
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
                     break;
                 }
                 case 'r':
@@ -132,17 +179,6 @@ int main(int argc, char *argv[])
                     cout << "Response not understood.\n";
             }
         }
-        // sqlite::execute ins(con, "INSERT INTO TEST VALUES(?, ?, ?);");
-        // ins % sqlite::nil % "Hello";
-        // ins();
-
-        // sqlite::query q(con, "SELECT * FROM blocks;");
-        // boost::shared_ptr<sqlite::result> result = q.get_result();
-        // while(result->next_row())
-        // {
-        //   std::cout << "ID:   " << result->get_int(0) << "\n"
-        //             << "Name: " << result->get_string(1) << std::endl;
-        // }
     }
     catch(const std::exception &e)
     {
