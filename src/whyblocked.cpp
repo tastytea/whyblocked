@@ -178,7 +178,10 @@ const bool details(const string &user, result_details &result)
 
 int main(int argc, char *argv[])
 {
-    whyblocked_text::start();
+    if (!whyblocked_text::start())
+    {
+        return 1;
+    }
 
     return 0;
 }
