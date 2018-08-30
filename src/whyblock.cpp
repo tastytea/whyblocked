@@ -46,83 +46,91 @@ int main(int argc, char *argv[])
     {
         sqlite::connection con(get_filepath());
         string answer;
+        bool keeprunning = true;
         
-        cout << "Would you like to add, remove or view records?\n";
-        cout << "Or do you want to get the details of a record?\n";
-        cout << "Type add, remove, view or details. Or just the first letter\n";
-        cout << ": ";
-        cin >> answer;
-        switch (answer[0])
+        cout << "This is whyblock " << global::version << ".\n";
+        cout << "Type add, remove, view or details. Or just the first letter.\n";
+        cout << "Type quit or q to quit the program.\n";
+        while (keeprunning)
         {
-            case 'a':
-            case 'A':
+            cout << ": ";
+            cin >> answer;
+            switch (answer[0])
             {
-                cout << "ADD\n";
-                break;
-            }
-            case 'r':
-            case 'R':
-            {
-                cout << "REMOVE\n";
-                break;
-            }
-            case 'v':
-            case 'V':
-            {
-                sqlite::query q(con, "SELECT * FROM blocks;");
-                boost::shared_ptr<sqlite::result> result = q.get_result();
-                while(result->next_row())
+                case 'a':
+                case 'A':
                 {
-                    if (result->get_int(1) == 1)
-                    {
-                        cout << " Blocked: ";
-                    }
-                    else
-                    {
-                        cout << "Silenced: ";
-                    }
-                    cout << result->get_string(0) << " because: ";
-                    cout << result->get_string(2) << '\n';
+                    cout << "ADD\n";
+                    break;
                 }
-                break;
-            }
-            case 'd':
-            case 'D':
-            {
-                cout << "Which user?\n";
-                cin >> answer;
+                case 'r':
+                case 'R':
                 {
-                    sqlite::query q(con, "SELECT * FROM blocks WHERE user = \'" + answer + "\';");
-                    boost::shared_ptr<sqlite::result> result = q.get_result();
-                    result->next_row();
-                    cout << answer << " is ";
-                    if (result->get_row_count() == 0)
-                    {
-                        cout << "not in the database.\n";
-                        break;
-                    }
-                    if (result->get_int(1) == 1)
-                    {
-                        cout << "blocked, because: ";
-                    }
-                    else if (result->get_int(1) == 0)
-                    {
-                        cout << "silenced, because: ";
-                    }
-                    cout << result->get_string(2) << '\n';
+                    cout << "REMOVE\n";
+                    break;
                 }
+                case 'v':
+                case 'V':
                 {
-                    sqlite::query q(con, "SELECT * FROM urls WHERE user = \'" + answer + "\';");
+                    sqlite::query q(con, "SELECT * FROM blocks;");
                     boost::shared_ptr<sqlite::result> result = q.get_result();
                     while(result->next_row())
                     {
-                        cout << result->get_string(1) << '\n';
+                        if (result->get_int(1) == 1)
+                        {
+                            cout << " Blocked: ";
+                        }
+                        else
+                        {
+                            cout << "Silenced: ";
+                        }
+                        cout << result->get_string(0) << " because: ";
+                        cout << result->get_string(2) << '\n';
                     }
+                    break;
                 }
-                break;
+                case 'd':
+                case 'D':
+                {
+                    cout << "Which user?\n";
+                    cin >> answer;
+                    {
+                        sqlite::query q(con, "SELECT * FROM blocks WHERE user = \'" + answer + "\';");
+                        boost::shared_ptr<sqlite::result> result = q.get_result();
+                        cout << answer << " is ";
+                        if (!result->next_row())
+                        {
+                            cout << "not in the database.\n";
+                            break;
+                        }
+                        if (result->get_int(1) == 1)
+                        {
+                            cout << "blocked, because: ";
+                        }
+                        else if (result->get_int(1) == 0)
+                        {
+                            cout << "silenced, because: ";
+                        }
+                        cout << result->get_string(2) << '\n';
+                    }
+                    {
+                        cout << "Receipts:\n";
+                        sqlite::query q(con, "SELECT * FROM urls WHERE user = \'" + answer + "\';");
+                        boost::shared_ptr<sqlite::result> result = q.get_result();
+                        while(result->next_row())
+                        {
+                            cout << "  " << result->get_string(1) << '\n';
+                        }
+                    }
+                    break;
+                case 'q':
+                case 'Q':
+                    keeprunning = false;
+                    break;
+                }
+                default:
+                    cout << "Response not understood.\n";
             }
-            default:
-                cout << "Response not understood.\n";
         }
         // sqlite::execute ins(con, "INSERT INTO TEST VALUES(?, ?, ?);");
         // ins % sqlite::nil % "Hello";
