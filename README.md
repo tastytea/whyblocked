@@ -9,15 +9,17 @@ It has a text interface and uses a SQLite-database.
 
 ```PLAIN
 $ whyblocked
-This is whyblocked 0.4.0.
+This is whyblocked 0.4.1.
 Type add, remove, view or details. Or just the first letter.
 Type quit or q to quit the program.
 : add
 User or instance: @tastytea@soc.ialis.me
 Blocked(b) or silenced(s): b
 Reason: Too nice
+@tastytea@soc.ialis.me added.
 Add receipt? [y/n] y
 URL: https://tastytea.de/
+Receipt added.
 Add receipt? [y/n] n
 : view
  Blocked: @tastytea@soc.ialis.me because: Too nice
@@ -28,6 +30,11 @@ Receipts:
   https://tastytea.de/
 : remove
 User or instance: @tastytea@soc.ialis.me
+@tastytea@soc.ialis.me removed.
+: view
+: details
+User or instance: @tastytea@soc.ialis.me
+@tastytea@soc.ialis.me is not in the database.
 : quit
 ```
 

@@ -24,7 +24,7 @@ string get_filepath()
     filepath = xdgDataHome(&xdg);
     xdgWipeHandle(&xdg);
 
-    filepath += "/whyblock";
+    filepath += "/whyblocked";
     if (!fs::exists(filepath))
     {
         fs::create_directory(filepath);
@@ -33,11 +33,18 @@ string get_filepath()
     if (!fs::exists(filepath))
     {
         sqlite::connection con(filepath);
-        sqlite::execute(con, "CREATE TABLE blocks(user TEXT PRIMARY KEY, blocked INTEGER, reason TEXT);", true);
+        sqlite::execute(con, "CREATE TABLE blocks(user TEXT PRIMARY KEY, "
+                        "blocked INTEGER, reason TEXT);", true);
         sqlite::execute(con, "CREATE TABLE urls(user TEXT, url TEXT);", true);
     }
 
     return filepath;
+}
+
+const void print_help()
+{
+    cout << "Type add, remove, view or details. Or just the first letter.\n";
+    cout << "Type help or h to show this help. Type quit or q to quit the program.\n";
 }
 
 int main(int argc, char *argv[])
@@ -48,8 +55,7 @@ int main(int argc, char *argv[])
         bool keeprunning = true;
         
         cout << "This is whyblocked " << global::version << ".\n";
-        cout << "Type add, remove, view or details. Or just the first letter.\n";
-        cout << "Type quit or q to quit the program.\n";
+        print_help();
         while (keeprunning)
         {
             string answer = "";
@@ -84,6 +90,7 @@ int main(int argc, char *argv[])
                     sqlite::execute ins(con, "INSERT INTO blocks VALUES(?, ?, ?);");
                     ins % user % blocked % reason;
                     ins();
+                    cout << user << " added.\n";
 
                     while (true)
                     {
@@ -98,6 +105,7 @@ int main(int argc, char *argv[])
                             sqlite::execute ins(con, "INSERT INTO urls VALUES(?, ?);");
                             ins % user % url;
                             ins();
+                            cout << "Receipt added.\n";
                         }
                         else if (answer[0] == 'n' || answer[0] == 'N')
                         {
@@ -123,7 +131,7 @@ int main(int argc, char *argv[])
                     rm_urls % user;
                     rm_blocks();
                     rm_urls();
-
+                    cout << user << " removed.\n";
                     break;
                 }
                 case 'v':
@@ -152,7 +160,8 @@ int main(int argc, char *argv[])
                     cout << "User or instance: ";
                     cin >> answer;
                     {
-                        sqlite::query q(con, "SELECT * FROM blocks WHERE user = \'" + answer + "\';");
+                        sqlite::query q(con, "SELECT * FROM blocks WHERE "
+                                        "user = \'" + answer + "\';");
                         boost::shared_ptr<sqlite::result> result = q.get_result();
                         cout << answer << " is ";
                         if (!result->next_row())
@@ -179,6 +188,10 @@ int main(int argc, char *argv[])
                             cout << "  " << result->get_string(1) << '\n';
                         }
                     }
+                    break;
+                case 'h':
+                case 'H':
+                    print_help();
                     break;
                 case 'q':
                 case 'Q':
