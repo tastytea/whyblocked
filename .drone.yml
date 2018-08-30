@@ -5,20 +5,32 @@ pipeline:
     commands:
       - apt-get update -q
       - apt-get install -qy cmake libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev
+      - apt-get install -qy rpm file
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
       - make VERBOSE=1
       - make install DESTDIR=install
+      - make package
+      - cmake -DWITH_DEB=ON ..
+      - make package
+      - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
+      - make package
   gcc7:
     image: gcc:7
     pull: true
     commands:
       - apt-get update -q
       - apt-get install -qy cmake libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev
+      - apt-get install -qy rpm file
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
       - make VERBOSE=1
       - make install DESTDIR=install
+      - make package
+      - cmake -DWITH_DEB=ON ..
+      - make package
+      - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
+      - make package
   gcc6:
     image: gcc:6
     pull: true
@@ -30,25 +42,39 @@ pipeline:
       - apt-get install -qy -t stretch libvsqlitepp-dev libboost-all-dev
       - apt-get install -qy -t jessie-backports cmake
       - apt-get install -qy libxdg-basedir-dev
+      - apt-get install -qy rpm file
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
       - make VERBOSE=1
       - make install DESTDIR=install
-  gcc5:
-    image: gcc:5
+      - make package
+      - cmake -DWITH_DEB=ON ..
+      - make package
+      - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
+      - make package
+  prepare_release:
+    image: gcc:6
     pull: true
+    when:
+      event: tag
     commands:
-      - echo "deb http://deb.debian.org/debian jessie-backports main" >> /etc/apt/sources.list.d/backports.list
-      - echo "deb http://deb.debian.org/debian stretch main" >> /etc/apt/sources.list.d/stretch.list
-      - echo "APT::Default-Release \"jessie\";" >> /etc/apt/apt.conf.d/00default_release
-      - apt-get update -q
-      - apt-get install -qy -t stretch libvsqlitepp-dev libboost-all-dev
-      - apt-get install -qy -t jessie-backports cmake
-      - apt-get install -qy libxdg-basedir-dev
-      - rm -rf build && mkdir -p build && cd build
-      - cmake ..
-      - make VERBOSE=1
-      - make install DESTDIR=install
+      - cp -v build/whyblocked*${DRONE_TAG}{.tar.gz,deb,rpm} .
+  gitea_release:
+    image: plugins/gitea-release
+    pull: true
+    when:
+      event: tag
+    base_url: https://schlomp.space
+    secrets: [ gitea_token ]
+    title: ${DRONE_TAG}
+    prerelease: true
+    files:
+      - whyblocked-${DRONE_TAG}_x86_64.tar.gz
+      - whyblocked_${DRONE_TAG}-0_amd64.deb
+      - whyblocked-${DRONE_TAG}-0.x86_64.rpm
+    checksum:
+      - sha256
+      - sha512
   notify:
     image: drillster/drone-email
     pull: true
