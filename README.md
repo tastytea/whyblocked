@@ -9,7 +9,7 @@ It has a text interface and uses a SQLite-database.
 
 ```PLAIN
 $ whyblocked
-This is whyblock 0.4.0.
+This is whyblocked 0.4.0.
 Type add, remove, view or details. Or just the first letter.
 Type quit or q to quit the program.
 : add

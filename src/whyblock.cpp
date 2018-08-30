@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
         sqlite::connection con(get_filepath());
         bool keeprunning = true;
         
-        cout << "This is whyblock " << global::version << ".\n";
+        cout << "This is whyblocked " << global::version << ".\n";
         cout << "Type add, remove, view or details. Or just the first letter.\n";
         cout << "Type quit or q to quit the program.\n";
         while (keeprunning)
