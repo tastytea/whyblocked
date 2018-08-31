@@ -74,6 +74,12 @@ make
 make install
 ```
 
+## Bugs
+
+Please report them on the
+[issue tracker](https://schlomp.space/tastytea/whyblocked/issues) or to
+`tastytea`@`tastytea.de`.
+
 ## Copyright
 
 ```PLAIN
