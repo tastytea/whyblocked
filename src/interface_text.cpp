@@ -151,10 +151,13 @@ const bool whyblocked_text::start()
                         }
                         cout << std::get<1>(result) << '\n';
 
-                        cout << "Receipts:\n";
-                        for (const string &url : std::get<2>(result))
+                        if (!std::get<2>(result).empty())
                         {
-                            cout << "  " << url << '\n';
+                            cout << "Receipts:\n";
+                            for (const string &url : std::get<2>(result))
+                            {
+                                cout << "  " << url << '\n';
+                            }
                         }
                     }
                 }
