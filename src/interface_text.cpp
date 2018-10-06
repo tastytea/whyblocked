@@ -22,13 +22,13 @@ using std::cout;
 using std::cerr;
 using std::cin;
 
-const void whyblocked_text::print_help()
+const void print_help()
 {
     cout << "Type add, remove, view or details. Or just the first letter.\n";
     cout << "Type help or h to show this help. Type quit or q to quit the program.\n";
 }
 
-const bool whyblocked_text::start()
+int main(int argc, char *argv[])
 {
     bool keeprunning = true;
     
@@ -180,5 +180,5 @@ const bool whyblocked_text::start()
         }
     }
 
-    return true;
+    return 0;
 }

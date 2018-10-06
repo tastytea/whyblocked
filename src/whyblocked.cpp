@@ -175,13 +175,3 @@ const bool details(const string &user, result_details &result)
 
     return true;
 }
-
-int main(int argc, char *argv[])
-{
-    if (!whyblocked_text::start())
-    {
-        return 1;
-    }
-
-    return 0;
-}

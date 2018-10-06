@@ -7,12 +7,16 @@ project (whyblocked
 include(GNUInstallDirs)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBXDG_BASEDIR REQUIRED libxdg-basedir)
+find_package(Qt5Widgets CONFIG REQUIRED)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -g -Og")
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
 
 include_directories(${PROJECT_SOURCE_DIR}/src)
 include_directories(${PROJECT_BINARY_DIR})
@@ -27,11 +31,15 @@ configure_file (
     "${PROJECT_BINARY_DIR}/version.hpp"
 )
 
-file(GLOB sources src/*.cpp)
-add_executable(whyblocked ${sources})
+add_executable(whyblocked src/interface_text.cpp src/whyblocked.cpp)
 target_link_libraries(whyblocked
                       ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp stdc++fs)
 install(TARGETS whyblocked DESTINATION ${CMAKE_INSTALL_BINDIR})
+
+add_executable(whyblocked-gui src/interface_qt.cpp src/whyblocked.cpp)
+target_link_libraries(whyblocked-gui
+                      ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp stdc++fs Qt5::Widgets)
+install(TARGETS whyblocked-gui DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 
 # Packages

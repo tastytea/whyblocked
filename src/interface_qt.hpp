@@ -14,22 +14,28 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef WHYBLOCKED_HPP
-#define WHYBLOCKED_HPP
+#ifndef INTERFACE_QT_HPP
+#define INTERFACE_QT_HPP
 
-#include <vector>
-#include <tuple>
-#include <string>
+#include <QMainWindow>
+#include <QStandardItemModel>
+#include "ui_whyblocked.h"
+#include "ui_whyblocked_add.h"
 
-using std::string;
-using result_view = std::vector<std::tuple<string, int, string>>;
-using result_details = std::tuple<int, string, std::vector<string>>;
+class MainWindow : public QMainWindow, private Ui::MainWindow
+{
+    Q_OBJECT
 
-const string get_filepath();
-const bool add_block(const string &user, const int blocked, const string &reason);
-const bool add_url(const string &user, const string &url);
-const bool remove(const string &user);
-const bool view(result_view &result);
-const bool details(const string &user, result_details &result);
+public:
+    explicit MainWindow(QMainWindow *parent = nullptr);
 
-#endif  // WHYBLOCKED_HPP
+private slots:
+    void add();
+    void remove();
+    void about();
+
+private:
+    void populate_tableview(QStandardItemModel &model);
+};
+
+#endif  // INTERFACE_QT_HPP
