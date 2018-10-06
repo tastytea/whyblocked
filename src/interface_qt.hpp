@@ -17,10 +17,13 @@
 #ifndef INTERFACE_QT_HPP
 #define INTERFACE_QT_HPP
 
+#include <string>
 #include <QMainWindow>
 #include <QStandardItemModel>
 #include "ui_whyblocked.h"
 #include "ui_whyblocked_add.h"
+
+using std::string;
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
@@ -33,9 +36,11 @@ private slots:
     void add();
     void remove();
     void about();
+    void show_details(QModelIndex index);
 
 private:
     void populate_tableview(QStandardItemModel &model);
+    const string urls_to_hyperlinks(const string &text);
 };
 
 #endif  // INTERFACE_QT_HPP
