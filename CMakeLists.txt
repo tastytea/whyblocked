@@ -36,10 +36,12 @@ target_link_libraries(whyblocked
                       ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp stdc++fs)
 install(TARGETS whyblocked DESTINATION ${CMAKE_INSTALL_BINDIR})
 
-add_executable(whyblocked-gui src/interface_qt.cpp src/whyblocked.cpp)
-target_link_libraries(whyblocked-gui
-                      ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp stdc++fs Qt5::Widgets)
-install(TARGETS whyblocked-gui DESTINATION ${CMAKE_INSTALL_BINDIR})
+if(NOT WITHOUT_QT)
+  add_executable(whyblocked-gui src/interface_qt.cpp src/whyblocked.cpp)
+  target_link_libraries(whyblocked-gui
+                        ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp stdc++fs Qt5::Widgets)
+  install(TARGETS whyblocked-gui DESTINATION ${CMAKE_INSTALL_BINDIR})
+endif()
 
 
 # Packages
