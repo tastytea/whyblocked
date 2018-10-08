@@ -4,7 +4,7 @@ pipeline:
     pull: true
     commands:
       - apt-get update -q
-      - apt-get install -qy cmake libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev
+      - apt-get install -qy cmake libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev qt5-default
       - apt-get install -qy rpm file
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
@@ -20,7 +20,7 @@ pipeline:
     pull: true
     commands:
       - apt-get update -q
-      - apt-get install -qy cmake libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev
+      - apt-get install -qy cmake libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev qt5-default
       - apt-get install -qy rpm file
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
@@ -41,7 +41,7 @@ pipeline:
       - apt-get update -q
       - apt-get install -qy -t stretch libvsqlitepp-dev libboost-all-dev
       - apt-get install -qy -t jessie-backports cmake
-      - apt-get install -qy libxdg-basedir-dev
+      - apt-get install -qy libxdg-basedir-dev qt5-default
       - apt-get install -qy rpm file
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
