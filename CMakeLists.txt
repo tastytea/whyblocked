@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.6)
 project (whyblocked
-         VERSION 0.7.0
+         VERSION 0.7.1
          LANGUAGES CXX
 )
 
@@ -88,7 +88,11 @@ if (WITH_RPM)
     set(CPACK_SOURCE_GENERATOR "RPM")
     set(CPACK_RPM_PACKAGE_LICENSE "GPL-3")
     set(CPACK_RPM_PACKAGE_URL "https://schlomp.space/tastytea/whyblocked")
-    set(CPACK_RPM_PACKAGE_REQUIRES "vsqlite++ >= 0.3.13 libxdg-basedir, >= 1.2.0")
+    if(NOT WITHOUT_QT)
+      set(CPACK_RPM_PACKAGE_REQUIRES "vsqlite++ >= 0.3.13, libxdg-basedir >= 1.2.0, qt >= 5.0")
+    else()
+      set(CPACK_RPM_PACKAGE_REQUIRES "vsqlite++ >= 0.3.13, libxdg-basedir >= 1.2.0")
+    endif()
     set(CPACK_PACKAGE_FILE_NAME
          "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-0.${CPACK_PACKAGE_ARCHITECTURE}")
     set(CPACK_SOURCE_PACKAGE_FILE_NAME

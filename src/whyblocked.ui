@@ -73,6 +73,7 @@
    <addaction name="action_remove"/>
    <addaction name="action_reload"/>
    <addaction name="action_about"/>
+   <addaction name="action_quit"/>
   </widget>
   <action name="action_add">
    <property name="icon">
@@ -118,7 +119,8 @@
   </action>
   <action name="action_reload">
    <property name="icon">
-    <iconset theme="reload"/>
+    <iconset theme="reload">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Reload</string>
@@ -128,6 +130,20 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="action_quit">
+   <property name="icon">
+    <iconset theme="exit"/>
+   </property>
+   <property name="text">
+    <string>Quit</string>
+   </property>
+   <property name="toolTip">
+    <string>Quit application</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
    </property>
   </action>
  </widget>

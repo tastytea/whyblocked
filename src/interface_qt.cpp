@@ -35,6 +35,7 @@ MainWindow::MainWindow(QMainWindow *parent) : QMainWindow(parent)
     connect(action_remove, &QAction::triggered, this, &MainWindow::remove);
     connect(action_reload, &QAction::triggered, this, &MainWindow::populate_tableview);
     connect(action_about, &QAction::triggered, this, &MainWindow::about);
+    connect(action_quit, &QAction::triggered, this, &MainWindow::close);
 
     connect(tableview, &QTableView::clicked, this, &MainWindow::show_details);
     connect(tableview, &QTableView::activated, this, &MainWindow::show_details);
