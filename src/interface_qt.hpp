@@ -18,8 +18,10 @@
 #define INTERFACE_QT_HPP
 
 #include <string>
+#include <tuple>
 #include <QMainWindow>
 #include <QStandardItemModel>
+#include <QDialog>
 #include "ui_whyblocked.h"
 #include "ui_whyblocked_add.h"
 
@@ -39,8 +41,20 @@ private slots:
     void show_details(QModelIndex index);
 
 private:
-    void populate_tableview(QStandardItemModel &model);
+    void populate_tableview();
+    void add_row(const QString &user, const int &blocked, const QString &reason);
     const string urls_to_hyperlinks(const string &text);
+
+    QStandardItemModel *_model;
+};
+
+class DialogAdd : public QDialog, private Ui::DialogAdd
+{
+    Q_OBJECT
+
+public:
+    explicit DialogAdd(QMainWindow *parent = nullptr);
+    const std::tuple<const string, const bool, const string> get_data();
 };
 
 #endif  // INTERFACE_QT_HPP

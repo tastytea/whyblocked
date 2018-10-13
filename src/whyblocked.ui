@@ -71,11 +71,13 @@
    </attribute>
    <addaction name="action_add"/>
    <addaction name="action_remove"/>
+   <addaction name="action_reload"/>
    <addaction name="action_about"/>
   </widget>
   <action name="action_add">
    <property name="icon">
-    <iconset theme="add"/>
+    <iconset theme="add">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>add</string>
@@ -89,7 +91,8 @@
   </action>
   <action name="action_remove">
    <property name="icon">
-    <iconset theme="remove"/>
+    <iconset theme="remove">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>remove</string>
@@ -98,18 +101,33 @@
     <string>Remove user or instance</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Del</string>
+    <string>Del</string>
    </property>
   </action>
   <action name="action_about">
    <property name="icon">
-    <iconset theme="info"/>
+    <iconset theme="info">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>about</string>
    </property>
    <property name="toolTip">
     <string>About this application</string>
+   </property>
+  </action>
+  <action name="action_reload">
+   <property name="icon">
+    <iconset theme="reload"/>
+   </property>
+   <property name="text">
+    <string>Reload</string>
+   </property>
+   <property name="toolTip">
+    <string>Reload database</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
    </property>
   </action>
  </widget>
