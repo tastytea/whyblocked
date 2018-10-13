@@ -6,23 +6,57 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
-    <height>170</height>
+    <width>400</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="locale">
+   <locale language="English" country="UnitedKingdom"/>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QGridLayout" name="layout_grid" rowstretch="0,0,0,0,0">
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_user">
+    <layout class="QGridLayout" name="layout_grid" rowstretch="0,0,0,0,0,0,0,0">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
+     <property name="verticalSpacing">
+      <number>6</number>
+     </property>
+     <item row="4" column="0">
+      <widget class="QLabel" name="label_receipts">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Memory aids, proof</string>
+       </property>
        <property name="text">
-        <string>User/Instance</string>
+        <string>Receipts</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
        </property>
        <property name="buddy">
-        <cstring>text_user</cstring>
+        <cstring>list_receipts</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QPushButton" name="button_receipt_add">
+       <property name="toolTip">
+        <string>Add receipt</string>
+       </property>
+       <property name="text">
+        <string>Add</string>
+       </property>
+       <property name="icon">
+        <iconset theme="add"/>
        </property>
       </widget>
      </item>
@@ -47,22 +81,6 @@
      </item>
      <item row="0" column="1">
       <widget class="QLineEdit" name="text_user"/>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_blocked">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>Blocked/Silenced</string>
-       </property>
-       <property name="buddy">
-        <cstring>radio_blocked</cstring>
-       </property>
-      </widget>
      </item>
      <item row="2" column="1">
       <widget class="QRadioButton" name="radio_silcenced">
@@ -90,13 +108,59 @@
      <item row="3" column="1">
       <widget class="QLineEdit" name="text_reason"/>
      </item>
-     <item row="4" column="1">
+     <item row="7" column="1">
       <widget class="QDialogButtonBox" name="buttonBox">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
        <property name="standardButtons">
         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_blocked">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Blocked/Silenced</string>
+       </property>
+       <property name="buddy">
+        <cstring>radio_blocked</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_user">
+       <property name="text">
+        <string>User/Instance</string>
+       </property>
+       <property name="buddy">
+        <cstring>text_user</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="QPushButton" name="button_receipt_remove">
+       <property name="toolTip">
+        <string>Remove receipt</string>
+       </property>
+       <property name="text">
+        <string>Remove</string>
+       </property>
+       <property name="icon">
+        <iconset theme="remove"/>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1" rowspan="3">
+      <widget class="QListWidget" name="list_receipts">
+       <property name="editTriggers">
+        <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed|QAbstractItemView::SelectedClicked</set>
        </property>
       </widget>
      </item>
@@ -109,6 +173,9 @@
   <tabstop>radio_blocked</tabstop>
   <tabstop>radio_silcenced</tabstop>
   <tabstop>text_reason</tabstop>
+  <tabstop>button_receipt_add</tabstop>
+  <tabstop>button_receipt_remove</tabstop>
+  <tabstop>list_receipts</tabstop>
  </tabstops>
  <resources/>
  <connections>
@@ -120,7 +187,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>227</x>
-     <y>147</y>
+     <y>256</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -136,7 +203,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>290</x>
-     <y>153</y>
+     <y>262</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>

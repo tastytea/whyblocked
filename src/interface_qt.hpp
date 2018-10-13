@@ -19,6 +19,7 @@
 
 #include <string>
 #include <tuple>
+#include <list>
 #include <QMainWindow>
 #include <QStandardItemModel>
 #include <QDialog>
@@ -26,6 +27,10 @@
 #include "ui_whyblocked_add.h"
 
 using std::string;
+using dialogdata = std::tuple<const string,
+                              const bool,
+                              const string,
+                              const std::vector<string>>;
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
@@ -54,7 +59,11 @@ class DialogAdd : public QDialog, private Ui::DialogAdd
 
 public:
     explicit DialogAdd(QMainWindow *parent = nullptr);
-    const std::tuple<const string, const bool, const string> get_data();
+    const dialogdata get_data();
+
+private slots:
+    void add_receipt();
+    void remove_receipt();
 };
 
 #endif  // INTERFACE_QT_HPP

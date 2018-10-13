@@ -97,6 +97,10 @@ void MainWindow::add()
         add_row(QString::fromStdString(user),
                 blocked,
                 QString::fromStdString(reason));
+        for (const string &receipt : std::get<3>(data))
+        {
+            add_url(user, receipt);
+        }
 
         statusBar()->showMessage(tr("Added %1 to database.")
                                  .arg(QString::fromStdString(user)));
@@ -116,6 +120,7 @@ void MainWindow::remove()
                                      .arg(QString::fromStdString(user)));
             _model->removeRow(row.row());
         }
+        label_receipts->clear();
     }
     else
     {
@@ -168,13 +173,38 @@ const string MainWindow::urls_to_hyperlinks(const string &text)
 DialogAdd::DialogAdd(QMainWindow *parent) : QDialog(parent)
 {
     setupUi(this);
+    connect(button_receipt_add, &QPushButton::clicked, this, &DialogAdd::add_receipt);
+    connect(button_receipt_remove, &QPushButton::clicked, this, &DialogAdd::remove_receipt);
 }
 
-const std::tuple<const string, const bool, const string> DialogAdd::get_data()
+const dialogdata DialogAdd::get_data()
 {
+    std::vector<string> receipts;
+    for (int row = 0; row <= list_receipts->count() - 1; ++row)
+    {
+        receipts.push_back(list_receipts->item(row)->text().toStdString());
+    }
+
     return std::make_tuple(text_user->text().toStdString(),
                            radio_blocked->isChecked(),
-                           text_reason->text().toStdString());
+                           text_reason->text().toStdString(),
+                           receipts);
+}
+
+void DialogAdd::add_receipt()
+{
+    QListWidgetItem *item = new QListWidgetItem("Test");
+    item->setFlags(item->flags() | Qt::ItemIsEditable);
+    list_receipts->insertItem(list_receipts->count(), item);
+    list_receipts->editItem(item);
+}
+
+void DialogAdd::remove_receipt()
+{
+    for (auto item :list_receipts->selectedItems())
+    {
+        delete item;
+    }
 }
 
 int main(int argc, char *argv[])
