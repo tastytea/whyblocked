@@ -33,6 +33,14 @@ MainWindow::MainWindow(QMainWindow *parent) : QMainWindow(parent)
 void MainWindow::populate_tableview()
 {
     _model->clear();
+    _model->setHorizontalHeaderLabels(
+    {
+        tr("User/Instance"),
+        tr("Blocked/Silenced"),
+        tr("Reason")
+    });
+    tableview->horizontalHeader()->resizeSection(0, 250);
+
     result_view result;
     if (view(result))
     {
@@ -43,11 +51,6 @@ void MainWindow::populate_tableview()
                     QString::fromStdString(std::get<2>(line)));
         }
     }
-
-    _model->setHeaderData(0, Qt::Horizontal, tr("User/Instance"));
-    _model->setHeaderData(1, Qt::Horizontal, tr("Blocked/Silenced?"));
-    _model->setHeaderData(2, Qt::Horizontal, tr("Reason"));
-    tableview->horizontalHeader()->resizeSection(0, 250);
 
     statusBar()->showMessage(tr("Database loaded."));
 }
