@@ -37,7 +37,7 @@
         <string>Memory aids, proof</string>
        </property>
        <property name="text">
-        <string>Receipts</string>
+        <string>Rece&amp;ipts</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -53,10 +53,11 @@
         <string>Add receipt</string>
        </property>
        <property name="text">
-        <string>Add</string>
+        <string>&amp;Add</string>
        </property>
        <property name="icon">
-        <iconset theme="add"/>
+        <iconset theme="add">
+         <normaloff>.</normaloff>.</iconset>
        </property>
       </widget>
      </item>
@@ -72,7 +73,7 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>Blocked</string>
+        <string>&amp;Blocked</string>
        </property>
        <property name="checked">
         <bool>true</bool>
@@ -91,14 +92,14 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>Silenced</string>
+        <string>&amp;Silenced</string>
        </property>
       </widget>
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="label_reason">
        <property name="text">
-        <string>Reason</string>
+        <string>R&amp;eason</string>
        </property>
        <property name="buddy">
         <cstring>text_reason</cstring>
@@ -137,7 +138,7 @@
      <item row="0" column="0">
       <widget class="QLabel" name="label_user">
        <property name="text">
-        <string>User/Instance</string>
+        <string>&amp;User/Instance</string>
        </property>
        <property name="buddy">
         <cstring>text_user</cstring>
@@ -150,10 +151,11 @@
         <string>Remove receipt</string>
        </property>
        <property name="text">
-        <string>Remove</string>
+        <string>Re&amp;move</string>
        </property>
        <property name="icon">
-        <iconset theme="remove"/>
+        <iconset theme="remove">
+         <normaloff>.</normaloff>.</iconset>
        </property>
       </widget>
      </item>
