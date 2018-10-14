@@ -41,7 +41,6 @@ public:
     void add_row(const QString &user, const int &blocked, const QString &reason);
 
 private:
-    void populate_tableview();
     const string urls_to_hyperlinks(const string &text);
 
     QStandardItemModel *_model;
@@ -51,6 +50,7 @@ private slots:
     void remove();
     void about();
     void show_details(QModelIndex index);
+    void populate_tableview();
 
 };
 
@@ -63,6 +63,7 @@ public:
 
 private:
     const dialogdata get_data();
+
     MainWindow *_parent;
 
 private slots:

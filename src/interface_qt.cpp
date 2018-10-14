@@ -27,17 +27,7 @@ MainWindow::MainWindow(QMainWindow *parent) : QMainWindow(parent)
 
     _model = new QStandardItemModel;
     tableview->setModel(_model);
-    tableview->setSelectionBehavior(QAbstractItemView::SelectRows);
     populate_tableview();
-
-    connect(action_add, &QAction::triggered, this, &MainWindow::add);
-    connect(action_remove, &QAction::triggered, this, &MainWindow::remove);
-    connect(action_reload, &QAction::triggered, this, &MainWindow::populate_tableview);
-    connect(action_about, &QAction::triggered, this, &MainWindow::about);
-    connect(action_quit, &QAction::triggered, this, &MainWindow::close);
-
-    connect(tableview, &QTableView::clicked, this, &MainWindow::show_details);
-    connect(tableview, &QTableView::activated, this, &MainWindow::show_details);
 }
 
 void MainWindow::populate_tableview()
@@ -57,7 +47,7 @@ void MainWindow::populate_tableview()
     _model->setHeaderData(0, Qt::Horizontal, tr("User/Instance"));
     _model->setHeaderData(1, Qt::Horizontal, tr("Blocked/Silenced?"));
     _model->setHeaderData(2, Qt::Horizontal, tr("Reason"));
-    tableview->horizontalHeader()->resizeSection(0, 300);
+    tableview->horizontalHeader()->resizeSection(0, 250);
 
     statusBar()->showMessage(tr("Database loaded."));
 }
@@ -152,9 +142,6 @@ DialogAdd::DialogAdd(QMainWindow *parent)
 , _parent(static_cast<MainWindow*>(parent))
 {
     setupUi(this);
-
-    connect(button_receipt_add, &QPushButton::clicked, this, &DialogAdd::add_receipt);
-    connect(button_receipt_remove, &QPushButton::clicked, this, &DialogAdd::remove_receipt);
 }
 
 const dialogdata DialogAdd::get_data()

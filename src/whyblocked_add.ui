@@ -186,12 +186,12 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>227</x>
-     <y>256</y>
+     <x>324</x>
+     <y>268</y>
     </hint>
     <hint type="destinationlabel">
-     <x>157</x>
-     <y>169</y>
+     <x>331</x>
+     <y>226</y>
     </hint>
    </hints>
   </connection>
@@ -202,14 +202,50 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>290</x>
+     <x>255</x>
      <y>262</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>169</y>
+     <x>265</x>
+     <y>224</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_receipt_add</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogAdd</receiver>
+   <slot>add_receipt()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>41</x>
+     <y>207</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>115</x>
+     <y>156</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_receipt_remove</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogAdd</receiver>
+   <slot>remove_receipt()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>95</x>
+     <y>245</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>135</x>
+     <y>190</y>
     </hint>
    </hints>
   </connection>
  </connections>
+ <slots>
+  <slot>add_receipt()</slot>
+  <slot>remove_receipt()</slot>
+ </slots>
 </ui>
