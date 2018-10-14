@@ -38,6 +38,13 @@ class MainWindow : public QMainWindow, private Ui::MainWindow
 
 public:
     explicit MainWindow(QMainWindow *parent = nullptr);
+    void add_row(const QString &user, const int &blocked, const QString &reason);
+
+private:
+    void populate_tableview();
+    const string urls_to_hyperlinks(const string &text);
+
+    QStandardItemModel *_model;
 
 private slots:
     void add();
@@ -45,12 +52,6 @@ private slots:
     void about();
     void show_details(QModelIndex index);
 
-private:
-    void populate_tableview();
-    void add_row(const QString &user, const int &blocked, const QString &reason);
-    const string urls_to_hyperlinks(const string &text);
-
-    QStandardItemModel *_model;
 };
 
 class DialogAdd : public QDialog, private Ui::DialogAdd
@@ -59,11 +60,16 @@ class DialogAdd : public QDialog, private Ui::DialogAdd
 
 public:
     explicit DialogAdd(QMainWindow *parent = nullptr);
+
+private:
     const dialogdata get_data();
+    MainWindow *_parent;
 
 private slots:
     void add_receipt();
     void remove_receipt();
+    void accept();
+
 };
 
 #endif  // INTERFACE_QT_HPP

@@ -17,7 +17,6 @@
 #include <regex>
 #include <QMessageBox>
 #include <QDebug>
-#include <iostream>
 #include "version.hpp"
 #include "whyblocked.hpp"
 #include "interface_qt.hpp"
@@ -81,30 +80,8 @@ void MainWindow::add_row(const QString &user, const int &blocked, const QString 
 
 void MainWindow::add()
 {
-    DialogAdd dialog;
-    if (dialog.exec())
-    {
-        auto data = dialog.get_data();
-        const string user = std::get<0>(data);
-        const int blocked = static_cast<int>(std::get<1>(data));
-        const string reason = std::get<2>(data);
-
-        if (user.empty())
-        {
-            return;
-        }
-        add_block(user, blocked, reason);
-        add_row(QString::fromStdString(user),
-                blocked,
-                QString::fromStdString(reason));
-        for (const string &receipt : std::get<3>(data))
-        {
-            add_url(user, receipt);
-        }
-
-        statusBar()->showMessage(tr("Added %1 to database.")
-                                 .arg(QString::fromStdString(user)));
-    }
+    DialogAdd *dialog = new DialogAdd(this);
+    dialog->show();
 }
 
 void MainWindow::remove()
@@ -170,9 +147,12 @@ const string MainWindow::urls_to_hyperlinks(const string &text)
     return std::regex_replace(text, re_url, "<a href=\"$1\">$1</a>");
 }
 
-DialogAdd::DialogAdd(QMainWindow *parent) : QDialog(parent)
+DialogAdd::DialogAdd(QMainWindow *parent)
+: QDialog(parent)
+, _parent(static_cast<MainWindow*>(parent))
 {
     setupUi(this);
+
     connect(button_receipt_add, &QPushButton::clicked, this, &DialogAdd::add_receipt);
     connect(button_receipt_remove, &QPushButton::clicked, this, &DialogAdd::remove_receipt);
 }
@@ -205,6 +185,32 @@ void DialogAdd::remove_receipt()
     {
         delete item;
     }
+}
+
+void DialogAdd::accept()
+{
+    auto data = get_data();
+    const string user = std::get<0>(data);
+    const int blocked = static_cast<int>(std::get<1>(data));
+    const string reason = std::get<2>(data);
+
+    if (user.empty())
+    {
+        return;
+    }
+    ::add_block(user, blocked, reason);
+    _parent->add_row(QString::fromStdString(user),
+                     blocked,
+                     QString::fromStdString(reason));
+    for (const string &receipt : std::get<3>(data))
+    {
+        ::add_url(user, receipt);
+    }
+
+    _parent->statusBar()->showMessage(tr("Added %1 to database.")
+                                      .arg(QString::fromStdString(user)));
+
+    delete this;
 }
 
 int main(int argc, char *argv[])
