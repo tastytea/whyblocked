@@ -1,4 +1,36 @@
 pipeline:
+  gcc7:
+    image: debian:stretch-slim
+    pull: true
+    environment:
+      - LANG=C.utf8
+    commands:
+      - rm /etc/apt/apt.conf.d/docker-clean
+      - apt-get update -q
+      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+      - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
+      - apt-get install -qy gnupg
+      - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
+      - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
+      - apt-get update -q
+      - apt-get install -qy build-essential cmake pkg-config
+      - apt-get install -qy -t xenial g++-7
+      - update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 100
+      - update-alternatives --set g++ /usr/bin/g++-7
+      - apt-get install -qy libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev qt5-default
+      - apt-get install -qy rpm file
+      - rm -rf build && mkdir -p build && cd build
+      - cmake ..
+      - make VERBOSE=1
+      - make install DESTDIR=install
+      - make package
+      - cmake -DWITH_DEB=ON ..
+      - make package
+      - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
+      - make package
+    volumes:
+      - /var/cache/debian-package-cache:/var/cache/apt/archives
+
   gcc8:
     image: debian:stretch-slim
     pull: true
@@ -31,26 +63,72 @@ pipeline:
     volumes:
       - /var/cache/debian-package-cache:/var/cache/apt/archives
 
-  gcc7:
+  clang3:
     image: debian:stretch-slim
     pull: true
     environment:
       - LANG=C.utf8
+      - CXX=clang++
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
       - apt-get update -q
-      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
-      - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
-      - apt-get install -qy gnupg
-      - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
-      - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
-      - apt-get update -q
-      - apt-get install -qy build-essential cmake pkg-config
-      - apt-get install -qy -t xenial g++-7
-      - update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 100
-      - update-alternatives --set g++ /usr/bin/g++-7
+      - apt-get install -qy build-essential clang cmake pkg-config
       - apt-get install -qy libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev qt5-default
       - apt-get install -qy rpm file
+      - rm -rf build && mkdir -p build && cd build
+      - cmake ..
+      - make VERBOSE=1
+      - make install DESTDIR=install
+      - make package
+      - cmake -DWITH_DEB=ON ..
+      - make package
+      - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
+      - make package
+    volumes:
+      - /var/cache/debian-package-cache:/var/cache/apt/archives
+
+  clang5:
+    image: debian:stretch-slim
+    pull: true
+    environment:
+      - LANG=C.utf8
+      - CXX=clang++-5.0
+    commands:
+      - rm /etc/apt/apt.conf.d/docker-clean
+      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+      - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/sid.list
+      - apt-get update -q
+      - apt-get install -qy build-essential cmake pkg-config
+      - apt-get install -qy libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev qt5-default
+      - apt-get install -qy rpm file
+      - apt-get install -qy -t stretch-backports clang-5.0
+      - rm -rf build && mkdir -p build && cd build
+      - cmake ..
+      - make VERBOSE=1
+      - make install DESTDIR=install
+      - make package
+      - cmake -DWITH_DEB=ON ..
+      - make package
+      - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
+      - make package
+    volumes:
+      - /var/cache/debian-package-cache:/var/cache/apt/archives
+
+  clang6:
+    image: debian:stretch-slim
+    pull: true
+    environment:
+      - LANG=C.utf8
+      - CXX=clang++-6.0
+    commands:
+      - rm /etc/apt/apt.conf.d/docker-clean
+      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+      - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/sid.list
+      - apt-get update -q
+      - apt-get install -qy build-essential cmake pkg-config
+      - apt-get install -qy libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev qt5-default
+      - apt-get install -qy rpm file
+      - apt-get install -qy -t stretch-backports clang-6.0
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
       - make VERBOSE=1
