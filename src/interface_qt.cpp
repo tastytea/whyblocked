@@ -193,7 +193,7 @@ const dialogdata DialogAdd::get_data()
 
 void DialogAdd::add_receipt()
 {
-    QListWidgetItem *item = new QListWidgetItem("Test");
+    QListWidgetItem *item = new QListWidgetItem(tr("Insert receipt here."));
     item->setFlags(item->flags() | Qt::ItemIsEditable);
     list_receipts->insertItem(list_receipts->count(), item);
     list_receipts->editItem(item);
