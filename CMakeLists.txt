@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.6)
 project (whyblocked
-         VERSION 0.7.3
+         VERSION 0.7.4
          LANGUAGES CXX
 )
 
@@ -41,6 +41,8 @@ if(NOT WITHOUT_QT)
   target_link_libraries(whyblocked-gui
                         ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp stdc++fs Qt5::Widgets)
   install(TARGETS whyblocked-gui DESTINATION ${CMAKE_INSTALL_BINDIR})
+  install(FILES de.tastytea.Whyblocked.desktop DESTINATION
+          ${CMAKE_INSTALL_DATAROOTDIR}/applications)
 endif()
 
 

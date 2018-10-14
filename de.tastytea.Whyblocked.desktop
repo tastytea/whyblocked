@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=1.1
+Name=Whyblocked
+Comment=Reminds you why you blocked someone
+Comment[de]=Erinnert dich, warum du jemanden blockiertest
+#Icon=org.tastytea.Whyblocked
+Exec=whyblocked-gui
+Terminal=false
+Categories=Utility;
+Keywords=blocklist;social-network;
+StartupNotify=true
+StartupWMClass=whyblocked-gui
