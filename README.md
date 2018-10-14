@@ -1,7 +1,9 @@
 **Whyblocked** reminds you why you blocked someone. It is developed with
 Mastodon in mind, but can be used for other contexts, of course.
 
-It has a text interface and uses a SQLite-database.
+It has a text- and a Qt-interface and uses a SQLite-database.
+
+![Screenshot Qt interface](https://doc.schlomp.space/whyblocked/whyblocked_screenshot.png)
 
 ## Usage
 
