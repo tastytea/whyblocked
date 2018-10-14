@@ -75,13 +75,40 @@
    <addaction name="action_about"/>
    <addaction name="action_quit"/>
   </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>600</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuDatabase">
+    <property name="title">
+     <string>&amp;Database</string>
+    </property>
+    <addaction name="action_add"/>
+    <addaction name="action_remove"/>
+    <addaction name="action_reload"/>
+    <addaction name="action_quit"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="action_about"/>
+   </widget>
+   <addaction name="menuDatabase"/>
+   <addaction name="menuHelp"/>
+  </widget>
   <action name="action_add">
    <property name="icon">
     <iconset theme="add">
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>add</string>
+    <string>&amp;Add</string>
    </property>
    <property name="toolTip">
     <string>Add user or instance</string>
@@ -96,7 +123,7 @@
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>remove</string>
+    <string>Re&amp;move</string>
    </property>
    <property name="toolTip">
     <string>Remove user or instance</string>
@@ -111,7 +138,7 @@
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>about</string>
+    <string>About</string>
    </property>
    <property name="toolTip">
     <string>About this application</string>
@@ -123,7 +150,7 @@
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Reload</string>
+    <string>&amp;Reload</string>
    </property>
    <property name="toolTip">
     <string>Reload database</string>
@@ -134,10 +161,11 @@
   </action>
   <action name="action_quit">
    <property name="icon">
-    <iconset theme="exit"/>
+    <iconset theme="exit">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Quit</string>
+    <string>&amp;Quit</string>
    </property>
    <property name="toolTip">
     <string>Quit application</string>
