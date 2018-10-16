@@ -10,4 +10,4 @@ Terminal=false
 Categories=Utility;
 Keywords=blocklist;social-network;
 StartupNotify=true
-StartupWMClass=whyblocked-gui
+StartupWMClass=Whyblocked

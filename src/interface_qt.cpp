@@ -206,7 +206,7 @@ void DialogAdd::accept()
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    QCoreApplication::setApplicationName("whyblocked");
+    QCoreApplication::setApplicationName("Whyblocked");
 
     MainWindow win;
     win.show();
