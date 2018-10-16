@@ -108,7 +108,7 @@ void MainWindow::about()
            "<p><small>Copyright © 2018 <a href=\"mailto:tastytea@tastytea.de\">tastytea</a>.<br>"
            "Licence GPLv3: <a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">"
            "GNU GPL version 3</a>.<br>"
-           "This program comes with ABSOLUTELY NO WARRANTY. This is free software,"
+           "This program comes with ABSOLUTELY NO WARRANTY. This is free software, "
            "and you are welcome to redistribute it under certain conditions.</small></p>")
         .arg(global::version));
 }
