@@ -17,6 +17,8 @@
 #include <regex>
 #include <QMessageBox>
 #include <QDebug>
+#include <QTranslator>
+#include <QLibraryInfo>
 #include "version.hpp"
 #include "whyblocked.hpp"
 #include "interface_qt.hpp"
@@ -133,8 +135,8 @@ void MainWindow::remove()
 
 void MainWindow::about()
 {
-    QMessageBox::about(this, tr("About whyblocked"),
-        tr("<p><b>whyblocked</b> %1</p>"
+    QMessageBox::about(this, tr("About Whyblocked"),
+        tr("<p><b>Whyblocked</b> %1</p>"
            "<p>Reminds you why you blocked someone.</p>"
            "<p>Sourcecode: <a href=\"https://schlomp.space/tastytea/whyblocked\">"
            "https://schlomp.space/tastytea/whyblocked</a></p>"
@@ -258,6 +260,15 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     QCoreApplication::setApplicationName("Whyblocked");
+    
+    QTranslator qtTranslator;
+    qtTranslator.load("qt_" + QLocale::system().name(),
+                      QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    app.installTranslator(&qtTranslator);
+    QTranslator appTranslator;
+    appTranslator.load("whyblocked_" + QLocale::system().name(),
+                       QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    app.installTranslator(&appTranslator);
 
     MainWindow win;
     win.show();

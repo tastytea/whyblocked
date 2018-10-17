@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.6)
 project (whyblocked
-         VERSION 0.8.0
+         VERSION 0.9.0
          LANGUAGES CXX
 )
 
@@ -8,6 +8,7 @@ include(GNUInstallDirs)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBXDG_BASEDIR REQUIRED libxdg-basedir)
 find_package(Qt5Widgets CONFIG REQUIRED)
+find_package(Qt5LinguistTools)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -31,18 +32,29 @@ configure_file (
     "${PROJECT_BINARY_DIR}/version.hpp"
 )
 
+if(Qt5_LRELEASE_EXECUTABLE)
+    file(GLOB TS_FILES "translations/*.ts")
+    file(GLOB TS_SRC_FILES "src/*")
+    qt5_create_translation(QM_FILES ${TS_SRC_FILES} ${TS_FILES} OPTIONS -no-obsolete)
+    qt5_add_translation(QM_FILES ${TS_FILES})
+endif()
+
 add_executable(whyblocked src/interface_text.cpp src/whyblocked.cpp)
 target_link_libraries(whyblocked
                       ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp stdc++fs)
 install(TARGETS whyblocked DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 if(NOT WITHOUT_QT)
-  add_executable(whyblocked-gui src/interface_qt.cpp src/whyblocked.cpp)
-  target_link_libraries(whyblocked-gui
-                        ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp stdc++fs Qt5::Widgets)
-  install(TARGETS whyblocked-gui DESTINATION ${CMAKE_INSTALL_BINDIR})
-  install(FILES de.tastytea.Whyblocked.desktop DESTINATION
-          ${CMAKE_INSTALL_DATAROOTDIR}/applications)
+    add_executable(whyblocked-gui src/interface_qt.cpp src/whyblocked.cpp ${QM_FILES})
+    target_link_libraries(whyblocked-gui
+                          ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp stdc++fs
+                          Qt5::Widgets)
+
+    install(TARGETS whyblocked-gui DESTINATION ${CMAKE_INSTALL_BINDIR})
+    install(FILES de.tastytea.Whyblocked.desktop DESTINATION
+            ${CMAKE_INSTALL_DATAROOTDIR}/applications)
+    install(FILES ${QM_FILES} DESTINATION
+            ${CMAKE_INSTALL_DATAROOTDIR}/qt5/translations)
 endif()
 
 
