@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
                 cin.ignore();
                 std::getline(cin, reason, '\n');
 
-                if (add_block(user, blocked, reason))
+                if (database::add_block(user, blocked, reason))
                 {
                     cout << user << " added.\n";
                 }
@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
                         cout << "URL: ";
                         cin >> url;
 
-                        if (add_url(user, url))
+                        if (database::add_receipt(user, url))
                         {
                             cout << "Receipt added.\n";
                         }
@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
                 cout << "User or instance: ";
                 cin >> user;
 
-                if (remove(user))
+                if (database::remove(user))
                 {
                     cout << user << " removed.\n";
                 }
@@ -113,7 +113,7 @@ int main(int argc, char *argv[])
             case 'V':
             {
                 result_view result;
-                if (view(result))
+                if (database::view(result))
                 {
                     for (const std::tuple<string, int, string> &line : result)
                     {
@@ -138,7 +138,7 @@ int main(int argc, char *argv[])
                 cin >> answer;
                 {
                     result_details result;
-                    if (details(answer, result))
+                    if (database::details(answer, result))
                     {
                         cout << answer << " is ";
                         if (std::get<0>(result) == 1)

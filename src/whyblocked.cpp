@@ -54,7 +54,8 @@ const string get_filepath()
     return filepath;
 }
 
-const bool add_block(const string &user, const int blocked, const string &reason)
+const bool database::add_block(const string &user, const int blocked,
+                               const string &reason)
 {
     try
     {
@@ -72,13 +73,13 @@ const bool add_block(const string &user, const int blocked, const string &reason
     return true;
 }
 
-const bool add_url(const string &user, const string &url)
+const bool database::add_receipt(const string &user, const string &receipt)
 {
     try
     {
         sqlite::connection con(get_filepath());
         sqlite::execute ins(con, "INSERT INTO urls VALUES(?, ?);");
-        ins % user % url;
+        ins % user % receipt;
         ins();
     }
     catch (const std::exception &e)
@@ -90,7 +91,7 @@ const bool add_url(const string &user, const string &url)
     return true;
 }
 
-const bool remove(const string &user)
+const bool database::remove(const string &user)
 {
     try
     {
@@ -111,7 +112,7 @@ const bool remove(const string &user)
     return true;
 }
 
-const bool view(result_view &result)
+const bool database::view(result_view &result)
 {
     try
     {
@@ -137,7 +138,7 @@ const bool view(result_view &result)
     return true;
 }
 
-const bool details(const string &user, result_details &result)
+const bool database::details(const string &user, result_details &result)
 {
     try
     {

@@ -26,10 +26,14 @@ using result_view = std::vector<std::tuple<string, int, string>>;
 using result_details = std::tuple<int, string, std::vector<string>>;
 
 const string get_filepath();
-const bool add_block(const string &user, const int blocked, const string &reason);
-const bool add_url(const string &user, const string &url);
-const bool remove(const string &user);
-const bool view(result_view &result);
-const bool details(const string &user, result_details &result);
+namespace database
+{
+    const bool add_block(const string &user, const int blocked,
+                         const string &reason);
+    const bool add_receipt(const string &user, const string &receipt);
+    const bool remove(const string &user);
+    const bool view(result_view &result);
+    const bool details(const string &user, result_details &result);
+}
 
 #endif  // WHYBLOCKED_HPP

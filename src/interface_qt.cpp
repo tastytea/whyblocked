@@ -42,7 +42,7 @@ void MainWindow::populate_tableview()
     tableview->horizontalHeader()->resizeSection(0, 250);
 
     result_view result;
-    if (view(result))
+    if (database::view(result))
     {
         for (const std::tuple<string, int, string> &line : result)
         {
@@ -85,7 +85,7 @@ void MainWindow::remove()
         for (auto &row : selection->selectedRows())
         {
             const string user = row.data().toString().toStdString();
-            ::remove(user);
+            database::remove(user);
             statusBar()->showMessage(tr("Removed %1 from database.")
                                      .arg(QString::fromStdString(user)));
             _model->removeRow(row.row());
@@ -119,7 +119,7 @@ void MainWindow::show_details(QModelIndex index)
     result_details result;
     string text = "";
 
-    if (details(user, result))
+    if (database::details(user, result))
     {
         if (!std::get<2>(result).empty())
         {
@@ -188,13 +188,13 @@ void DialogAdd::accept()
     {
         return;
     }
-    ::add_block(user, blocked, reason);
+    database::add_block(user, blocked, reason);
     _parent->add_row(QString::fromStdString(user),
                      blocked,
                      QString::fromStdString(reason));
     for (const string &receipt : std::get<3>(data))
     {
-        ::add_url(user, receipt);
+        database::add_receipt(user, receipt);
     }
 
     _parent->statusBar()->showMessage(tr("Added %1 to database.")
