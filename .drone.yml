@@ -17,7 +17,7 @@ pipeline:
       - apt-get install -qy -t xenial g++-7
       - update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 100
       - update-alternatives --set g++ /usr/bin/g++-7
-      - apt-get install -qy libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev qt5-default
+      - apt-get install -qy libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev qt5-default qttools5-dev-tools
       - apt-get install -qy rpm file
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
@@ -49,7 +49,7 @@ pipeline:
       - apt-get install -qy -t xenial g++-8
       - update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 100
       - update-alternatives --set g++ /usr/bin/g++-8
-      - apt-get install -qy libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev qt5-default
+      - apt-get install -qy libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev qt5-default qttools5-dev-tools
       - apt-get install -qy rpm file
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
@@ -73,7 +73,7 @@ pipeline:
       - rm /etc/apt/apt.conf.d/docker-clean
       - apt-get update -q
       - apt-get install -qy build-essential clang cmake pkg-config
-      - apt-get install -qy libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev qt5-default
+      - apt-get install -qy libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev qt5-default qttools5-dev-tools
       - apt-get install -qy rpm file
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
@@ -99,7 +99,7 @@ pipeline:
       - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/sid.list
       - apt-get update -q
       - apt-get install -qy build-essential cmake pkg-config
-      - apt-get install -qy libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev qt5-default
+      - apt-get install -qy libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev qt5-default qttools5-dev-tools
       - apt-get install -qy rpm file
       - apt-get install -qy -t stretch-backports clang-5.0
       - rm -rf build && mkdir -p build && cd build
@@ -126,7 +126,7 @@ pipeline:
       - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/sid.list
       - apt-get update -q
       - apt-get install -qy build-essential cmake pkg-config
-      - apt-get install -qy libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev qt5-default
+      - apt-get install -qy libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev qt5-default qttools5-dev-tools
       - apt-get install -qy rpm file
       - apt-get install -qy -t stretch-backports clang-6.0
       - rm -rf build && mkdir -p build && cd build
@@ -150,7 +150,7 @@ pipeline:
       - rm /etc/apt/apt.conf.d/docker-clean
       - apt-get update -q
       - apt-get install -qy build-essential cmake pkg-config
-      - apt-get install -qy libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev qt5-default
+      - apt-get install -qy libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev qt5-default qttools5-dev-tools
       - apt-get install -qy rpm file
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
