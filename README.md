@@ -49,6 +49,21 @@ make
 make install
 ```
 
+## Contributing
+
+Contributions are always welcome. You can submit them as pull requests or via
+email to `tastytea`@`tastytea.de`.
+
+### Translations
+
+To start a new translation, go to `translations/` and copy `whyblocked_en.ts` to
+a file [appropriate](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
+for the new language. If you want to translate to french for example, that file
+name would be `whyblocked_fr.ts`.
+
+Use [Linguist](http://doc.qt.io/qt-5/qtlinguist-index.html) to edit the
+`.ts`-files.
+
 ## Bugs
 
 Please report them on the
