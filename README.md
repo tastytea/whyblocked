@@ -7,38 +7,9 @@ It has a text- and a Qt-interface and uses a SQLite-database.
 
 ## Usage
 
-### Example
-
-```PLAIN
-$ whyblocked
-This is whyblocked 0.4.1.
-Type add, remove, view or details. Or just the first letter.
-Type quit or q to quit the program.
-: add
-User or instance: @tastytea@soc.ialis.me
-Blocked(b) or silenced(s): b
-Reason: Too nice
-@tastytea@soc.ialis.me added.
-Add receipt? [y/n] y
-URL: https://tastytea.de/
-Receipt added.
-Add receipt? [y/n] n
-: view
- Blocked: @tastytea@soc.ialis.me because: Too nice
-: details
-User or instance: @tastytea@soc.ialis.me
-@tastytea@soc.ialis.me is blocked, because: Too nice
-Receipts:
-  https://tastytea.de/
-: remove
-User or instance: @tastytea@soc.ialis.me
-@tastytea@soc.ialis.me removed.
-: view
-: details
-User or instance: @tastytea@soc.ialis.me
-@tastytea@soc.ialis.me is not in the database.
-: quit
-```
+For the text interface start `whyblocked`, for the Qt interface
+`whyblocked-gui`. You can also start it from the menu of your desktop
+environment.
 
 ## Install
 
@@ -61,7 +32,7 @@ Gentoo ebuilds are available via my
 * [cmake](https://cmake.org/) (at least 3.6)
 * [vsqlite++](http://vsqlite.virtuosic-bytes.com/) (tested: 0.3.13)
 * [libxdg-basedir](http://repo.or.cz/w/libxdg-basedir.git) (tested: 1.2)
-* [qtwidgets](https://www.qt.io/) (tested: 5.9/5.7)
+* [qtwidgets](https://www.qt.io/) (tested: 5.11/5.7)
 
 #### Get sourcecode
 
