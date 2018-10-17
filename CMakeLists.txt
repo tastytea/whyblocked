@@ -7,7 +7,9 @@ project (whyblocked
 include(GNUInstallDirs)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBXDG_BASEDIR REQUIRED libxdg-basedir)
-find_package(Qt5Widgets CONFIG REQUIRED)
+if(NOT WITHOUT_GUI)
+    find_package(Qt5Widgets CONFIG REQUIRED)
+endif()
 find_package(Qt5LinguistTools)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -44,8 +46,9 @@ target_link_libraries(whyblocked
                       ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp stdc++fs)
 install(TARGETS whyblocked DESTINATION ${CMAKE_INSTALL_BINDIR})
 
-if(NOT WITHOUT_QT)
-    add_executable(whyblocked-gui src/interface_qt.cpp src/whyblocked.cpp ${QM_FILES})
+if(NOT WITHOUT_GUI)
+    add_executable(whyblocked-gui src/interface_qt.cpp src/whyblocked.cpp
+                   ${QM_FILES})
     target_link_libraries(whyblocked-gui
                           ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp stdc++fs
                           Qt5::Widgets)

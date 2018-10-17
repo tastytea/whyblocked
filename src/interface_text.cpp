@@ -15,6 +15,8 @@
  */
 
 #include <iostream>
+#include <QTranslator>
+#include <QLibraryInfo>
 #include "version.hpp"
 #include "whyblocked.hpp"
 
