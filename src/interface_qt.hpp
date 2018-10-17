@@ -18,8 +18,6 @@
 #define INTERFACE_QT_HPP
 
 #include <string>
-#include <tuple>
-#include <list>
 #include <QMainWindow>
 #include <QStandardItemModel>
 #include <QDialog>
@@ -27,10 +25,14 @@
 #include "ui_whyblocked_add.h"
 
 using std::string;
-using dialogdata = std::tuple<const string,
-                              const bool,
-                              const string,
-                              const std::vector<string>>;
+
+struct Dialogdata
+{
+    string user;
+    bool blocked;
+    string reason;
+    std::vector<string> receipts;
+};
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
@@ -40,6 +42,9 @@ public:
     explicit MainWindow(QMainWindow *parent = nullptr);
     void add_row(const QString &user, const int &blocked, const QString &reason);
 
+public slots:
+    void remove();
+
 private:
     const string urls_to_hyperlinks(const string &text);
 
@@ -47,7 +52,7 @@ private:
 
 private slots:
     void add();
-    void remove();
+    void edit();
     void about();
     void show_details(QModelIndex index);
     void populate_tableview();
@@ -60,9 +65,10 @@ class DialogAdd : public QDialog, private Ui::DialogAdd
 
 public:
     explicit DialogAdd(QMainWindow *parent = nullptr);
+    const void set_data(const Dialogdata &data);
 
 private:
-    const dialogdata get_data();
+    const Dialogdata get_data() const;
 
     MainWindow *_parent;
 

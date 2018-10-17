@@ -77,6 +77,39 @@ void MainWindow::add()
     dialog->show();
 }
 
+void MainWindow::edit()
+{
+    if (tableview->selectionModel()->selectedRows().count() != 1)
+    {
+        QMessageBox::warning(this, tr("Invalid selection"),
+                             tr("Please select only 1 entry to edit."));
+        return;
+    }
+
+    DialogAdd *dialog = new DialogAdd(this);
+    dialog->setWindowTitle(tr("Edit entry"));
+
+    Dialogdata data;
+    QModelIndex index = tableview->selectionModel()->selectedRows().first();
+    data.user = index.sibling(index.row(), 0).data().toString().toStdString();
+    result_details details;
+    database::details(data.user, details);
+    if (std::get<0>(details) == true)
+    {
+        data.blocked = 1;
+    }
+    else
+    {
+        data.blocked = 0;
+    }
+    data.reason = std::get<1>(details);
+    data.receipts = std::get<2>(details);
+
+    dialog->set_data(data);
+    dialog->setProperty("edit", true);
+    dialog->show();
+}
+
 void MainWindow::remove()
 {
     QItemSelectionModel *selection = tableview->selectionModel();
@@ -147,7 +180,7 @@ DialogAdd::DialogAdd(QMainWindow *parent)
     setupUi(this);
 }
 
-const dialogdata DialogAdd::get_data()
+const Dialogdata DialogAdd::get_data() const
 {
     std::vector<string> receipts;
     for (int row = 0; row <= list_receipts->count() - 1; ++row)
@@ -155,10 +188,27 @@ const dialogdata DialogAdd::get_data()
         receipts.push_back(list_receipts->item(row)->text().toStdString());
     }
 
-    return std::make_tuple(text_user->text().toStdString(),
-                           radio_blocked->isChecked(),
-                           text_reason->text().toStdString(),
-                           receipts);
+    Dialogdata data;
+    data.user = text_user->text().toStdString();
+    data.blocked = radio_blocked->isChecked();
+    data.reason = text_reason->text().toStdString();
+    data.receipts = receipts;
+
+    return data;
+}
+
+const void DialogAdd::set_data(const Dialogdata &data)
+{
+    text_user->setText(QString::fromStdString(data.user));
+    radio_blocked->setChecked(data.blocked);
+    radio_silcenced->setChecked(!data.blocked);
+    text_reason->setText(QString::fromStdString(data.reason));
+    for (const string &receipt : data.receipts)
+    {
+        QListWidgetItem *item = new QListWidgetItem(QString::fromStdString(receipt));
+        item->setFlags(item->flags() | Qt::ItemIsEditable);
+        list_receipts->insertItem(list_receipts->count(), item);
+    }
 }
 
 void DialogAdd::add_receipt()
@@ -179,26 +229,27 @@ void DialogAdd::remove_receipt()
 
 void DialogAdd::accept()
 {
-    auto data = get_data();
-    const string user = std::get<0>(data);
-    const int blocked = static_cast<int>(std::get<1>(data));
-    const string reason = std::get<2>(data);
+    if (property("edit").toBool())
+    {
+        _parent->remove();
+    }
+    Dialogdata data = get_data();
 
-    if (user.empty())
+    if (data.user.empty())
     {
         return;
     }
-    database::add_block(user, blocked, reason);
-    _parent->add_row(QString::fromStdString(user),
-                     blocked,
-                     QString::fromStdString(reason));
-    for (const string &receipt : std::get<3>(data))
+    database::add_block(data.user, data.blocked, data.reason);
+    _parent->add_row(QString::fromStdString(data.user),
+                     data.blocked,
+                     QString::fromStdString(data.reason));
+    for (const string &receipt : data.receipts)
     {
-        database::add_receipt(user, receipt);
+        database::add_receipt(data.user, receipt);
     }
 
     _parent->statusBar()->showMessage(tr("Added %1 to database.")
-                                      .arg(QString::fromStdString(user)));
+                                      .arg(QString::fromStdString(data.user)));
 
     delete this;
 }

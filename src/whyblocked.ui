@@ -97,6 +97,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="action_add"/>
+   <addaction name="action_edit"/>
    <addaction name="action_remove"/>
    <addaction name="action_reload"/>
    <addaction name="action_about"/>
@@ -116,6 +117,7 @@
      <string>&amp;Database</string>
     </property>
     <addaction name="action_add"/>
+    <addaction name="action_edit"/>
     <addaction name="action_remove"/>
     <addaction name="action_reload"/>
     <addaction name="action_quit"/>
@@ -199,6 +201,20 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="action_edit">
+   <property name="icon">
+    <iconset theme="edit-redo"/>
+   </property>
+   <property name="text">
+    <string>&amp;Edit</string>
+   </property>
+   <property name="toolTip">
+    <string>Edit entry</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
    </property>
   </action>
  </widget>
@@ -316,6 +332,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>action_edit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>edit()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>add()</slot>
@@ -323,5 +355,6 @@
   <slot>populate_tableview()</slot>
   <slot>about()</slot>
   <slot>show_details(QModelIndex)</slot>
+  <slot>edit()</slot>
  </slots>
 </ui>
