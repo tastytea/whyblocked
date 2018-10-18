@@ -49,7 +49,7 @@ const bool Text::askblocked()
     while (true)
     {
         const string blocked = get_answer(tr("Blocked(b) or silenced(s)"));
-        if (blocked[0] == tr("b")[0] || blocked[0] == tr("B"))
+        if (blocked[0] == tr("b")[0] || blocked[0] == tr("B")[0])
         {
             return true;
         }
