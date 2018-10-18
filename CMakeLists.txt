@@ -1,12 +1,13 @@
 cmake_minimum_required (VERSION 3.6)
 project (whyblocked
-         VERSION 0.9.0
+         VERSION 0.10.0
          LANGUAGES CXX
 )
 
 include(GNUInstallDirs)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBXDG_BASEDIR REQUIRED libxdg-basedir)
+find_package(Qt5Core CONFIG REQUIRED)
 if(NOT WITHOUT_GUI)
     find_package(Qt5Widgets CONFIG REQUIRED)
 endif()
@@ -37,13 +38,14 @@ configure_file (
 if(Qt5_LRELEASE_EXECUTABLE)
     file(GLOB TS_FILES "translations/*.ts")
     file(GLOB TS_SRC_FILES "src/*")
-    qt5_create_translation(QM_FILES ${TS_SRC_FILES} ${TS_FILES} OPTIONS -no-obsolete)
+    qt5_create_translation(QM_FILES ${TS_SRC_FILES} ${TS_FILES}
+                           OPTIONS -no-obsolete)
     qt5_add_translation(QM_FILES ${TS_FILES})
 endif()
 
 add_executable(whyblocked src/interface_text.cpp src/whyblocked.cpp)
 target_link_libraries(whyblocked
-                      ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp stdc++fs)
+                      ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp stdc++fs Qt5::Core)
 install(TARGETS whyblocked DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 if(NOT WITHOUT_GUI)

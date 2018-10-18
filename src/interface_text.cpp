@@ -15,14 +15,26 @@
  */
 
 #include <iostream>
+#include <QCoreApplication>
+#include <QTranslator>
+#include <QLocale>
+#include <QLibraryInfo>
 #include "version.hpp"
 #include "whyblocked.hpp"
+#include "interface_text.hpp"
 
 using std::cout;
 using std::cerr;
 using std::cin;
 
-const string get_answer(const string &question)
+// Allow cout to output QStrings
+std::ostream &operator <<(std::ostream &stream, const QString &str)
+{
+   stream << str.toStdString();
+   return stream;
+}
+
+const string Text::get_answer(const QString &question)
 {
     string answer;
 
@@ -32,37 +44,37 @@ const string get_answer(const string &question)
     return answer;
 }
 
-const bool askblocked()
+const bool Text::askblocked()
 {
     while (true)
     {
-        const string blocked = get_answer("Blocked(b) or silenced(s)");
-        if (blocked[0] == 'b' || blocked[0] == 'B')
+        const string blocked = get_answer(tr("Blocked(b) or silenced(s)"));
+        if (blocked[0] == tr("b")[0] || blocked[0] == tr("B"))
         {
             return true;
         }
-        else if (blocked[0] == 's' || blocked[0] == 'S')
+        else if (blocked[0] == tr("s")[0] || blocked[0] == tr("S")[0])
         {
             return false;
         }
     }
 }
 
-const void askrecipes(const string &user)
+const void Text::askrecipes(const string &user)
 {
     while (true)
     {
-        const string receipt_yn = get_answer("Add receipt? [y/n]");
-        if (receipt_yn[0] == 'y' || receipt_yn[0] == 'Y')
+        const string receipt_yn = get_answer(tr("Add receipt? [y/n]"));
+        if (receipt_yn[0] == tr("y")[0] || receipt_yn[0] == tr("Y")[0])
         {
-            const string receipt = get_answer("Receipt");
+            const string receipt = get_answer(tr("Receipt"));
 
             if (database::add_receipt(user, receipt))
             {
-                cout << "Receipt added.\n";
+                cout << tr("Receipt added.") << '\n';
             }
         }
-        else if (receipt_yn[0] == 'n' || receipt_yn[0] == 'N')
+        else if (receipt_yn[0] == tr("n")[0] || receipt_yn[0] == tr("N")[0])
         {
             break;
         }
@@ -73,9 +85,9 @@ const void askrecipes(const string &user)
     }
 }
 
-const void add()
+const void Text::add()
 {
-    const string user = get_answer("User or instance");
+    const string user = get_answer(tr("User or instance"));
     int blocked;
 
     if (askblocked())
@@ -86,24 +98,24 @@ const void add()
     {
         blocked = 0;
     }
-    const string reason = get_answer("Reason");
+    const string reason = get_answer(tr("Reason"));
 
     if (database::add_block(user, blocked, reason))
     {
-        cout << user << " added.\n";
+        cout << user << " " << tr("added.") << '\n';
     }
 
     askrecipes(user);
 }
 
-const void edit()
+const void Text::edit()
 {
     result_details olddata;
-    const string olduser = get_answer("User or instance");
+    const string olduser = get_answer(tr("User or instance"));
     if (database::details(olduser, olddata))
     {
-        cout << "A blank line keeps the former value.\n";
-        string newuser = get_answer("Change user or instance to");
+        cout << tr("A blank line keeps the former value.") << '\n';
+        string newuser = get_answer(tr("Change user or instance to"));
         if (newuser.empty())
         {
             newuser = olduser;
@@ -119,8 +131,8 @@ const void edit()
             blocked = 0;
         }
 
-        cout << "Old reason was: " << std::get<1>(olddata) << '\n';
-        string newreason = get_answer("Change reason to");
+        cout << tr("Old reason was:") << " " << std::get<1>(olddata) << '\n';
+        string newreason = get_answer(tr("Change reason to"));
         if (newreason.empty())
         {
             newreason = std::get<1>(olddata);
@@ -129,8 +141,8 @@ const void edit()
         std::vector<string> newreceipts;
         for (const string &oldreceipt : std::get<2>(olddata))
         {
-            cout << "Old receipt was: " << oldreceipt << '\n';
-            string newreceipt = get_answer("Change receipt to");
+            cout << tr("Old receipt was:") << " " << oldreceipt << '\n';
+            string newreceipt = get_answer(tr("Change receipt to"));
             if (newreceipt.empty())
             {
                 newreceipt = oldreceipt;
@@ -152,22 +164,22 @@ const void edit()
         }
         else
         {
-            cerr << "Could not remove " << olduser << ".\n";
+            cerr << tr("Could not remove") << " " << olduser << ".\n";
         }
     }
 }
 
-const void remove()
+const void Text::remove()
 {
-    const string user = get_answer("User or instance");
+    const string user = get_answer(tr("User or instance"));
 
     if (database::remove(user))
     {
-        cout << user << " removed.\n";
+        cout << user << " " << tr("removed.") << '\n';
     }
 }
 
-const void view()
+const void Text::view()
 {
     result_view result;
     if (database::view(result))
@@ -176,39 +188,39 @@ const void view()
         {
             if (std::get<1>(line) == 1)
             {
-                cout << " Blocked: ";
+                cout << tr(" Blocked:") << " ";
             }
             else
             {
-                cout << "Silenced: ";
+                cout << tr("Silenced:") << " ";
             }
-            cout << std::get<0>(line) << " because: ";
+            cout << std::get<0>(line) << " " << tr("because:") << " ";
             cout << std::get<2>(line) << '\n';
         }
     }
 }
 
-const void details()
+const void Text::details()
 {
-    const string user = get_answer("User or instance");
+    const string user = get_answer(tr("User or instance"));
     {
         result_details result;
         if (database::details(user, result))
         {
-            cout << user << " is ";
+            cout << user << " " << tr("is") << " ";
             if (std::get<0>(result) == 1)
             {
-                cout << "blocked, because: ";
+                cout << tr("blocked, because:") << " ";
             }
             else if (std::get<0>(result) == 0)
             {
-                cout << "silenced, because: ";
+                cout << tr("silenced, because:") << " ";
             }
             cout << std::get<1>(result) << '\n';
 
             if (!std::get<2>(result).empty())
             {
-                cout << "Receipts:\n";
+                cout << tr("Receipts:") << '\n';
                 for (const string &url : std::get<2>(result))
                 {
                     cout << "  " << url << '\n';
@@ -218,69 +230,75 @@ const void details()
     }
 }
 
-const void help()
+const void Text::help()
 {
-    cout << "Type add, edit, remove, view or details. Or just the first letter.\n";
-    cout << "Type help or h to show this help. Type quit or q to quit the program.\n";
+    cout << tr(
+        "Type add, edit, remove, view or details. Or just the first letter.")
+         << '\n';
+    cout << tr(
+        "Type help or h to show this help. Type quit or q to quit the program.")
+         << '\n';
 }
 
-int main(int argc, char *argv[])
+Text::Text(QObject *parent) : QObject(parent)
 {
     bool keeprunning = true;
-    
-    cout << "This is whyblocked " << global::version << ".\n";
+
+    cout << tr("This is Whyblocked") << " " << global::version << ".\n";
     help();
     while (keeprunning)
     {
         string answer = get_answer("");
-        switch (answer[0])
+        if (answer[0] == tr("a")[0] || answer[0] == tr("A")[0])
         {
-            case 'a':
-            case 'A':
-            {
-                add();
-                break;
-            }
-            case 'e':
-            case 'E':
-            {
-                edit();
-                break;
-            }
-            case 'r':
-            case 'R':
-            {
-                remove();
-                break;
-            }
-            case 'v':
-            case 'V':
-            {
-                view();
-                break;
-            }
-            case 'd':
-            case 'D':
-            {
-                details();
-                break;
-            }
-            case 'h':
-            case 'H':
-            {
-                help();
-                break;
-            }
-            case 'q':
-            case 'Q':
-            {
-                keeprunning = false;
-                break;
-            }
-            default:
-                cout << "Response not understood.\n";
+            add();
+        }
+        else if (answer[0] == tr("e")[0] || answer[0] == tr("E")[0])
+        {
+            edit();
+        }
+        else if (answer[0] == tr("r")[0] || answer[0] == tr("R")[0])
+        {
+            remove();
+        }
+        else if (answer[0] == tr("v")[0] || answer[0] == tr("V")[0])
+        {
+            view();
+        }
+        else if (answer[0] == tr("d")[0] || answer[0] == tr("D")[0])
+        {
+            details();
+        }
+        else if (answer[0] == tr("h")[0] || answer[0] == tr("H")[0])
+        {
+            help();
+        }
+        else if (answer[0] == tr("q")[0] || answer[0] == tr("Q")[0])
+        {
+            keeprunning = false;
+        }
+        else
+        {
+            cout << tr("Response not understood.") << '\n';
         }
     }
+}
+
+int main(int argc, char *argv[])
+{
+    QCoreApplication app(argc, argv);
+    QCoreApplication::setApplicationName("Whyblocked");
+    
+    QTranslator qtTranslator;
+    qtTranslator.load("qt_" + QLocale::system().name(),
+                      QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    app.installTranslator(&qtTranslator);
+    QTranslator appTranslator;
+    appTranslator.load("whyblocked_" + QLocale::system().name(),
+                       QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    app.installTranslator(&appTranslator);
+
+    Text t(&app);
 
     return 0;
 }

@@ -248,4 +248,250 @@
         <translation>&lt;p&gt;&lt;b&gt;Whyblocked&lt;/b&gt; %1&lt;/p&gt;&lt;p&gt;Erinnert dich, warum du jemanden blockiertest.&lt;/p&gt;&lt;p&gt;Quelltext: &lt;a href=&quot;https://schlomp.space/tastytea/whyblocked&quot;&gt;https://schlomp.space/tastytea/whyblocked&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;small&gt;Copyright © 2018 &lt;a href=&quot;mailto:tastytea@tastytea.de&quot;&gt;tastytea&lt;/a&gt;.&lt;br&gt;Lizenz GPLv3: &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0.html&quot;&gt;GNU GPL version 3&lt;/a&gt;.&lt;br&gt;Für dieses Programm besteht KEINERLEI GARANTIE. Dies ist freie Software, die Sie unter bestimmten Bedingungen weitergeben dürfen.&lt;/small&gt;&lt;/p&gt;</translation>
     </message>
 </context>
+<context>
+    <name>Text</name>
+    <message>
+        <location filename="../src/interface_text.cpp" line="51"/>
+        <source>Blocked(b) or silenced(s)</source>
+        <translation>Blockiert(b) oder Gedämpft(g)</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="52"/>
+        <source>b</source>
+        <translation>b</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="52"/>
+        <source>B</source>
+        <translation>B</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="56"/>
+        <source>s</source>
+        <translation>g</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="56"/>
+        <source>S</source>
+        <translation>G</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="67"/>
+        <source>Add receipt? [y/n]</source>
+        <translation>Beleg hinzufügen? [j/n]</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="68"/>
+        <source>y</source>
+        <translation>j</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="68"/>
+        <source>Y</source>
+        <translation>J</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="70"/>
+        <source>Receipt</source>
+        <translation>Beleg</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="74"/>
+        <source>Receipt added.</source>
+        <translation>Beleg hinzugefügt.</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="77"/>
+        <source>n</source>
+        <translation>n</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="77"/>
+        <source>N</source>
+        <translation>N</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="90"/>
+        <location filename="../src/interface_text.cpp" line="114"/>
+        <location filename="../src/interface_text.cpp" line="174"/>
+        <location filename="../src/interface_text.cpp" line="205"/>
+        <source>User or instance</source>
+        <translation>Benutzer oder Instanz</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="101"/>
+        <source>Reason</source>
+        <translation>Begründung</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="105"/>
+        <source>added.</source>
+        <translation>hinzugefügt.</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="117"/>
+        <source>A blank line keeps the former value.</source>
+        <translation>Leere Zeile um den alten Wert zu erhalten.</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="118"/>
+        <source>Change user or instance to</source>
+        <translation>Ändere Benutzer oder Instanz zu</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="134"/>
+        <source>Old reason was:</source>
+        <translation>Alte Begründung war:</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="135"/>
+        <source>Change reason to</source>
+        <translation>Ändere Begründung zu</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="144"/>
+        <source>Old receipt was:</source>
+        <translation>Alter Beleg war:</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="145"/>
+        <source>Change receipt to</source>
+        <translation>Ändere beleg zu</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="167"/>
+        <source>Could not remove</source>
+        <translation>Konnte nicht entfernen:</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="178"/>
+        <source>removed.</source>
+        <translation>entfernt.</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="191"/>
+        <source> Blocked:</source>
+        <translation>Blockiert:</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="195"/>
+        <source>Silenced:</source>
+        <translation> Gedämpft:</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="197"/>
+        <source>because:</source>
+        <translation>weil:</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="210"/>
+        <source>is</source>
+        <translation>ist</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="213"/>
+        <source>blocked, because:</source>
+        <translation>blockiert, weil:</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="217"/>
+        <source>silenced, because:</source>
+        <translation>gedämpft, weil:</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="223"/>
+        <source>Receipts:</source>
+        <translation>Belege:</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="235"/>
+        <source>Type add, edit, remove, view or details. Or just the first letter.</source>
+        <translation>Schreibe zufügen, ändern, entfernen, anschauen oder details. Oder nur den Anfangsbuchstaben.</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="238"/>
+        <source>Type help or h to show this help. Type quit or q to quit the program.</source>
+        <translation>Schreibe hilfe oder h, um die Hilfe anzuzeigen. Schreibe beenden oder b um das Programm zu beenden.</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="247"/>
+        <source>This is Whyblocked</source>
+        <translation>Dies ist Whyblocked</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="252"/>
+        <source>a</source>
+        <translation>z</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="252"/>
+        <source>A</source>
+        <translation>Z</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="256"/>
+        <source>e</source>
+        <translation>ä</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="256"/>
+        <source>E</source>
+        <translation>Ä</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="260"/>
+        <source>r</source>
+        <translation>e</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="260"/>
+        <source>R</source>
+        <translation>E</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="264"/>
+        <source>v</source>
+        <translation>a</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="264"/>
+        <source>V</source>
+        <translation>A</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="268"/>
+        <source>d</source>
+        <translation>d</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="268"/>
+        <source>D</source>
+        <translation>D</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="272"/>
+        <source>h</source>
+        <translation>h</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="272"/>
+        <source>H</source>
+        <translation>H</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="276"/>
+        <source>q</source>
+        <translation>b</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="276"/>
+        <source>Q</source>
+        <translation>B</translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="282"/>
+        <source>Response not understood.</source>
+        <translation>Antwort nicht verstanden.</translation>
+    </message>
+</context>
 </TS>

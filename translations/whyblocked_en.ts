@@ -248,4 +248,250 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>Text</name>
+    <message>
+        <location filename="../src/interface_text.cpp" line="51"/>
+        <source>Blocked(b) or silenced(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="52"/>
+        <source>b</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="52"/>
+        <source>B</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="56"/>
+        <source>s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="56"/>
+        <source>S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="67"/>
+        <source>Add receipt? [y/n]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="68"/>
+        <source>y</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="68"/>
+        <source>Y</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="70"/>
+        <source>Receipt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="74"/>
+        <source>Receipt added.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="77"/>
+        <source>n</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="77"/>
+        <source>N</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="90"/>
+        <location filename="../src/interface_text.cpp" line="114"/>
+        <location filename="../src/interface_text.cpp" line="174"/>
+        <location filename="../src/interface_text.cpp" line="205"/>
+        <source>User or instance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="101"/>
+        <source>Reason</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="105"/>
+        <source>added.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="117"/>
+        <source>A blank line keeps the former value.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="118"/>
+        <source>Change user or instance to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="134"/>
+        <source>Old reason was:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="135"/>
+        <source>Change reason to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="144"/>
+        <source>Old receipt was:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="145"/>
+        <source>Change receipt to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="167"/>
+        <source>Could not remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="178"/>
+        <source>removed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="191"/>
+        <source> Blocked:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="195"/>
+        <source>Silenced:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="197"/>
+        <source>because:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="210"/>
+        <source>is</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="213"/>
+        <source>blocked, because:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="217"/>
+        <source>silenced, because:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="223"/>
+        <source>Receipts:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="235"/>
+        <source>Type add, edit, remove, view or details. Or just the first letter.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="238"/>
+        <source>Type help or h to show this help. Type quit or q to quit the program.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="247"/>
+        <source>This is Whyblocked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="252"/>
+        <source>a</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="252"/>
+        <source>A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="256"/>
+        <source>e</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="256"/>
+        <source>E</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="260"/>
+        <source>r</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="260"/>
+        <source>R</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="264"/>
+        <source>v</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="264"/>
+        <source>V</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="268"/>
+        <source>d</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="268"/>
+        <source>D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="272"/>
+        <source>h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="272"/>
+        <source>H</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="276"/>
+        <source>q</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="276"/>
+        <source>Q</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/interface_text.cpp" line="282"/>
+        <source>Response not understood.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>
