@@ -252,28 +252,8 @@
     <name>Text</name>
     <message>
         <location filename="../src/interface_text.cpp" line="51"/>
-        <source>Blocked(b) or silenced(s)</source>
-        <translation>Blockiert(b) oder Gedämpft(g)</translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="52"/>
-        <source>b</source>
-        <translation>b</translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="52"/>
-        <source>B</source>
-        <translation>B</translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="56"/>
-        <source>s</source>
-        <translation>g</translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="56"/>
-        <source>S</source>
-        <translation>G</translation>
+        <source>Blocked or silenced?</source>
+        <translation>Blockiert oder gedämpft?</translation>
     </message>
     <message>
         <location filename="../src/interface_text.cpp" line="67"/>
@@ -406,12 +386,12 @@
     <message>
         <location filename="../src/interface_text.cpp" line="235"/>
         <source>Type add, edit, remove, view or details. Or just the first letter.</source>
-        <translation>Schreibe zufügen, ändern, entfernen, anschauen oder details. Oder nur den Anfangsbuchstaben.</translation>
+        <translation>Schreibe a für hinzufügen, e für ändern, r für entfernen, v für anschauen oder d für Details.</translation>
     </message>
     <message>
         <location filename="../src/interface_text.cpp" line="238"/>
         <source>Type help or h to show this help. Type quit or q to quit the program.</source>
-        <translation>Schreibe hilfe oder h, um die Hilfe anzuzeigen. Schreibe beenden oder b um das Programm zu beenden.</translation>
+        <translation>Schreibe hilfe oder h, um die Hilfe anzuzeigen. Schreibe q um das Programm zu beenden.</translation>
     </message>
     <message>
         <location filename="../src/interface_text.cpp" line="247"/>
@@ -419,77 +399,7 @@
         <translation>Dies ist Whyblocked</translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="252"/>
-        <source>a</source>
-        <translation>z</translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="252"/>
-        <source>A</source>
-        <translation>Z</translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="256"/>
-        <source>e</source>
-        <translation>ä</translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="256"/>
-        <source>E</source>
-        <translation>Ä</translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="260"/>
-        <source>r</source>
-        <translation>e</translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="260"/>
-        <source>R</source>
-        <translation>E</translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="264"/>
-        <source>v</source>
-        <translation>a</translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="264"/>
-        <source>V</source>
-        <translation>A</translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="268"/>
-        <source>d</source>
-        <translation>d</translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="268"/>
-        <source>D</source>
-        <translation>D</translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="272"/>
-        <source>h</source>
-        <translation>h</translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="272"/>
-        <source>H</source>
-        <translation>H</translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="276"/>
-        <source>q</source>
-        <translation>b</translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="276"/>
-        <source>Q</source>
-        <translation>B</translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="282"/>
+        <location filename="../src/interface_text.cpp" line="298"/>
         <source>Response not understood.</source>
         <translation>Antwort nicht verstanden.</translation>
     </message>

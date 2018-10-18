@@ -48,12 +48,12 @@ const bool Text::askblocked()
 {
     while (true)
     {
-        const string blocked = get_answer(tr("Blocked(b) or silenced(s)"));
-        if (blocked[0] == tr("b")[0] || blocked[0] == tr("B")[0])
+        const string blocked = get_answer(tr("Blocked or silenced?") + " [b/s]");
+        if (blocked[0] == 'b' || blocked[0] == 'B')
         {
             return true;
         }
-        else if (blocked[0] == tr("s")[0] || blocked[0] == tr("S")[0])
+        else if (blocked[0] == 's' || blocked[0] == 'S')
         {
             return false;
         }
@@ -249,37 +249,54 @@ Text::Text(QObject *parent) : QObject(parent)
     while (keeprunning)
     {
         string answer = get_answer("");
-        if (answer[0] == tr("a")[0] || answer[0] == tr("A")[0])
+        switch (answer[0])
         {
-            add();
-        }
-        else if (answer[0] == tr("e")[0] || answer[0] == tr("E")[0])
-        {
-            edit();
-        }
-        else if (answer[0] == tr("r")[0] || answer[0] == tr("R")[0])
-        {
-            remove();
-        }
-        else if (answer[0] == tr("v")[0] || answer[0] == tr("V")[0])
-        {
-            view();
-        }
-        else if (answer[0] == tr("d")[0] || answer[0] == tr("D")[0])
-        {
-            details();
-        }
-        else if (answer[0] == tr("h")[0] || answer[0] == tr("H")[0])
-        {
-            help();
-        }
-        else if (answer[0] == tr("q")[0] || answer[0] == tr("Q")[0])
-        {
-            keeprunning = false;
-        }
-        else
-        {
-            cout << tr("Response not understood.") << '\n';
+            case 'a':
+            case 'A':
+            {
+                add();
+                break;
+            }
+            case 'e':
+            case 'E':
+            {
+                edit();
+                break;
+            }
+            case 'r':
+            case 'R':
+            {
+                remove();
+                break;
+            }
+            case 'v':
+            case 'V':
+            {
+                view();
+                break;
+            }
+            case 'd':
+            case 'D':
+            {
+                details();
+                break;
+            }
+            case 'h':
+            case 'H':
+            {
+                help();
+                break;
+            }
+            case 'q':
+            case 'Q':
+            {
+                keeprunning = false;
+                break;
+            }
+            default:
+            {
+                cout << tr("Response not understood.") << '\n';
+            }
         }
     }
 }

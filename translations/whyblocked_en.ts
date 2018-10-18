@@ -252,27 +252,7 @@
     <name>Text</name>
     <message>
         <location filename="../src/interface_text.cpp" line="51"/>
-        <source>Blocked(b) or silenced(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="52"/>
-        <source>b</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="52"/>
-        <source>B</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="56"/>
-        <source>s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="56"/>
-        <source>S</source>
+        <source>Blocked or silenced?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -419,77 +399,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="252"/>
-        <source>a</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="252"/>
-        <source>A</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="256"/>
-        <source>e</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="256"/>
-        <source>E</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="260"/>
-        <source>r</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="260"/>
-        <source>R</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="264"/>
-        <source>v</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="264"/>
-        <source>V</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="268"/>
-        <source>d</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="268"/>
-        <source>D</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="272"/>
-        <source>h</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="272"/>
-        <source>H</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="276"/>
-        <source>q</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="276"/>
-        <source>Q</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/interface_text.cpp" line="282"/>
+        <location filename="../src/interface_text.cpp" line="298"/>
         <source>Response not understood.</source>
         <translation type="unfinished"></translation>
     </message>
