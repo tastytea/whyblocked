@@ -71,7 +71,7 @@ Please report them on the
 [issue tracker](https://schlomp.space/tastytea/whyblocked/issues) or to
 `tastytea`@`tastytea.de`.
 
-## Copyright
+## Licence & Copyright
 
 ```PLAIN
 Copyright © 2018 tastytea <tastytea@tastytea.de>.
@@ -79,3 +79,11 @@ License GPLv3: GNU GPL version 3 <https://www.gnu.org/licenses/gpl-3.0.html>.
 This program comes with ABSOLUTELY NO WARRANTY. This is free software,
 and you are welcome to redistribute it under certain conditions.
 ```
+
+The icon is derived from the icons `messagebox critical` and `help` of the
+[Gartoon icon theme](https://commons.wikimedia.org/wiki/Gartoon_icons). The
+original authors were Zeus, Patrick Yavitz and La Mula Francis, who released
+them under the terms of the
+[GPL2+](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html) and
+[DSL](http://www.fsf.org/licensing/licenses/dsl.html). The new icon is released
+under the same terms.

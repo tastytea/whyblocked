@@ -82,108 +82,108 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="24"/>
+        <location filename="../src/whyblocked.ui" line="27"/>
         <source>Click or press enter to view receipts</source>
         <translation>Klicken oder Eingabe drücken, um Belege zu anzuzeigen</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="67"/>
+        <location filename="../src/whyblocked.ui" line="70"/>
         <source>Memory aids, proof</source>
         <translation>Gedächtnisstützen, Beweise</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="117"/>
+        <location filename="../src/whyblocked.ui" line="120"/>
         <source>&amp;Database</source>
         <translation>&amp;Datenbank</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="127"/>
+        <location filename="../src/whyblocked.ui" line="130"/>
         <source>&amp;Help</source>
         <translation>&amp;Hilfe</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="140"/>
+        <location filename="../src/whyblocked.ui" line="143"/>
         <source>&amp;Add</source>
         <translation>&amp;Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="143"/>
+        <location filename="../src/whyblocked.ui" line="146"/>
         <source>Add user or instance</source>
         <translation>Benutzer oder Instanz hinzufügen</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="146"/>
+        <location filename="../src/whyblocked.ui" line="149"/>
         <source>Ctrl+N</source>
         <translation>Strg+N</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="155"/>
+        <location filename="../src/whyblocked.ui" line="158"/>
         <source>Re&amp;move</source>
         <translation>Ent&amp;fernen</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="158"/>
+        <location filename="../src/whyblocked.ui" line="161"/>
         <source>Remove user or instance</source>
         <translation>Benutzer oder Instanz entfernen</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="161"/>
+        <location filename="../src/whyblocked.ui" line="164"/>
         <source>Del</source>
         <translation>Entf</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="170"/>
+        <location filename="../src/whyblocked.ui" line="173"/>
         <source>&amp;About</source>
         <translation>&amp;Über</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="173"/>
+        <location filename="../src/whyblocked.ui" line="176"/>
         <source>About this application</source>
         <translation>Über dieses Programm</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="182"/>
+        <location filename="../src/whyblocked.ui" line="185"/>
         <source>&amp;Reload</source>
         <translation>Neu &amp;laden</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="185"/>
+        <location filename="../src/whyblocked.ui" line="188"/>
         <source>Reload database</source>
         <translation>Datenbank neu laden</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="188"/>
+        <location filename="../src/whyblocked.ui" line="191"/>
         <source>Ctrl+R</source>
         <translation>Strg+R</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="197"/>
+        <location filename="../src/whyblocked.ui" line="200"/>
         <source>&amp;Quit</source>
         <translation>&amp;Beenden</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="200"/>
+        <location filename="../src/whyblocked.ui" line="203"/>
         <source>Quit application</source>
         <translation>Programm beenden</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="203"/>
+        <location filename="../src/whyblocked.ui" line="206"/>
         <source>Ctrl+Q</source>
         <translation>Strg+Q</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="212"/>
+        <location filename="../src/whyblocked.ui" line="215"/>
         <source>&amp;Edit</source>
         <translation>B&amp;earbeiten</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="215"/>
+        <location filename="../src/whyblocked.ui" line="218"/>
         <location filename="../src/interface_qt.cpp" line="92"/>
         <source>Edit entry</source>
         <translation>Eintrag bearbeiten</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="218"/>
+        <location filename="../src/whyblocked.ui" line="221"/>
         <source>Ctrl+E</source>
         <translation>Strg+E</translation>
     </message>
