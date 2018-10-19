@@ -82,82 +82,87 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="27"/>
+        <location filename="../src/whyblocked.ui" line="28"/>
         <source>Click or press enter to view receipts</source>
         <translation>Klicken oder Eingabe drücken, um Belege zu anzuzeigen</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="70"/>
+        <location filename="../src/whyblocked.ui" line="71"/>
         <source>Memory aids, proof</source>
         <translation>Gedächtnisstützen, Beweise</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="120"/>
+        <location filename="../src/whyblocked.ui" line="95"/>
+        <source>Toolbar</source>
+        <translation>Werkzeugleiste</translation>
+    </message>
+    <message>
+        <location filename="../src/whyblocked.ui" line="121"/>
         <source>&amp;Database</source>
         <translation>&amp;Datenbank</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="130"/>
+        <location filename="../src/whyblocked.ui" line="131"/>
         <source>&amp;Help</source>
         <translation>&amp;Hilfe</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="143"/>
+        <location filename="../src/whyblocked.ui" line="144"/>
         <source>&amp;Add</source>
         <translation>&amp;Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="146"/>
+        <location filename="../src/whyblocked.ui" line="147"/>
         <source>Add user or instance</source>
         <translation>Benutzer oder Instanz hinzufügen</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="158"/>
+        <location filename="../src/whyblocked.ui" line="159"/>
         <source>Re&amp;move</source>
         <translation>Ent&amp;fernen</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="161"/>
+        <location filename="../src/whyblocked.ui" line="162"/>
         <source>Remove user or instance</source>
         <translation>Benutzer oder Instanz entfernen</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="173"/>
+        <location filename="../src/whyblocked.ui" line="174"/>
         <source>&amp;About</source>
         <translation>&amp;Über</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="176"/>
+        <location filename="../src/whyblocked.ui" line="177"/>
         <source>About this application</source>
         <translation>Über dieses Programm</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="188"/>
+        <location filename="../src/whyblocked.ui" line="189"/>
         <source>&amp;Reload</source>
         <translation>Neu &amp;laden</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="191"/>
+        <location filename="../src/whyblocked.ui" line="192"/>
         <source>Reload database</source>
         <translation>Datenbank neu laden</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="203"/>
+        <location filename="../src/whyblocked.ui" line="204"/>
         <source>&amp;Quit</source>
         <translation>&amp;Beenden</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="206"/>
+        <location filename="../src/whyblocked.ui" line="207"/>
         <source>Quit application</source>
         <translation>Programm beenden</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="218"/>
+        <location filename="../src/whyblocked.ui" line="219"/>
         <source>&amp;Edit</source>
         <translation>B&amp;earbeiten</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="221"/>
+        <location filename="../src/whyblocked.ui" line="222"/>
         <location filename="../src/interface_qt.cpp" line="92"/>
         <source>Edit entry</source>
         <translation>Eintrag bearbeiten</translation>
