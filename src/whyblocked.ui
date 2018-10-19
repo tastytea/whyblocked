@@ -146,7 +146,7 @@
     <string>Add user or instance</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+N</string>
+    <string notr="true">Ctrl+N</string>
    </property>
   </action>
   <action name="action_remove">
@@ -161,7 +161,7 @@
     <string>Remove user or instance</string>
    </property>
    <property name="shortcut">
-    <string>Del</string>
+    <string notr="true">Del</string>
    </property>
   </action>
   <action name="action_about">
@@ -174,6 +174,9 @@
    </property>
    <property name="toolTip">
     <string>About this application</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true"/>
    </property>
   </action>
   <action name="action_reload">
@@ -188,7 +191,7 @@
     <string>Reload database</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+R</string>
+    <string notr="true">Ctrl+R</string>
    </property>
   </action>
   <action name="action_quit">
@@ -203,7 +206,7 @@
     <string>Quit application</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Q</string>
+    <string notr="true">Ctrl+Q</string>
    </property>
   </action>
   <action name="action_edit">
@@ -218,7 +221,7 @@
     <string>Edit entry</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+E</string>
+    <string notr="true">Ctrl+E</string>
    </property>
   </action>
  </widget>

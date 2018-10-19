@@ -112,11 +112,6 @@
         <translation>Benutzer oder Instanz hinzufügen</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="149"/>
-        <source>Ctrl+N</source>
-        <translation>Strg+N</translation>
-    </message>
-    <message>
         <location filename="../src/whyblocked.ui" line="158"/>
         <source>Re&amp;move</source>
         <translation>Ent&amp;fernen</translation>
@@ -125,11 +120,6 @@
         <location filename="../src/whyblocked.ui" line="161"/>
         <source>Remove user or instance</source>
         <translation>Benutzer oder Instanz entfernen</translation>
-    </message>
-    <message>
-        <location filename="../src/whyblocked.ui" line="164"/>
-        <source>Del</source>
-        <translation>Entf</translation>
     </message>
     <message>
         <location filename="../src/whyblocked.ui" line="173"/>
@@ -142,50 +132,35 @@
         <translation>Über dieses Programm</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="185"/>
+        <location filename="../src/whyblocked.ui" line="188"/>
         <source>&amp;Reload</source>
         <translation>Neu &amp;laden</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="188"/>
+        <location filename="../src/whyblocked.ui" line="191"/>
         <source>Reload database</source>
         <translation>Datenbank neu laden</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="191"/>
-        <source>Ctrl+R</source>
-        <translation>Strg+R</translation>
-    </message>
-    <message>
-        <location filename="../src/whyblocked.ui" line="200"/>
+        <location filename="../src/whyblocked.ui" line="203"/>
         <source>&amp;Quit</source>
         <translation>&amp;Beenden</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="203"/>
+        <location filename="../src/whyblocked.ui" line="206"/>
         <source>Quit application</source>
         <translation>Programm beenden</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="206"/>
-        <source>Ctrl+Q</source>
-        <translation>Strg+Q</translation>
-    </message>
-    <message>
-        <location filename="../src/whyblocked.ui" line="215"/>
+        <location filename="../src/whyblocked.ui" line="218"/>
         <source>&amp;Edit</source>
         <translation>B&amp;earbeiten</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="218"/>
+        <location filename="../src/whyblocked.ui" line="221"/>
         <location filename="../src/interface_qt.cpp" line="92"/>
         <source>Edit entry</source>
         <translation>Eintrag bearbeiten</translation>
-    </message>
-    <message>
-        <location filename="../src/whyblocked.ui" line="221"/>
-        <source>Ctrl+E</source>
-        <translation>Strg+E</translation>
     </message>
     <message>
         <location filename="../src/interface_qt.cpp" line="40"/>

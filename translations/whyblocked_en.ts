@@ -112,11 +112,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="149"/>
-        <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/whyblocked.ui" line="158"/>
         <source>Re&amp;move</source>
         <translation type="unfinished"></translation>
@@ -124,11 +119,6 @@
     <message>
         <location filename="../src/whyblocked.ui" line="161"/>
         <source>Remove user or instance</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/whyblocked.ui" line="164"/>
-        <source>Del</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -142,49 +132,34 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="185"/>
+        <location filename="../src/whyblocked.ui" line="188"/>
         <source>&amp;Reload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="188"/>
+        <location filename="../src/whyblocked.ui" line="191"/>
         <source>Reload database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="191"/>
-        <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/whyblocked.ui" line="200"/>
+        <location filename="../src/whyblocked.ui" line="203"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="203"/>
+        <location filename="../src/whyblocked.ui" line="206"/>
         <source>Quit application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="206"/>
-        <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/whyblocked.ui" line="215"/>
+        <location filename="../src/whyblocked.ui" line="218"/>
         <source>&amp;Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="218"/>
+        <location filename="../src/whyblocked.ui" line="221"/>
         <location filename="../src/interface_qt.cpp" line="92"/>
         <source>Edit entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/whyblocked.ui" line="221"/>
-        <source>Ctrl+E</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
