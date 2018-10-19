@@ -1,7 +1,32 @@
 pipeline:
+  gcc6:
+    image: debian:stretch-slim
+    pull: true
+    environment:
+      - LANG=C.utf8
+    commands:
+      - rm /etc/apt/apt.conf.d/docker-clean
+      - apt-get update -q
+      - apt-get install -qy build-essential cmake pkg-config
+      - apt-get install -qy libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev qt5-default qttools5-dev-tools
+      - apt-get install -qy rpm file
+      - rm -rf build && mkdir -p build && cd build
+      - cmake ..
+      - make VERBOSE=1
+      - make install DESTDIR=install
+      - make package
+      - cmake -DWITH_DEB=ON ..
+      - make package
+      - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
+      - make package
+    volumes:
+      - /var/cache/debian-package-cache:/var/cache/apt/archives
+
   gcc7:
     image: debian:stretch-slim
     pull: true
+    when:
+      event: [push, pull_request]
     environment:
       - LANG=C.utf8
     commands:
@@ -34,6 +59,8 @@ pipeline:
   gcc8:
     image: debian:stretch-slim
     pull: true
+    when:
+      event: [push, pull_request]
     environment:
       - LANG=C.utf8
     commands:
@@ -66,6 +93,8 @@ pipeline:
   clang3:
     image: debian:stretch-slim
     pull: true
+    when:
+      event: [push, pull_request]
     environment:
       - LANG=C.utf8
       - CXX=clang++
@@ -90,6 +119,8 @@ pipeline:
   clang5:
     image: debian:stretch-slim
     pull: true
+    when:
+      event: [push, pull_request]
     environment:
       - LANG=C.utf8
       - CXX=clang++-5.0
@@ -117,6 +148,8 @@ pipeline:
   clang6:
     image: debian:stretch-slim
     pull: true
+    when:
+      event: [push, pull_request]
     environment:
       - LANG=C.utf8
       - CXX=clang++-6.0
@@ -140,30 +173,6 @@ pipeline:
       - make package
     volumes:
       - /var/cache/debian-package-cache:/var/cache/apt/archives
-
-  gcc6:
-    image: debian:stretch-slim
-    pull: true
-    environment:
-      - LANG=C.utf8
-    commands:
-      - rm /etc/apt/apt.conf.d/docker-clean
-      - apt-get update -q
-      - apt-get install -qy build-essential cmake pkg-config
-      - apt-get install -qy libvsqlitepp-dev libboost-all-dev libxdg-basedir-dev qt5-default qttools5-dev-tools
-      - apt-get install -qy rpm file
-      - rm -rf build && mkdir -p build && cd build
-      - cmake ..
-      - make VERBOSE=1
-      - make install DESTDIR=install
-      - make package
-      - cmake -DWITH_DEB=ON ..
-      - make package
-      - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
-      - make package
-    volumes:
-      - /var/cache/debian-package-cache:/var/cache/apt/archives
-
 
   prepare_release:
     image: debian:stretch-slim
