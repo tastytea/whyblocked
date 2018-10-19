@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.6)
 project (whyblocked
-         VERSION 0.10.4
+         VERSION 0.10.5
          LANGUAGES CXX
 )
 
