@@ -71,10 +71,11 @@ set(CPACK_PACKAGE_VERSION_MAJOR ${mastodon-cpp_VERSION_MAJOR})
 set(CPACK_PACKAGE_VERSION_MINOR ${mastodon-cpp_VERSION_MINOR})
 set(CPACK_PACKAGE_VERSION_PATCH ${mastodon-cpp_VERSION_PATCH})
 set(CPACK_PACKAGE_VERSION ${whyblocked_VERSION})
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "whyblocked reminds you why you blocked someone.")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Whyblocked reminds you why you blocked someone.")
 set(CPACK_PACKAGE_CONTACT "tastytea <tastytea@tastytea.de>")
 set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
 set(CPACK_RESOURCE_FILE_README "${PROJECT_SOURCE_DIR}/README.md")
+set(CPACK_PACKAGE_ICON "de.tastytea.Whyblocked.svg")
 list(APPEND CPACK_SOURCE_IGNORE_FILES "/\\\\.git"
                                       "/.gitignore"
                                       "/build/"
