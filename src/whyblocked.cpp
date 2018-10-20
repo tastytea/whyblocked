@@ -23,7 +23,6 @@
 #include <sqlite/connection.hpp>
 #include <sqlite/execute.hpp>
 #include <sqlite/query.hpp>
-#include <boost/shared_ptr.hpp>
 #include "whyblocked.hpp"
 
 using std::cerr;
@@ -118,7 +117,7 @@ const bool database::view(result_view &result)
     {
         sqlite::connection con(get_filepath());
         sqlite::query q(con, "SELECT * FROM blocks;");
-        boost::shared_ptr<sqlite::result> res = q.get_result();
+        sqlite::result_type res = q.get_result();
         while(res->next_row())
         {
             result.push_back(
@@ -144,10 +143,10 @@ const bool database::details(const string &user, result_details &result)
     {
         sqlite::connection con(get_filepath());
         sqlite::query q_blocks(con, "SELECT * FROM blocks WHERE user = \'" + user + "\';");
-        boost::shared_ptr<sqlite::result> res_blocks = q_blocks.get_result();
+        sqlite::result_type res_blocks = q_blocks.get_result();
 
         sqlite::query q_urls(con, "SELECT * FROM urls WHERE user = \'" + user + "\';");
-        boost::shared_ptr<sqlite::result> res_urls = q_urls.get_result();
+        sqlite::result_type res_urls = q_urls.get_result();
 
         if (!res_blocks->next_row())
         {
