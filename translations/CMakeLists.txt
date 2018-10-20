@@ -8,3 +8,5 @@ qt5_add_translation(QM_FILES ${TS_FILES})
 add_custom_target(translations ALL DEPENDS ${QM_FILES})
 add_dependencies(${CMAKE_PROJECT_NAME} translations)
 add_dependencies(${CMAKE_PROJECT_NAME}-gui translations)
+install(FILES ${QM_FILES} DESTINATION
+        ${CMAKE_INSTALL_DATAROOTDIR}/qt5/translations)

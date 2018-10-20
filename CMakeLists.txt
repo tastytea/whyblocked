@@ -38,8 +38,7 @@ target_link_libraries(whyblocked
 install(TARGETS whyblocked DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 if(NOT WITHOUT_GUI)
-    add_executable(whyblocked-gui src/interface_qt.cpp src/whyblocked.cpp
-                   ${QM_FILES})
+    add_executable(whyblocked-gui src/interface_qt.cpp src/whyblocked.cpp)
     target_link_libraries(whyblocked-gui
                           ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp stdc++fs
                           Qt5::Widgets)
@@ -49,8 +48,6 @@ if(NOT WITHOUT_GUI)
             ${CMAKE_INSTALL_DATAROOTDIR}/applications)
     install(FILES de.tastytea.Whyblocked.svg DESTINATION
             ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/scalable/apps)
-    install(FILES ${QM_FILES} DESTINATION
-            ${CMAKE_INSTALL_DATAROOTDIR}/qt5/translations)
 endif()
 
 if(NOT WITHOUT_TRANSLATIONS)
