@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.6)
 project (whyblocked
-         VERSION 0.10.5
+         VERSION 0.10.6
          LANGUAGES CXX
 )
 
@@ -46,6 +46,8 @@ if(NOT WITHOUT_GUI)
     install(TARGETS whyblocked-gui DESTINATION ${CMAKE_INSTALL_BINDIR})
     install(FILES de.tastytea.Whyblocked.desktop DESTINATION
             ${CMAKE_INSTALL_DATAROOTDIR}/applications)
+    install(FILES de.tastytea.Whyblocked.appdata.xml DESTINATION
+            ${CMAKE_INSTALL_DATAROOTDIR}/metainfo)
     install(FILES de.tastytea.Whyblocked.svg DESTINATION
             ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/scalable/apps)
 endif()
