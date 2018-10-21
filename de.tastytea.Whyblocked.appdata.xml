@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+​<component type="desktop-application">
+​  <id>de.tastytea.Whyblocked</id>
+​  <metadata_license>CC0-1.0</metadata_license>
+​  <project_license>GPL-3.0</project_license>
+​  <launchable type="desktop-id">de.tastytea.Whyblocked.desktop</launchable>
+​  <screenshots>
+​    <screenshot type="default">
+​      <image>https://doc.schlomp.space/whyblocked/whyblocked_screenshot.png</image>
+​    </screenshot>
+​  </screenshots>
+​  <url type="homepage">https://schlomp.space/tastytea/whyblocked</url>
+​</component>
