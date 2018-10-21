@@ -9,9 +9,9 @@ pipeline:
       - apt-get update -q
       - apt-get install -qy build-essential cmake pkg-config
       - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools
-      - apt-get install -qy rpm file
+      - apt-get install -qy rpm file wget appstream
       - rm -rf build && mkdir -p build && cd build
-      - cmake ..
+      - cmake -DCMAKE_INSTALL_PREFIX=/usr ..
       - make VERBOSE=1
       - make install DESTDIR=install
       - make package
@@ -19,6 +19,12 @@ pipeline:
       - make package
       - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
       - make package
+      - sed -i 's/Version=1.1//' install/usr/share/applications/de.tastytea.Whyblocked.desktop
+      - wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+      - chmod +x linuxdeploy-x86_64.AppImage
+      - ./linuxdeploy-x86_64.AppImage --appimage-extract
+      - UPDATE_INFORMATION="zsync|https://redirect.tastytea.de/appimage/whyblocked.zsync" ./squashfs-root/AppRun --appdir install --output appimage
+      - ls
     volumes:
       - /var/cache/debian-package-cache:/var/cache/apt/archives
 
@@ -183,6 +189,8 @@ pipeline:
       - cp -v build/whyblocked-${DRONE_TAG}_x86_64.tar.gz .
       - cp -v build/whyblocked_${DRONE_TAG}-0_amd64.deb .
       - cp -v build/whyblocked-${DRONE_TAG}-0.x86_64.rpm .
+      - cp -v build Whyblocked-x86_64.AppImage .
+      - cp -v build Whyblocked-x86_64.AppImage.zsync .
 
   gitea_release:
     image: plugins/gitea-release
@@ -197,6 +205,8 @@ pipeline:
       - whyblocked-${DRONE_TAG}_x86_64.tar.gz
       - whyblocked_${DRONE_TAG}-0_amd64.deb
       - whyblocked-${DRONE_TAG}-0.x86_64.rpm
+      - Whyblocked-x86_64.AppImage
+      - Whyblocked-x86_64.AppImage.zsync
     checksum:
       - sha256
       - sha512
