@@ -4,6 +4,7 @@ pipeline:
     pull: true
     environment:
       - LANG=C.utf8
+      - CXXFLAGS=-pipe -O2
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
       - apt-get update -q
@@ -35,6 +36,7 @@ pipeline:
       event: [push, pull_request]
     environment:
       - LANG=C.utf8
+      - CXXFLAGS=-pipe -O2
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
       - apt-get update -q
@@ -69,6 +71,7 @@ pipeline:
       event: [push, pull_request]
     environment:
       - LANG=C.utf8
+      - CXXFLAGS=-pipe -O2
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
       - apt-get update -q
@@ -103,6 +106,7 @@ pipeline:
       event: [push, pull_request]
     environment:
       - LANG=C.utf8
+      - CXXFLAGS=-pipe -O2
       - CXX=clang++
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
@@ -129,6 +133,7 @@ pipeline:
       event: [push, pull_request]
     environment:
       - LANG=C.utf8
+      - CXXFLAGS=-pipe -O2
       - CXX=clang++-5.0
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
@@ -158,6 +163,7 @@ pipeline:
       event: [push, pull_request]
     environment:
       - LANG=C.utf8
+      - CXXFLAGS=-pipe -O2
       - CXX=clang++-6.0
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
