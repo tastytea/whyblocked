@@ -36,7 +36,7 @@ configure_file (
 )
 
 set(COMMON_LIBRARIES
-    ${LIBXDG_BASEDIR_LIBRARIES} ${SQLITE3_LIBRARIES} vsqlitepp stdc++fs)
+    ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp stdc++fs)
 
 add_executable(whyblocked src/interface_text.cpp src/whyblocked.cpp)
 target_link_libraries(whyblocked ${COMMON_LIBRARIES} Qt5::Core)
