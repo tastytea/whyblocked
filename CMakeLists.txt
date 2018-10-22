@@ -7,6 +7,7 @@ project (whyblocked
 include(GNUInstallDirs)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBXDG_BASEDIR REQUIRED libxdg-basedir)
+pkg_check_modules(SQLITE3 REQUIRED sqlite3)
 find_package(Qt5Core CONFIG REQUIRED)
 if(NOT WITHOUT_GUI)
     find_package(Qt5Widgets CONFIG REQUIRED)
@@ -23,8 +24,10 @@ set(CMAKE_AUTOUIC ON)
 
 include_directories(${PROJECT_BINARY_DIR})
 include_directories(${LIBXDG_BASEDIR_INCLUDE_DIRS})
+include_directories(${SQLITE3_INCLUDE_DIRS})
 
 link_directories(${LIBXDG_BASEDIR_LIBRARY_DIRS})
+link_directories(${SQLITE3_LIBRARY_DIRS})
 
 # Write version in header
 configure_file (
@@ -32,16 +35,16 @@ configure_file (
     "${PROJECT_BINARY_DIR}/version.hpp"
 )
 
+set(COMMON_LIBRARIES
+    ${LIBXDG_BASEDIR_LIBRARIES} ${SQLITE3_LIBRARIES} vsqlitepp stdc++fs)
+
 add_executable(whyblocked src/interface_text.cpp src/whyblocked.cpp)
-target_link_libraries(whyblocked
-                      ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp stdc++fs Qt5::Core)
+target_link_libraries(whyblocked ${COMMON_LIBRARIES} Qt5::Core)
 install(TARGETS whyblocked DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 if(NOT WITHOUT_GUI)
     add_executable(whyblocked-gui src/interface_qt.cpp src/whyblocked.cpp)
-    target_link_libraries(whyblocked-gui
-                          ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp stdc++fs
-                          Qt5::Widgets)
+    target_link_libraries(whyblocked-gui ${COMMON_LIBRARIES} Qt5::Widgets)
 
     install(TARGETS whyblocked-gui DESTINATION ${CMAKE_INSTALL_BINDIR})
     install(FILES de.tastytea.Whyblocked.desktop DESTINATION

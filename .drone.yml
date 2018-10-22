@@ -9,7 +9,7 @@ pipeline:
       - rm /etc/apt/apt.conf.d/docker-clean
       - apt-get update -q
       - apt-get install -qy build-essential cmake pkg-config
-      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools
+      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev
       - apt-get install -qy rpm file wget appstream
       - rm -rf build && mkdir -p build && cd build
       - cmake -DCMAKE_INSTALL_PREFIX=/usr ..
