@@ -3,6 +3,16 @@
   <id>de.tastytea.Whyblocked</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0</project_license>
+  <name>Whyblocked</name>
+  <summary>Reminds you why you blocked someone</summary>
+  <summary xml:lang="de">Erinnert dich, warum du jemanden blockiertest</summary>
+  <description>
+    <p>
+      Whyblocked allows you to store the reason why you blocked someone, along
+      with "receipts", URLs to the posts that led you to block them.
+    </p>
+  </description>
+
   <launchable type="desktop-id">de.tastytea.Whyblocked.desktop</launchable>
   <screenshots>
     <screenshot type="default">
