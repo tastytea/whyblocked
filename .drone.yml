@@ -181,8 +181,8 @@ pipeline:
       - cp -v build/whyblocked-${DRONE_TAG}_x86_64.tar.gz .
       - cp -v build/whyblocked_${DRONE_TAG}-0_amd64.deb .
       - cp -v build/whyblocked-${DRONE_TAG}-0.x86_64.rpm .
-      - cp -v build Whyblocked-x86_64.AppImage .
-      - cp -v build Whyblocked-x86_64.AppImage.zsync .
+      - cp -v build/Whyblocked-x86_64.AppImage .
+      - cp -v build/Whyblocked-x86_64.AppImage.zsync .
 
   gitea_release:
     image: plugins/gitea-release
