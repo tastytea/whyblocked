@@ -21,7 +21,7 @@ pipeline:
       - apt-get install -qy -t jessie-backports cmake
       - apt-get install -qy pkg-config
       - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev
-      - apt-get install -qy rpm file wget
+      - apt-get install -qy d-shlibs rpm file wget
       - apt-get install -qy -t stretch appstream
       - rm -rf build && mkdir -p build && cd build
       - cmake -DCMAKE_INSTALL_PREFIX=/usr ..
