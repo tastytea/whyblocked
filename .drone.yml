@@ -1,6 +1,6 @@
 pipeline:
   gcc6:
-    image: debian:jessie-slim
+    image: debian:stretch-slim
     pull: true
     environment:
       - LANG=C.utf8
@@ -9,20 +9,9 @@ pipeline:
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
       - apt-get update -q
-      - echo "APT::Default-Release \"jessie\";" >> /etc/apt/apt.conf.d/00default_release
-      - echo "deb http://deb.debian.org/debian jessie-backports main" >> /etc/apt/sources.list.d/backports.list
-      - echo "deb http://deb.debian.org/debian stretch main" >> /etc/apt/sources.list.d/stretch.list
-      - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu trusty main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
-      - apt-get install -qy gnupg
-      - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
-      - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
-      - apt-get update -q
-      - apt-get install -qy -t trusty g++-6
-      - apt-get install -qy -t jessie-backports cmake
-      - apt-get install -qy pkg-config
+      - apt-get install -qy g++ cmake pkg-config
       - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev
-      - apt-get install -qy d-shlibs rpm file wget
-      - apt-get install -qy -t stretch appstream
+      - apt-get install -qy rpm file wget appstream
       - rm -rf build && mkdir -p build && cd build
       - cmake -DCMAKE_INSTALL_PREFIX=/usr ..
       - make VERBOSE=1
@@ -35,7 +24,7 @@ pipeline:
       - sed -i 's/Version=1.1//' install/usr/share/applications/de.tastytea.Whyblocked.desktop
       - sed -i 's!<launchable.*</launchable>!!' install/usr/share/metainfo/de.tastytea.Whyblocked.appdata.xml
       - sed -i 's!Whyblocked</id>!Whyblocked.desktop</id>!' install/usr/share/metainfo/de.tastytea.Whyblocked.appdata.xml
-      - sed -iE 's!</?(screenshot|image).*!!' install/usr/share/metainfo/de.tastytea.Whyblocked.appdata.xml
+      - sed -Ei 's!</?(screenshot|image).*!!' install/usr/share/metainfo/de.tastytea.Whyblocked.appdata.xml
       - wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
       - chmod +x linuxdeploy-x86_64.AppImage
       - ./linuxdeploy-x86_64.AppImage --appimage-extract
