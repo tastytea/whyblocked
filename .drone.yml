@@ -1,16 +1,28 @@
 pipeline:
   gcc6:
-    image: debian:stretch-slim
+    image: debian:jessie-slim
     pull: true
     environment:
       - LANG=C.utf8
+      - CXX=g++-6
       - CXXFLAGS=-pipe -O2
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
       - apt-get update -q
-      - apt-get install -qy build-essential cmake pkg-config
+      - echo "APT::Default-Release \"jessie\";" >> /etc/apt/apt.conf.d/00default_release
+      - echo "deb http://deb.debian.org/debian jessie-backports main" >> /etc/apt/sources.list.d/backports.list
+      - echo "deb http://deb.debian.org/debian stretch main" >> /etc/apt/sources.list.d/stretch.list
+      - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu trusty main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
+      - apt-get install -qy gnupg
+      - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
+      - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
+      - apt-get update -q
+      - apt-get install -qy -t trusty g++-6
+      - apt-get install -qy -t jessie-backports cmake
+      - apt-get install -qy pkg-config
       - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev
-      - apt-get install -qy rpm file wget appstream
+      - apt-get install -qy rpm file wget
+      - apt-get install -qy -t stretch appstream
       - rm -rf build && mkdir -p build && cd build
       - cmake -DCMAKE_INSTALL_PREFIX=/usr ..
       - make VERBOSE=1
@@ -21,11 +33,13 @@ pipeline:
       - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
       - make package
       - sed -i 's/Version=1.1//' install/usr/share/applications/de.tastytea.Whyblocked.desktop
+      - sed -i 's!<launchable.*</launchable>!!' install/usr/share/metainfo/de.tastytea.Whyblocked.appdata.xml
+      - sed -i 's!Whyblocked</id>!Whyblocked.desktop</id>!' install/usr/share/metainfo/de.tastytea.Whyblocked.appdata.xml
+      - sed -iE 's!</?(screenshot|image).*!!' install/usr/share/metainfo/de.tastytea.Whyblocked.appdata.xml
       - wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
       - chmod +x linuxdeploy-x86_64.AppImage
       - ./linuxdeploy-x86_64.AppImage --appimage-extract
       - UPDATE_INFORMATION="zsync|https://redirect.tastytea.de/appimage/whyblocked.zsync" ./squashfs-root/AppRun --appdir install --output appimage
-      - ls
     volumes:
       - /var/cache/debian-package-cache:/var/cache/apt/archives
 
@@ -36,31 +50,25 @@ pipeline:
       event: [push, pull_request]
     environment:
       - LANG=C.utf8
+      - CXX=g++-7
       - CXXFLAGS=-pipe -O2
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
       - apt-get update -q
       - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+      - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/backports.list
       - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
       - apt-get install -qy gnupg
       - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
       - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
       - apt-get update -q
-      - apt-get install -qy build-essential cmake pkg-config
       - apt-get install -qy -t xenial g++-7
-      - update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 100
-      - update-alternatives --set g++ /usr/bin/g++-7
-      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools
-      - apt-get install -qy rpm file
+      - apt-get install -qy cmake pkg-config
+      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
       - make VERBOSE=1
       - make install DESTDIR=install
-      - make package
-      - cmake -DWITH_DEB=ON ..
-      - make package
-      - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
-      - make package
     volumes:
       - /var/cache/debian-package-cache:/var/cache/apt/archives
 
@@ -71,31 +79,25 @@ pipeline:
       event: [push, pull_request]
     environment:
       - LANG=C.utf8
+      - CXX=g++-8
       - CXXFLAGS=-pipe -O2
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
       - apt-get update -q
       - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+      - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/backports.list
       - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
       - apt-get install -qy gnupg
       - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
       - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
       - apt-get update -q
-      - apt-get install -qy build-essential cmake pkg-config
       - apt-get install -qy -t xenial g++-8
-      - update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 100
-      - update-alternatives --set g++ /usr/bin/g++-8
-      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools
-      - apt-get install -qy rpm file
+      - apt-get install -qy cmake pkg-config
+      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
       - make VERBOSE=1
       - make install DESTDIR=install
-      - make package
-      - cmake -DWITH_DEB=ON ..
-      - make package
-      - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
-      - make package
     volumes:
       - /var/cache/debian-package-cache:/var/cache/apt/archives
 
@@ -106,23 +108,19 @@ pipeline:
       event: [push, pull_request]
     environment:
       - LANG=C.utf8
-      - CXXFLAGS=-pipe -O2
       - CXX=clang++
+      - CXXFLAGS=-pipe -O2
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
+      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+      - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/backports.list
       - apt-get update -q
-      - apt-get install -qy build-essential clang cmake pkg-config
-      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools
-      - apt-get install -qy rpm file
+      - apt-get install -qy clang cmake pkg-config
+      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
       - make VERBOSE=1
       - make install DESTDIR=install
-      - make package
-      - cmake -DWITH_DEB=ON ..
-      - make package
-      - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
-      - make package
     volumes:
       - /var/cache/debian-package-cache:/var/cache/apt/archives
 
@@ -133,26 +131,20 @@ pipeline:
       event: [push, pull_request]
     environment:
       - LANG=C.utf8
-      - CXXFLAGS=-pipe -O2
       - CXX=clang++-5.0
+      - CXXFLAGS=-pipe -O2
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
       - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
-      - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/sid.list
+      - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/stretch.list
       - apt-get update -q
-      - apt-get install -qy build-essential cmake pkg-config
-      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools
-      - apt-get install -qy rpm file
       - apt-get install -qy -t stretch-backports clang-5.0
+      - apt-get install -qy cmake pkg-config
+      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
       - make VERBOSE=1
       - make install DESTDIR=install
-      - make package
-      - cmake -DWITH_DEB=ON ..
-      - make package
-      - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
-      - make package
     volumes:
       - /var/cache/debian-package-cache:/var/cache/apt/archives
 
@@ -163,31 +155,25 @@ pipeline:
       event: [push, pull_request]
     environment:
       - LANG=C.utf8
-      - CXXFLAGS=-pipe -O2
       - CXX=clang++-6.0
+      - CXXFLAGS=-pipe -O2
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
       - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
-      - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/sid.list
+      - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/stretch.list
       - apt-get update -q
-      - apt-get install -qy build-essential cmake pkg-config
-      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools
-      - apt-get install -qy rpm file
       - apt-get install -qy -t stretch-backports clang-6.0
+      - apt-get install -qy cmake pkg-config
+      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
       - make VERBOSE=1
       - make install DESTDIR=install
-      - make package
-      - cmake -DWITH_DEB=ON ..
-      - make package
-      - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
-      - make package
     volumes:
       - /var/cache/debian-package-cache:/var/cache/apt/archives
 
   prepare_release:
-    image: debian:stretch-slim
+    image: debian:jessie-slim
     pull: true
     when:
       event: tag
