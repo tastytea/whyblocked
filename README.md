@@ -1,5 +1,5 @@
-**Whyblocked** reminds you why you blocked someone. It is developed with
-Mastodon in mind, but can be used for other contexts, of course.
+**Whyblocked** allows you to store the reason why you blocked someone, along with
+"receipts", URLs to the posts that led you to block them.
 
 It has a text- and a Qt-interface and uses a SQLite-database.
 
