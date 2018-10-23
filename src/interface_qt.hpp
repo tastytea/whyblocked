@@ -40,7 +40,8 @@ class MainWindow : public QMainWindow, private Ui::MainWindow
 
 public:
     explicit MainWindow(QMainWindow *parent = nullptr);
-    void add_row(const QString &user, const int &blocked, const QString &reason);
+    void add_row(const QString &user, const int &blocked,
+                 const QString &reason);
 
 public slots:
     void remove();

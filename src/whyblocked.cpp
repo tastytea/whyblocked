@@ -142,10 +142,12 @@ const bool database::details(const string &user, result_details &result)
     try
     {
         sqlite::connection con(get_filepath());
-        sqlite::query q_blocks(con, "SELECT * FROM blocks WHERE user = \'" + user + "\';");
+        sqlite::query q_blocks(con,
+            "SELECT * FROM blocks WHERE user = \'" + user + "\';");
         sqlite::result_type res_blocks = q_blocks.get_result();
 
-        sqlite::query q_urls(con, "SELECT * FROM urls WHERE user = \'" + user + "\';");
+        sqlite::query q_urls(con,
+            "SELECT * FROM urls WHERE user = \'" + user + "\';");
         sqlite::result_type res_urls = q_urls.get_result();
 
         if (!res_blocks->next_row())

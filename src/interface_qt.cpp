@@ -57,7 +57,8 @@ void MainWindow::populate_tableview()
     statusBar()->showMessage(tr("Database loaded."));
 }
 
-void MainWindow::add_row(const QString &user, const int &blocked, const QString &reason)
+void MainWindow::add_row(const QString &user, const int &blocked,
+                         const QString &reason)
 {
     QList<QStandardItem*> items;
     items.append(new QStandardItem(user));
@@ -150,7 +151,8 @@ void MainWindow::about()
 
 void MainWindow::show_details(QModelIndex index)
 {
-    const string user = index.sibling(index.row(), 0).data().toString().toStdString();
+    const string user = index.sibling(index.row(), 0).data()
+                                                     .toString().toStdString();
     result_details result;
     string text = "";
 
@@ -207,7 +209,8 @@ const void DialogAdd::set_data(const Dialogdata &data)
     text_reason->setText(QString::fromStdString(data.reason));
     for (const string &receipt : data.receipts)
     {
-        QListWidgetItem *item = new QListWidgetItem(QString::fromStdString(receipt));
+        QListWidgetItem *item =
+            new QListWidgetItem(QString::fromStdString(receipt));
         item->setFlags(item->flags() | Qt::ItemIsEditable);
         list_receipts->insertItem(list_receipts->count(), item);
     }
