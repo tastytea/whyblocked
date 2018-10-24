@@ -34,7 +34,7 @@ pipeline:
       - ./linuxdeploy-plugin-qt-x86_64.AppImage --appimage-extract
       - cd ..
       - ln -s linuxdeploy-qt/squashfs-root/AppRun linuxdeploy-plugin-qt
-      - UPDATE_INFORMATION="zsync|https://redirect.tastytea.de/appimage/whyblocked.zsync" ./squashfs-root/AppRun --appdir install --output appimage --plugin qt
+      - UPDATE_INFORMATION="zsync|https://appimages.schlomp.space/Whyblocked-x86_64.AppImage.zsync" ./squashfs-root/AppRun --appdir install --output appimage --plugin qt
     volumes:
       - /var/cache/debian-package-cache:/var/cache/apt/archives
 
