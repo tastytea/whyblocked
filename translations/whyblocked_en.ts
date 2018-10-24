@@ -97,72 +97,92 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="121"/>
+        <location filename="../src/whyblocked.ui" line="122"/>
         <source>&amp;Database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="131"/>
+        <location filename="../src/whyblocked.ui" line="132"/>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="144"/>
+        <location filename="../src/whyblocked.ui" line="145"/>
         <source>&amp;Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="147"/>
+        <location filename="../src/whyblocked.ui" line="148"/>
         <source>Add user or instance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="159"/>
+        <location filename="../src/whyblocked.ui" line="151"/>
+        <source>Ctrl+N</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/whyblocked.ui" line="160"/>
         <source>Re&amp;move</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="162"/>
+        <location filename="../src/whyblocked.ui" line="163"/>
         <source>Remove user or instance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="174"/>
+        <location filename="../src/whyblocked.ui" line="166"/>
+        <source>Del</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/whyblocked.ui" line="175"/>
         <source>&amp;About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="177"/>
+        <location filename="../src/whyblocked.ui" line="178"/>
         <source>About this application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="189"/>
+        <location filename="../src/whyblocked.ui" line="187"/>
         <source>&amp;Reload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="192"/>
+        <location filename="../src/whyblocked.ui" line="190"/>
         <source>Reload database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="204"/>
+        <location filename="../src/whyblocked.ui" line="193"/>
+        <source>Ctrl+R</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/whyblocked.ui" line="202"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="207"/>
+        <location filename="../src/whyblocked.ui" line="205"/>
         <source>Quit application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="219"/>
+        <location filename="../src/whyblocked.ui" line="208"/>
+        <source>Ctrl+Q</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/whyblocked.ui" line="217"/>
         <source>&amp;Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="222"/>
+        <location filename="../src/whyblocked.ui" line="220"/>
         <location filename="../src/interface_qt.cpp" line="93"/>
         <source>Edit entry</source>
         <translation type="unfinished"></translation>

@@ -104,6 +104,7 @@
    <addaction name="action_edit"/>
    <addaction name="action_remove"/>
    <addaction name="action_reload"/>
+   <addaction name="separator"/>
    <addaction name="action_about"/>
    <addaction name="action_quit"/>
   </widget>
@@ -137,7 +138,7 @@
   </widget>
   <action name="action_add">
    <property name="icon">
-    <iconset theme="add">
+    <iconset theme="list-add">
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
@@ -147,12 +148,12 @@
     <string>Add user or instance</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Ctrl+N</string>
+    <string>Ctrl+N</string>
    </property>
   </action>
   <action name="action_remove">
    <property name="icon">
-    <iconset theme="remove">
+    <iconset theme="list-remove">
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
@@ -162,12 +163,12 @@
     <string>Remove user or instance</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Del</string>
+    <string>Del</string>
    </property>
   </action>
   <action name="action_about">
    <property name="icon">
-    <iconset theme="info">
+    <iconset theme="help-about">
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
@@ -176,13 +177,10 @@
    <property name="toolTip">
     <string>About this application</string>
    </property>
-   <property name="shortcut">
-    <string notr="true"/>
-   </property>
   </action>
   <action name="action_reload">
    <property name="icon">
-    <iconset theme="reload">
+    <iconset theme="view-refresh">
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
@@ -192,12 +190,12 @@
     <string>Reload database</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Ctrl+R</string>
+    <string>Ctrl+R</string>
    </property>
   </action>
   <action name="action_quit">
    <property name="icon">
-    <iconset theme="exit">
+    <iconset theme="application-exit">
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
@@ -207,7 +205,7 @@
     <string>Quit application</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Ctrl+Q</string>
+    <string>Ctrl+Q</string>
    </property>
   </action>
   <action name="action_edit">

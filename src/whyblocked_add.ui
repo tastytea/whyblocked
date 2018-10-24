@@ -56,7 +56,7 @@
         <string>&amp;Add</string>
        </property>
        <property name="icon">
-        <iconset theme="add">
+        <iconset theme="list-add">
          <normaloff>.</normaloff>.</iconset>
        </property>
       </widget>
@@ -154,7 +154,7 @@
         <string>Re&amp;move</string>
        </property>
        <property name="icon">
-        <iconset theme="remove">
+        <iconset theme="list-remove">
          <normaloff>.</normaloff>.</iconset>
        </property>
       </widget>
