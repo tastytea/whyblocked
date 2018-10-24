@@ -64,12 +64,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="218"/>
+        <location filename="../src/interface_qt.cpp" line="221"/>
         <source>Insert receipt here.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="253"/>
+        <location filename="../src/interface_qt.cpp" line="256"/>
         <source>Added %1 to database.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -163,7 +163,7 @@
     </message>
     <message>
         <location filename="../src/whyblocked.ui" line="222"/>
-        <location filename="../src/interface_qt.cpp" line="92"/>
+        <location filename="../src/interface_qt.cpp" line="93"/>
         <source>Edit entry</source>
         <translation type="unfinished"></translation>
     </message>
@@ -188,42 +188,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="66"/>
+        <location filename="../src/interface_qt.cpp" line="67"/>
         <source>blocked</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="70"/>
+        <location filename="../src/interface_qt.cpp" line="71"/>
         <source>silenced</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="86"/>
+        <location filename="../src/interface_qt.cpp" line="87"/>
         <source>Invalid selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="87"/>
+        <location filename="../src/interface_qt.cpp" line="88"/>
         <source>Please select only 1 entry to edit.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="124"/>
+        <location filename="../src/interface_qt.cpp" line="125"/>
         <source>Removed %1 from database.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="132"/>
+        <location filename="../src/interface_qt.cpp" line="133"/>
         <source>Select data to remove.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="138"/>
+        <location filename="../src/interface_qt.cpp" line="139"/>
         <source>About Whyblocked</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="139"/>
+        <location filename="../src/interface_qt.cpp" line="140"/>
         <source>&lt;p&gt;&lt;b&gt;Whyblocked&lt;/b&gt; %1&lt;/p&gt;&lt;p&gt;Reminds you why you blocked someone.&lt;/p&gt;&lt;p&gt;Sourcecode: &lt;a href=&quot;https://schlomp.space/tastytea/whyblocked&quot;&gt;https://schlomp.space/tastytea/whyblocked&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;small&gt;Copyright © 2018 &lt;a href=&quot;mailto:tastytea@tastytea.de&quot;&gt;tastytea&lt;/a&gt;.&lt;br&gt;Licence GPLv3: &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0.html&quot;&gt;GNU GPL version 3&lt;/a&gt;.&lt;br&gt;This program comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it under certain conditions.&lt;/small&gt;&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -236,150 +236,150 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="67"/>
+        <location filename="../src/interface_text.cpp" line="68"/>
         <source>Add receipt? [y/n]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="68"/>
+        <location filename="../src/interface_text.cpp" line="69"/>
         <source>y</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="68"/>
+        <location filename="../src/interface_text.cpp" line="69"/>
         <source>Y</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="70"/>
+        <location filename="../src/interface_text.cpp" line="71"/>
         <source>Receipt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="74"/>
+        <location filename="../src/interface_text.cpp" line="75"/>
         <source>Receipt added.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="77"/>
+        <location filename="../src/interface_text.cpp" line="78"/>
         <source>n</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="77"/>
+        <location filename="../src/interface_text.cpp" line="78"/>
         <source>N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="90"/>
-        <location filename="../src/interface_text.cpp" line="114"/>
-        <location filename="../src/interface_text.cpp" line="174"/>
-        <location filename="../src/interface_text.cpp" line="205"/>
+        <location filename="../src/interface_text.cpp" line="91"/>
+        <location filename="../src/interface_text.cpp" line="115"/>
+        <location filename="../src/interface_text.cpp" line="175"/>
+        <location filename="../src/interface_text.cpp" line="206"/>
         <source>User or instance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="101"/>
+        <location filename="../src/interface_text.cpp" line="102"/>
         <source>Reason</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="105"/>
+        <location filename="../src/interface_text.cpp" line="106"/>
         <source>added.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="117"/>
+        <location filename="../src/interface_text.cpp" line="118"/>
         <source>A blank line keeps the former value.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="118"/>
+        <location filename="../src/interface_text.cpp" line="119"/>
         <source>Change user or instance to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="134"/>
+        <location filename="../src/interface_text.cpp" line="135"/>
         <source>Old reason was:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="135"/>
+        <location filename="../src/interface_text.cpp" line="136"/>
         <source>Change reason to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="144"/>
+        <location filename="../src/interface_text.cpp" line="145"/>
         <source>Old receipt was:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="145"/>
+        <location filename="../src/interface_text.cpp" line="146"/>
         <source>Change receipt to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="167"/>
+        <location filename="../src/interface_text.cpp" line="168"/>
         <source>Could not remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="178"/>
+        <location filename="../src/interface_text.cpp" line="179"/>
         <source>removed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="191"/>
+        <location filename="../src/interface_text.cpp" line="192"/>
         <source> Blocked:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="195"/>
+        <location filename="../src/interface_text.cpp" line="196"/>
         <source>Silenced:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="197"/>
+        <location filename="../src/interface_text.cpp" line="198"/>
         <source>because:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="210"/>
+        <location filename="../src/interface_text.cpp" line="211"/>
         <source>is</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="213"/>
+        <location filename="../src/interface_text.cpp" line="214"/>
         <source>blocked, because:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="217"/>
+        <location filename="../src/interface_text.cpp" line="218"/>
         <source>silenced, because:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="223"/>
+        <location filename="../src/interface_text.cpp" line="224"/>
         <source>Receipts:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="235"/>
+        <location filename="../src/interface_text.cpp" line="236"/>
         <source>Type add, edit, remove, view or details. Or just the first letter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="238"/>
+        <location filename="../src/interface_text.cpp" line="239"/>
         <source>Type help or h to show this help. Type quit or q to quit the program.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="247"/>
+        <location filename="../src/interface_text.cpp" line="248"/>
         <source>This is Whyblocked</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_text.cpp" line="298"/>
+        <location filename="../src/interface_text.cpp" line="299"/>
         <source>Response not understood.</source>
         <translation type="unfinished"></translation>
     </message>
