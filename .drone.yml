@@ -11,7 +11,7 @@ pipeline:
       - apt-get update -q
       - apt-get install -qy g++ cmake pkg-config
       - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev
-      - apt-get install -qy rpm file wget appstream
+      - apt-get install -qy dpkg-dev rpm file wget appstream
       - rm -rf build && mkdir -p build && cd build
       - cmake -DCMAKE_INSTALL_PREFIX=/usr ..
       - make VERBOSE=1
