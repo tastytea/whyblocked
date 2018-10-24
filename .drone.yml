@@ -28,7 +28,13 @@ pipeline:
       - wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
       - chmod +x linuxdeploy-x86_64.AppImage
       - ./linuxdeploy-x86_64.AppImage --appimage-extract
-      - UPDATE_INFORMATION="zsync|https://redirect.tastytea.de/appimage/whyblocked.zsync" ./squashfs-root/AppRun --appdir install --output appimage
+      - mkdir linuxdeploy-qt && cd linuxdeploy-qt
+      - wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+      - chmod +x linuxdeploy-plugin-qt-x86_64.AppImage
+      - ./linuxdeploy-plugin-qt-x86_64.AppImage --appimage-extract
+      - cd ..
+      - ln -s linuxdeploy-qt/squashfs-root/AppRun linuxdeploy-plugin-qt
+      - UPDATE_INFORMATION="zsync|https://redirect.tastytea.de/appimage/whyblocked.zsync" ./squashfs-root/AppRun --appdir install --output appimage --plugin qt
     volumes:
       - /var/cache/debian-package-cache:/var/cache/apt/archives
 
