@@ -160,7 +160,7 @@ void MainWindow::show_details(QModelIndex index)
     {
         if (!std::get<2>(result).empty())
         {
-            text += "<b>Receipts:</b>";
+            text += string("<b>") + tr("Receipts:").toStdString() + "</b>";
             for (const string &url : std::get<2>(result))
             {
                 text += "<br>" + url;

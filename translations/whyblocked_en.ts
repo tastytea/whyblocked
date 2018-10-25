@@ -247,6 +247,11 @@
         <source>&lt;p&gt;&lt;b&gt;Whyblocked&lt;/b&gt; %1&lt;/p&gt;&lt;p&gt;Reminds you why you blocked someone.&lt;/p&gt;&lt;p&gt;Sourcecode: &lt;a href=&quot;https://schlomp.space/tastytea/whyblocked&quot;&gt;https://schlomp.space/tastytea/whyblocked&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;small&gt;Copyright © 2018 &lt;a href=&quot;mailto:tastytea@tastytea.de&quot;&gt;tastytea&lt;/a&gt;.&lt;br&gt;Licence GPLv3: &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0.html&quot;&gt;GNU GPL version 3&lt;/a&gt;.&lt;br&gt;This program comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it under certain conditions.&lt;/small&gt;&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../src/interface_qt.cpp" line="163"/>
+        <source>Receipts:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Text</name>
