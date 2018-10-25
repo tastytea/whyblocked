@@ -25,6 +25,7 @@ pipeline:
       - sed -i 's!<launchable.*</launchable>!!' install/usr/share/metainfo/de.tastytea.Whyblocked.appdata.xml
       - sed -i 's!Whyblocked</id>!Whyblocked.desktop</id>!' install/usr/share/metainfo/de.tastytea.Whyblocked.appdata.xml
       - sed -Ei 's!</?(screenshot|image).*!!' install/usr/share/metainfo/de.tastytea.Whyblocked.appdata.xml
+      - mv install/usr/share/qt5/translations install/usr/
       - wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
       - chmod +x linuxdeploy-x86_64.AppImage
       - ./linuxdeploy-x86_64.AppImage --appimage-extract
