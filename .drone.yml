@@ -12,6 +12,7 @@ pipeline:
       - apt-get install -qy g++ cmake pkg-config
       - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev
       - apt-get install -qy dpkg-dev rpm file wget appstream
+      - gpg --import /var/autosign_gpg.key
       - rm -rf build && mkdir -p build && cd build
       - cmake -DCMAKE_INSTALL_PREFIX=/usr ..
       - make VERBOSE=1
@@ -35,9 +36,16 @@ pipeline:
       - ./linuxdeploy-plugin-qt-x86_64.AppImage --appimage-extract
       - cd ..
       - ln -s linuxdeploy-qt/squashfs-root/AppRun linuxdeploy-plugin-qt
-      - UPDATE_INFORMATION="zsync|https://appimages.schlomp.space/Whyblocked-x86_64.AppImage.zsync" ./squashfs-root/AppRun --appdir install --output appimage --plugin qt
+      - SIGN="1" UPDATE_INFORMATION="zsync|https://appimages.schlomp.space/Whyblocked-x86_64.AppImage.zsync" ./squashfs-root/AppRun --appdir install --output appimage --plugin qt
+      - mv -v Whyblocked-x86_64.AppImage whyblocked-x86_64.AppImage
+      - mv -v Whyblocked-x86_64.AppImage.zsync whyblocked-x86_64.AppImage.zsync
+      - gpg --verbose --detach-sign *.tar.gz
+      - gpg --verbose --detach-sign *.deb
+      - gpg --verbose --detach-sign *.rpm
+      - gpg --verbose --detach-sign whyblocked*.AppImage
     volumes:
       - /var/cache/debian-package-cache:/var/cache/apt/archives
+      - /home/tastytea/misc/autosign_gpg.key:/var/autosign_gpg.key
 
   gcc7:
     image: debian:stretch-slim
@@ -175,10 +183,14 @@ pipeline:
       event: tag
     commands:
       - cp -v build/whyblocked-${DRONE_TAG}_x86_64.tar.gz .
+      - cp -v build/whyblocked-${DRONE_TAG}_x86_64.tar.gz.sig .
       - cp -v build/whyblocked_${DRONE_TAG}-0_amd64.deb .
+      - cp -v build/whyblocked_${DRONE_TAG}-0_amd64.deb.sig .
       - cp -v build/whyblocked-${DRONE_TAG}-0.x86_64.rpm .
-      - cp -v build/Whyblocked-x86_64.AppImage .
-      - cp -v build/Whyblocked-x86_64.AppImage.zsync .
+      - cp -v build/whyblocked-${DRONE_TAG}-0.x86_64.rpm.sig .
+      - cp -v build/whyblocked-x86_64.AppImage .
+      - cp -v build/whyblocked-x86_64.AppImage.sig .
+      - cp -v build/whyblocked-x86_64.AppImage.zsync .
 
   gitea_release:
     image: plugins/gitea-release
@@ -191,10 +203,14 @@ pipeline:
     prerelease: true
     files:
       - whyblocked-${DRONE_TAG}_x86_64.tar.gz
+      - whyblocked-${DRONE_TAG}_x86_64.tar.gz.sig
       - whyblocked_${DRONE_TAG}-0_amd64.deb
+      - whyblocked_${DRONE_TAG}-0_amd64.deb.sig
       - whyblocked-${DRONE_TAG}-0.x86_64.rpm
-      - Whyblocked-x86_64.AppImage
-      - Whyblocked-x86_64.AppImage.zsync
+      - whyblocked-${DRONE_TAG}-0.x86_64.rpm.sig
+      - whyblocked-x86_64.AppImage
+      - whyblocked-x86_64.AppImage.sig
+      - whyblocked-x86_64.AppImage.zsync
     checksum:
       - sha256
       - sha512

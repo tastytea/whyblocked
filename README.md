@@ -16,9 +16,11 @@ environment.
 ### Packages
 
 Every [release](https://schlomp.space/tastytea/whyblocked/releases) includes
-a .deb-package, an .rpm-package and a .tar.gz-package with precompiled binaries
-for x86_64(amd64). These are automatically built and not tested. You can install
-them with `dpkg -i` or `rpm -i`, respectively.
+a .deb-package, an .rpm-package, a .tar.gz-package and an AppImage with
+precompiled binaries for x86_64(amd64). These are automatically built and not
+tested. You can install them with `dpkg -i` or `rpm -i`, respectively. The packages are signed with the PGP key
+[242E5AC4DA587BF9](https://tastytea.de/tastytea_autosign.asc) (Fingerprint:
+`F730 1ADF C9ED 2624 48C4  2B64 242E 5AC4 DA58 7BF9`).
 
 Gentoo ebuilds are available via my
 [repository](https://schlomp.space/tastytea/overlay).
