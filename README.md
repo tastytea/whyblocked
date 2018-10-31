@@ -1,7 +1,7 @@
 **Whyblocked** allows you to store the reason why you blocked someone, along with
 "receipts", URLs to the posts that led you to block them.
 
-It has a text- and a Qt-interface and uses a SQLite-database.
+It has a text- and a Qt-interface and uses an SQLite-database.
 
 ![Screenshot Qt interface](https://doc.schlomp.space/whyblocked/whyblocked_screenshot.png)
 
