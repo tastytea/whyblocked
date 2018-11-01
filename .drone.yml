@@ -11,7 +11,7 @@ pipeline:
       - apt-get update -q
       - apt-get install -qy g++ cmake pkg-config
       - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev
-      - apt-get install -qy dpkg-dev rpm file wget appstream
+      - apt-get install -qy dpkg-dev rpm file wget
       - gpg --import /var/autosign_gpg.key
       - rm -rf build && mkdir -p build && cd build
       - cmake -DCMAKE_INSTALL_PREFIX=/usr ..
@@ -22,27 +22,9 @@ pipeline:
       - make package
       - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
       - make package
-      - sed -i 's/Version=1.1//' install/usr/share/applications/de.tastytea.Whyblocked.desktop
-      - sed -i 's!<launchable.*</launchable>!!' install/usr/share/metainfo/de.tastytea.Whyblocked.appdata.xml
-      - sed -i 's!Whyblocked</id>!Whyblocked.desktop</id>!' install/usr/share/metainfo/de.tastytea.Whyblocked.appdata.xml
-      - sed -Ei 's!</?(screenshot|image).*!!' install/usr/share/metainfo/de.tastytea.Whyblocked.appdata.xml
-      - mv install/usr/share/qt5/translations install/usr/
-      - wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
-      - chmod +x linuxdeploy-x86_64.AppImage
-      - ./linuxdeploy-x86_64.AppImage --appimage-extract
-      - mkdir linuxdeploy-qt && cd linuxdeploy-qt
-      - wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
-      - chmod +x linuxdeploy-plugin-qt-x86_64.AppImage
-      - ./linuxdeploy-plugin-qt-x86_64.AppImage --appimage-extract
-      - cd ..
-      - ln -s linuxdeploy-qt/squashfs-root/AppRun linuxdeploy-plugin-qt
-      - SIGN="1" UPDATE_INFORMATION="zsync|https://appimages.schlomp.space/Whyblocked-x86_64.AppImage.zsync" ./squashfs-root/AppRun --appdir install --output appimage --plugin qt
-      - mv -v Whyblocked-x86_64.AppImage whyblocked-x86_64.AppImage
-      - mv -v Whyblocked-x86_64.AppImage.zsync whyblocked-x86_64.AppImage.zsync
       - gpg --verbose --detach-sign *.tar.gz
       - gpg --verbose --detach-sign *.deb
       - gpg --verbose --detach-sign *.rpm
-      - gpg --verbose --detach-sign whyblocked*.AppImage
     volumes:
       - /var/cache/debian-package-cache:/var/cache/apt/archives
       - /home/tastytea/misc/autosign_gpg.key:/var/autosign_gpg.key
@@ -188,10 +170,6 @@ pipeline:
       - cp -v build/whyblocked_${DRONE_TAG}-0_amd64.deb.sig .
       - cp -v build/whyblocked-${DRONE_TAG}-0.x86_64.rpm .
       - cp -v build/whyblocked-${DRONE_TAG}-0.x86_64.rpm.sig .
-      - cp -v build/whyblocked-x86_64.AppImage .
-      - cp -v build/whyblocked-x86_64.AppImage.sig .
-      - cp -v build/whyblocked-x86_64.AppImage.zsync .
-
   gitea_release:
     image: plugins/gitea-release
     pull: true
@@ -208,9 +186,6 @@ pipeline:
       - whyblocked_${DRONE_TAG}-0_amd64.deb.sig
       - whyblocked-${DRONE_TAG}-0.x86_64.rpm
       - whyblocked-${DRONE_TAG}-0.x86_64.rpm.sig
-      - whyblocked-x86_64.AppImage
-      - whyblocked-x86_64.AppImage.sig
-      - whyblocked-x86_64.AppImage.zsync
     checksum:
       - sha256
       - sha512
