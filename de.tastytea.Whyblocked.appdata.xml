@@ -12,6 +12,9 @@
       with "receipts", URLs to the posts that led you to block them.
     </p>
   </description>
+  <categories>
+    <category>Utility</category>
+  </categories>
 
   <launchable type="desktop-id">de.tastytea.Whyblocked.desktop</launchable>
   <screenshots>
@@ -20,4 +23,5 @@
     </screenshot>
   </screenshots>
   <url type="homepage">https://schlomp.space/tastytea/whyblocked</url>
+  <url type="bugtracker">https://schlomp.space/tastytea/whyblocked/issues</url>
 </component>
