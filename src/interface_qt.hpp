@@ -21,6 +21,7 @@
 #include <QMainWindow>
 #include <QStandardItemModel>
 #include <QDialog>
+#include <QtGui/qevent.h>
 #include "ui_whyblocked.h"
 #include "ui_whyblocked_add.h"
 
@@ -28,10 +29,10 @@ using std::string;
 
 struct Dialogdata
 {
-    string user;
-    bool blocked;
-    string reason;
-    std::vector<string> receipts;
+    string user = "";
+    bool blocked = true;
+    string reason = "";
+    std::vector<string> receipts = {};
 };
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
@@ -48,6 +49,8 @@ public slots:
 
 private:
     const string urls_to_hyperlinks(const string &text);
+    void dragEnterEvent(QDragEnterEvent *event);
+    void dropEvent(QDropEvent *event);
 
     QStandardItemModel *_model;
 

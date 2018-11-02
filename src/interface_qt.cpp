@@ -15,10 +15,12 @@
  */
 
 #include <regex>
+#include <array>
 #include <QMessageBox>
 #include <QDebug>
 #include <QTranslator>
 #include <QLibraryInfo>
+#include <QtCore/qmimedata.h>
 #include "version.hpp"
 #include "whyblocked.hpp"
 #include "interface_qt.hpp"
@@ -175,6 +177,45 @@ const string MainWindow::urls_to_hyperlinks(const string &text)
 {
     std::regex re_url("((https?|gopher|ftps?)\\://[^ <]*)");
     return std::regex_replace(text, re_url, "<a href=\"$1\">$1</a>");
+}
+
+void MainWindow::dragEnterEvent(QDragEnterEvent *event)
+{
+    if (event->mimeData()->hasFormat("text/plain"))
+    {
+        event->acceptProposedAction();
+    }
+}
+
+void MainWindow::dropEvent(QDropEvent *event)
+{
+    string text = event->mimeData()->text().toStdString();
+    const std::array<const std::regex, 4> fediverse =
+    {
+        std::regex("https://([^/]+)/@([^/]+)"),         // Mastodon
+        std::regex("https://([^/]+)/profile/([^/]+)"),  // Friendica
+        std::regex("https://([^/]+)/users/([^/]+)"),    // Pleroma
+        std::regex("https://([^/]+)/([^/]+)")           // Gnusocial
+    };
+    std::smatch match;
+
+    for (const std::regex &re : fediverse)
+    {
+        std::regex_match(text, match, re);
+        const string instance = match[1];
+        const string user = match[2];
+        if (!instance.empty() && !user.empty())
+        {
+            text = '@' + user + '@' + instance;
+            break;
+        }
+    }
+
+    DialogAdd *dialog = new DialogAdd(this);
+    Dialogdata data;
+    data.user = text;
+    dialog->set_data(data);
+    dialog->show();
 }
 
 DialogAdd::DialogAdd(QMainWindow *parent)
