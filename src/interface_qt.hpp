@@ -73,6 +73,8 @@ public:
 
 private:
     const Dialogdata get_data() const;
+    void dragEnterEvent(QDragEnterEvent *event);
+    void dropEvent(QDropEvent *event);
 
     MainWindow *_parent;
 

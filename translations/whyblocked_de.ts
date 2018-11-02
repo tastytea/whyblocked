@@ -4,62 +4,62 @@
 <context>
     <name>DialogAdd</name>
     <message>
-        <location filename="../src/whyblocked_add.ui" line="14"/>
+        <location filename="../src/whyblocked_add.ui" line="17"/>
         <source>Add entry</source>
         <translation>Eintrag hinzufügen</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked_add.ui" line="37"/>
+        <location filename="../src/whyblocked_add.ui" line="40"/>
         <source>Memory aids, proof</source>
         <translation>Gedächtnisstützen, Beweise</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked_add.ui" line="40"/>
+        <location filename="../src/whyblocked_add.ui" line="43"/>
         <source>Rece&amp;ipts</source>
         <translation>Be&amp;lege</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked_add.ui" line="53"/>
+        <location filename="../src/whyblocked_add.ui" line="56"/>
         <source>Add receipt</source>
         <translation>Beleg hinzufügen</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked_add.ui" line="56"/>
+        <location filename="../src/whyblocked_add.ui" line="59"/>
         <source>&amp;Add</source>
         <translation>&amp;Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked_add.ui" line="76"/>
+        <location filename="../src/whyblocked_add.ui" line="79"/>
         <source>&amp;Blocked</source>
         <translation>&amp;Blockiert</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked_add.ui" line="95"/>
+        <location filename="../src/whyblocked_add.ui" line="98"/>
         <source>&amp;Silenced</source>
         <translation>&amp;Gedämpft</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked_add.ui" line="102"/>
+        <location filename="../src/whyblocked_add.ui" line="105"/>
         <source>R&amp;eason</source>
         <translation>B&amp;egründung</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked_add.ui" line="131"/>
+        <location filename="../src/whyblocked_add.ui" line="134"/>
         <source>Blocked/Silenced</source>
         <translation>Blockiert/Gedämpft</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked_add.ui" line="141"/>
+        <location filename="../src/whyblocked_add.ui" line="144"/>
         <source>&amp;User/Instance</source>
         <translation>Ben&amp;utzer/Instanz</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked_add.ui" line="151"/>
+        <location filename="../src/whyblocked_add.ui" line="154"/>
         <source>Remove receipt</source>
         <translation>Beleg entfernen</translation>
     </message>
     <message>
-        <location filename="../src/whyblocked_add.ui" line="154"/>
+        <location filename="../src/whyblocked_add.ui" line="157"/>
         <source>Re&amp;move</source>
         <translation>Ent&amp;fernen</translation>
     </message>

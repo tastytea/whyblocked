@@ -300,6 +300,22 @@ void DialogAdd::accept()
     delete this;
 }
 
+void DialogAdd::dragEnterEvent(QDragEnterEvent *event)
+{
+    if (event->mimeData()->hasFormat("text/plain"))
+    {
+        event->acceptProposedAction();
+    }
+}
+
+void DialogAdd::dropEvent(QDropEvent *event)
+{
+    const QString text = event->mimeData()->text();
+    QListWidgetItem *item = new QListWidgetItem(text);
+    item->setFlags(item->flags() | Qt::ItemIsEditable);
+    list_receipts->insertItem(list_receipts->count(), item);
+}
+
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
