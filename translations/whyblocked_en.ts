@@ -64,6 +64,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/whyblocked_add.ui" line="164"/>
+        <source>Del</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/interface_qt.cpp" line="262"/>
         <source>Insert receipt here.</source>
         <translation type="unfinished"></translation>
