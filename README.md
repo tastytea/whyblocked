@@ -36,8 +36,8 @@ Gentoo ebuilds are available via my
 * [libxdg-basedir](http://repo.or.cz/w/libxdg-basedir.git) (tested: 1.2)
 * [qtcore](https://www.qt.io/) (tested: 5.11/5.7)
 * Optional
-    * [qtwidgets](https://www.qt.io/) (tested: 5.11/5.7)
-    * [lupdate & lrelease](http://doc.qt.io/qt-5/linguist-manager.html) (tested: 5.11/5.7)
+    * GUI: [qtwidgets](https://www.qt.io/) (tested: 5.11/5.7)
+    * Translations: [lupdate & lrelease](http://doc.qt.io/qt-5/linguist-manager.html) (tested: 5.11/5.7)
 
 #### Get sourcecode
 
