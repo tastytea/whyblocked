@@ -126,7 +126,7 @@ pipeline:
       - apt-get update -q
       - apt-get install -qy -t stretch-backports clang-5.0
       - apt-get install -qy cmake pkg-config
-      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev
+      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
       - make VERBOSE=1
@@ -150,7 +150,7 @@ pipeline:
       - apt-get update -q
       - apt-get install -qy -t stretch-backports clang-6.0
       - apt-get install -qy cmake pkg-config
-      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev
+      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
       - make VERBOSE=1
