@@ -44,6 +44,11 @@ Gentoo ebuilds are available via my
 Download the current
 [release](https://schlomp.space/tastytea/whyblocked/releases).
 
+If you clone from git, be sure to `git submodule init` and
+`git submodule update` afterwards. See the [submodules article in the git book]
+(https://git-scm.com/book/en/v2/Git-Tools-Submodules#_cloning_submodules) for
+further info.
+
 #### Compile
 
 ```SH
