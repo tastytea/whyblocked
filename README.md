@@ -43,7 +43,8 @@ Gentoo ebuilds are available via my
 #### Get sourcecode
 
 Download the current
-[release](https://schlomp.space/tastytea/whyblocked/releases).
+[release](https://schlomp.space/tastytea/whyblocked/releases) and copy
+[xdgcfg](https://schlomp.space/tastytea/xdgcfg) into `xdgcfg/`.
 
 If you clone from git, be sure to `git submodule init` and
 `git submodule update` afterwards. See the [submodules article in the git book]
