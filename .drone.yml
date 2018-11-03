@@ -10,7 +10,7 @@ pipeline:
       - rm /etc/apt/apt.conf.d/docker-clean
       - apt-get update -q
       - apt-get install -qy g++ cmake pkg-config
-      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev
+      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev
       - apt-get install -qy dpkg-dev rpm file wget
       - gpg --import /var/autosign_gpg.key
       - rm -rf build && mkdir -p build && cd build
@@ -50,7 +50,7 @@ pipeline:
       - apt-get update -q
       - apt-get install -qy -t xenial g++-7
       - apt-get install -qy cmake pkg-config
-      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev
+      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
       - make VERBOSE=1
@@ -79,7 +79,7 @@ pipeline:
       - apt-get update -q
       - apt-get install -qy -t xenial g++-8
       - apt-get install -qy cmake pkg-config
-      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev
+      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
       - make VERBOSE=1
@@ -102,7 +102,7 @@ pipeline:
       - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/backports.list
       - apt-get update -q
       - apt-get install -qy clang cmake pkg-config
-      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev
+      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
       - make VERBOSE=1

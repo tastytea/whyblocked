@@ -37,6 +37,7 @@ Gentoo ebuilds are available via my
 * [qtcore](https://www.qt.io/) (tested: 5.11/5.7)
 * Optional
     * GUI: [qtwidgets](https://www.qt.io/) (tested: 5.11/5.7)
+    * GUI: [libconfig++](https://github.com/hyperrealm/libconfig) (tested: 1.5)
     * Translations: [lupdate & lrelease](http://doc.qt.io/qt-5/linguist-manager.html) (tested: 5.11/5.7)
 
 #### Get sourcecode
