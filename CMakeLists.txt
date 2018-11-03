@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.6)
 project (whyblocked
-         VERSION 0.11.1
+         VERSION 0.12.0
          LANGUAGES CXX
 )
 
@@ -15,6 +15,7 @@ pkg_check_modules(SQLITE3 sqlite3)
 find_package(Qt5Core CONFIG REQUIRED)
 if(NOT WITHOUT_GUI)
     find_package(Qt5Widgets CONFIG REQUIRED)
+    pkg_check_modules(LIBCONFIG REQUIRED libconfig++)
 endif()
 
 set(CMAKE_CXX_STANDARD 14)
@@ -29,9 +30,11 @@ set(CMAKE_AUTOUIC ON)
 include_directories(${PROJECT_BINARY_DIR})
 include_directories(${LIBXDG_BASEDIR_INCLUDE_DIRS})
 include_directories(${SQLITE3_INCLUDE_DIRS})
+include_directories(${LIBCONFIG_INCLUDE_DIRS})
 
 link_directories(${LIBXDG_BASEDIR_LIBRARY_DIRS})
 link_directories(${SQLITE3_LIBRARY_DIRS})
+link_directories(${LIBCONFIG_LIBRARY_DIRS})
 
 # Write version in header
 configure_file (
@@ -42,13 +45,17 @@ configure_file (
 set(COMMON_LIBRARIES
     ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp stdc++fs)
 
-add_executable(whyblocked src/interface_text.cpp src/whyblocked.cpp)
+add_executable(whyblocked
+               src/interface_text.cpp src/whyblocked.cpp)
 target_link_libraries(whyblocked ${COMMON_LIBRARIES} Qt5::Core)
 install(TARGETS whyblocked DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 if(NOT WITHOUT_GUI)
-    add_executable(whyblocked-gui src/interface_qt.cpp src/whyblocked.cpp)
-    target_link_libraries(whyblocked-gui ${COMMON_LIBRARIES} Qt5::Widgets)
+    add_executable(whyblocked-gui
+                   src/interface_qt.cpp src/whyblocked.cpp src/xdgcfg.cpp)
+    target_link_libraries(whyblocked-gui
+                          ${COMMON_LIBRARIES} Qt5::Widgets
+                          ${LIBCONFIG_LIBRARIES} stdc++fs)
 
     install(TARGETS whyblocked-gui DESTINATION ${CMAKE_INSTALL_BINDIR})
     install(FILES de.tastytea.Whyblocked.desktop DESTINATION

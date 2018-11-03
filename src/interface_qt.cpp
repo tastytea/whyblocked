@@ -18,20 +18,134 @@
 #include <array>
 #include <QMessageBox>
 #include <QDebug>
+#include <iostream>
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QtCore/qmimedata.h>
+#include <libconfig.h++>
 #include "version.hpp"
 #include "whyblocked.hpp"
 #include "interface_qt.hpp"
 
-MainWindow::MainWindow(QMainWindow *parent) : QMainWindow(parent)
+MainWindow::MainWindow(QMainWindow *parent)
+: QMainWindow(parent)
+, _config("whyblocked.cfg")
+, _headersize({ 250, 125, 125 })
 {
     setupUi(this);
 
     _model = new QStandardItemModel;
     tableview->setModel(_model);
+
+    if (_config.read() == 0)
+    {
+        libconfig::Setting &root = _config.get_cfg().getRoot();
+        string key;
+
+        key = "size";
+        if (root.exists(key) && root[key.c_str()].isArray())
+        {
+            this->resize(root[key.c_str()][0], root[key.c_str()][1]);
+        }
+
+        key = "toolbar_position";
+        if (root.exists(key))
+        {
+            const string value = root[key.c_str()].c_str();
+            if (value == "top")
+            {
+                this->removeToolBar(toolbar);
+                this->addToolBar(Qt::TopToolBarArea, toolbar);
+            }
+            else if (value == "right")
+            {
+                this->removeToolBar(toolbar);
+                this->addToolBar(Qt::RightToolBarArea, toolbar);
+            }
+            else if (value == "bottom")
+            {
+                this->removeToolBar(toolbar);
+                this->addToolBar(Qt::BottomToolBarArea, toolbar);
+            }
+            else if (value == "left")
+            {
+                this->removeToolBar(toolbar);
+                this->addToolBar(Qt::LeftToolBarArea, toolbar);
+            }
+        }
+
+        key = "toolbar_visible";
+        if (root.exists(key))
+        {
+            toolbar->setVisible(root[key.c_str()]);
+        }
+
+        key = "table_headers";
+        if (root.exists(key) && root[key.c_str()].isArray())
+        {
+            const libconfig::Setting &value = root[key.c_str()];
+            _headersize = { value[0], value[1], value[2] };
+        }
+    }
+
     populate_tableview();
+}
+
+MainWindow::~MainWindow()
+{
+    libconfig::Setting &root = _config.get_cfg().getRoot();
+    // We can't add an element that already exists, so we delete it beforehand.
+    for (const string &key :
+         { "size", "toolbar_position", "toolbar_visible", "table_headers" })
+    {
+        if (root.exists(key))
+        {
+            root.remove(key);
+        }
+    }
+    
+    libconfig::Setting &size = root.add("size", libconfig::Setting::TypeArray);
+    size.add(libconfig::Setting::TypeInt) = this->width();
+    size.add(libconfig::Setting::TypeInt) = this->height();
+
+    libconfig::Setting &pos = root.add("toolbar_position",
+                                       libconfig::Setting::TypeString);
+    if (toolbar->orientation() == Qt::Orientation::Horizontal)
+    {
+        if (toolbar-> geometry().top() < 100)
+        {
+            pos = "top";
+        }
+        else
+        {
+            pos = "bottom";
+        }
+    }
+    else
+    {
+        if (toolbar->geometry().left() == 0)
+        {
+            pos = "left";
+        }
+        else
+        {
+            pos = "right";
+        }
+    }
+
+    root.add("toolbar_visible", libconfig::Setting::TypeBoolean)
+        = !toolbar->isHidden();
+
+    libconfig::Setting &headers = root.add("table_headers",
+                                           libconfig::Setting::TypeArray);
+    headers.add(libconfig::Setting::TypeInt) =
+        tableview->horizontalHeader()->sectionSize(0);
+    headers.add(libconfig::Setting::TypeInt) =
+        tableview->horizontalHeader()->sectionSize(1);
+    headers.add(libconfig::Setting::TypeInt) =
+        tableview->horizontalHeader()->sectionSize(2);
+
+    _config.write();
 }
 
 void MainWindow::populate_tableview()
@@ -43,7 +157,9 @@ void MainWindow::populate_tableview()
         tr("Blocked/Silenced"),
         tr("Reason")
     });
-    tableview->horizontalHeader()->resizeSection(0, 250);
+    tableview->horizontalHeader()->resizeSection(0, _headersize[0]);
+    tableview->horizontalHeader()->resizeSection(1, _headersize[1]);
+    tableview->horizontalHeader()->resizeSection(2, _headersize[2]);
 
     result_view result;
     if (database::view(result))

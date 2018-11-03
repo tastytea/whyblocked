@@ -18,10 +18,13 @@
 #define INTERFACE_QT_HPP
 
 #include <string>
+#include <memory>
+#include <array>
 #include <QMainWindow>
 #include <QStandardItemModel>
 #include <QDialog>
 #include <QtGui/qevent.h>
+#include "xdgcfg.hpp"
 #include "ui_whyblocked.h"
 #include "ui_whyblocked_add.h"
 
@@ -41,6 +44,7 @@ class MainWindow : public QMainWindow, private Ui::MainWindow
 
 public:
     explicit MainWindow(QMainWindow *parent = nullptr);
+    ~MainWindow();
     void add_row(const QString &user, const int &blocked,
                  const QString &reason);
 
@@ -53,6 +57,8 @@ private:
     void dropEvent(QDropEvent *event);
 
     QStandardItemModel *_model;
+    xdgcfg _config;
+    std::array<int, 3> _headersize;
 
 private slots:
     void add();
