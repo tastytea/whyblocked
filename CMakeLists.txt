@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.6)
 project (whyblocked
-         VERSION 0.12.0
+         VERSION 0.12.1
          LANGUAGES CXX
 )
 
@@ -10,7 +10,7 @@ pkg_check_modules(LIBXDG_BASEDIR REQUIRED libxdg-basedir)
 # sqlite3 is not a direct dependency, but vsqlite++ has no cmake- or pkg-config
 # module. Since it installs in the same directories as sqlite3, I am adding the
 # module here to add the include- and link directories below. It is not REQUIRED
-# because the sqlite3 in Debian jessie doesn't come with an pkg-config module.
+# because the sqlite3 in Debian jessie doesn't come with a pkg-config module.
 pkg_check_modules(SQLITE3 sqlite3)
 find_package(Qt5Core CONFIG REQUIRED)
 if(NOT WITHOUT_GUI)
