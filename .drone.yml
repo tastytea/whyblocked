@@ -1,6 +1,6 @@
 pipeline:
   gcc6:
-    image: debian:stretch-slim
+    image: debian:jessie-slim
     pull: true
     environment:
       - LANG=C.utf8
@@ -8,8 +8,15 @@ pipeline:
       - CXXFLAGS=-pipe -O2
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
+      - echo "APT::Default-Release \"jessie\";" >> /etc/apt/apt.conf.d/00default_release
+      - echo "deb http://deb.debian.org/debian jessie-backports main" >> /etc/apt/sources.list.d/backports.list
+      - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu trusty main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
+      - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
+      - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
       - apt-get update -q
-      - apt-get install -qy g++ cmake pkg-config
+      - apt-get install -qy -t trusty g++-6
+      - apt-get install -qy g++ pkg-config
+      - apt-get install -qy -t jessie-backports cmake
       - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev
       - apt-get install -qy dpkg-dev rpm file wget
       - gpg --import /var/autosign_gpg.key
@@ -40,11 +47,9 @@ pipeline:
       - CXXFLAGS=-pipe -O2
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
-      - apt-get update -q
       - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
       - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/backports.list
       - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
-      - apt-get install -qy gnupg
       - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
       - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
       - apt-get update -q
@@ -69,11 +74,9 @@ pipeline:
       - CXXFLAGS=-pipe -O2
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
-      - apt-get update -q
       - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
       - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/backports.list
       - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
-      - apt-get install -qy gnupg
       - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
       - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
       - apt-get update -q
