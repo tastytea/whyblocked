@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.6)
+cmake_minimum_required (VERSION 3.2)
 project (whyblocked
          VERSION 0.12.1
          LANGUAGES CXX

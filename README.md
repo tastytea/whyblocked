@@ -31,14 +31,14 @@ Gentoo ebuilds are available via my
 
 * C++ compiler (tested: [gcc](https://gcc.gnu.org/) 6/7/8,
   [clang](https://llvm.org/) 3/5/6)
-* [cmake](https://cmake.org/) (at least 3.6)
-* [vsqlite++](http://vsqlite.virtuosic-bytes.com/) (tested: 0.3.13)
+* [cmake](https://cmake.org/) (at least 3.2)
+* [vsqlite++](http://vsqlite.virtuosic-bytes.com/) (tested: 0.3)
 * [libxdg-basedir](http://repo.or.cz/w/libxdg-basedir.git) (tested: 1.2)
-* [qtcore](https://www.qt.io/) (tested: 5.11/5.7)
+* [qtcore](https://www.qt.io/) (tested: 5.11/5.2)
 * Optional
-    * GUI: [qtwidgets](https://www.qt.io/) (tested: 5.11/5.7)
-    * GUI: [libconfig++](https://github.com/hyperrealm/libconfig) (tested: 1.5)
-    * Translations: [lupdate & lrelease](http://doc.qt.io/qt-5/linguist-manager.html) (tested: 5.11/5.7)
+    * GUI: [qtwidgets](https://www.qt.io/) (tested: 5.11/5.2)
+    * GUI: [libconfig++](https://github.com/hyperrealm/libconfig) (tested: 1.5 / 1.4)
+    * Translations: [lupdate & lrelease](http://doc.qt.io/qt-5/linguist-manager.html) (tested: 5.11/5.2)
 
 #### Get sourcecode
 

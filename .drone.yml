@@ -1,6 +1,6 @@
 pipeline:
   gcc6:
-    image: debian:jessie-slim
+    image: ubuntu:xenial
     pull: true
     environment:
       - LANG=C.utf8
@@ -8,15 +8,14 @@ pipeline:
       - CXXFLAGS=-pipe -O2
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
-      - echo "APT::Default-Release \"jessie\";" >> /etc/apt/apt.conf.d/00default_release
-      - echo "deb http://deb.debian.org/debian jessie-backports main" >> /etc/apt/sources.list.d/backports.list
-      - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu trusty main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
+      - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
+      # - echo "deb http://ppa.launchpad.net/george-edison55/cmake-3.x/ubuntu xenial main" >> /etc/apt/sources.list.d/cmake-3.x.list
       - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
+      # - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0xb118cd3c377df930edd06c67084ecfc5828ab726
       - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
+      # - gpg --armor --export 0xb118cd3c377df930edd06c67084ecfc5828ab726 | apt-key add -
       - apt-get update -q
-      - apt-get install -qy -t trusty g++-6
-      - apt-get install -qy g++ pkg-config
-      - apt-get install -qy -t jessie-backports cmake
+      - apt-get install -qy g++-6 cmake pkg-config
       - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev
       - apt-get install -qy dpkg-dev rpm file wget
       - gpg --import /var/autosign_gpg.key
@@ -166,7 +165,7 @@ pipeline:
       - /var/cache/debian-package-cache:/var/cache/apt/archives
 
   prepare_release:
-    image: debian:jessie-slim
+    image: ubuntu:xenial
     pull: true
     when:
       event: tag
