@@ -34,11 +34,11 @@ Gentoo ebuilds are available via my
 * [cmake](https://cmake.org/) (at least 3.2)
 * [vsqlite++](http://vsqlite.virtuosic-bytes.com/) (tested: 0.3)
 * [libxdg-basedir](http://repo.or.cz/w/libxdg-basedir.git) (tested: 1.2)
-* [qtcore](https://www.qt.io/) (tested: 5.11/5.2)
+* [qtcore](https://www.qt.io/) (tested: 5.11/5.5)
 * Optional
-    * GUI: [qtwidgets](https://www.qt.io/) (tested: 5.11/5.2)
-    * GUI: [libconfig++](https://github.com/hyperrealm/libconfig) (tested: 1.5 / 1.4)
-    * Translations: [lupdate & lrelease](http://doc.qt.io/qt-5/linguist-manager.html) (tested: 5.11/5.2)
+    * GUI: [qtwidgets](https://www.qt.io/) (tested: 5.11/5.5)
+    * GUI: [libconfig++](https://github.com/hyperrealm/libconfig) (tested: 1.5)
+    * Translations: [lupdate & lrelease](http://doc.qt.io/qt-5/linguist-manager.html) (tested: 5.11/5.5)
 
 #### Get sourcecode
 

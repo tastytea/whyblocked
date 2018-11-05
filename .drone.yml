@@ -9,11 +9,8 @@ pipeline:
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
       - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
-      # - echo "deb http://ppa.launchpad.net/george-edison55/cmake-3.x/ubuntu xenial main" >> /etc/apt/sources.list.d/cmake-3.x.list
       - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
-      # - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0xb118cd3c377df930edd06c67084ecfc5828ab726
       - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
-      # - gpg --armor --export 0xb118cd3c377df930edd06c67084ecfc5828ab726 | apt-key add -
       - apt-get update -q
       - apt-get install -qy g++-6 cmake pkg-config
       - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev
