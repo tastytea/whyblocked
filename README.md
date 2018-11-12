@@ -17,7 +17,7 @@ environment.
 
 Every [release](https://schlomp.space/tastytea/whyblocked/releases) includes
 a .deb-package, an .rpm-package and a .tar.gz-package with precompiled binaries
-for x86_64(amd64). These are automatically built and not tested. You can install
+for x86_64(amd64) ([more info](https://schlomp.space/tastytea/whyblocked/wiki/Binary-Packages)). These are automatically built and not tested. You can install
 them with `dpkg -i` or `rpm -i`, respectively. The packages are signed with the
 PGP key [242E5AC4DA587BF9](https://tastytea.de/tastytea_autosign.asc)
 (Fingerprint: `F730 1ADF C9ED 2624 48C4  2B64 242E 5AC4 DA58 7BF9`).
