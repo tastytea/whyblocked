@@ -17,8 +17,6 @@
 #include <regex>
 #include <array>
 #include <QMessageBox>
-#include <QDebug>
-#include <iostream>
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QtCore/qmimedata.h>
@@ -89,6 +87,8 @@ MainWindow::MainWindow(QMainWindow *parent)
     }
 
     populate_tableview();
+    statusBar()->showMessage(tr("Try dragging an account from your webbrowser "
+                                "into this window."));
 }
 
 MainWindow::~MainWindow()
@@ -171,8 +171,6 @@ void MainWindow::populate_tableview()
                     QString::fromStdString(std::get<2>(line)));
         }
     }
-
-    statusBar()->showMessage(tr("Database loaded."));
 }
 
 void MainWindow::add_row(const QString &user, const int &blocked,
@@ -240,15 +238,14 @@ void MainWindow::remove()
         {
             const string user = row.data().toString().toStdString();
             database::remove(user);
-            statusBar()->showMessage(tr("Removed %1 from database.")
-                                     .arg(QString::fromStdString(user)));
             _model->removeRow(row.row());
         }
         label_receipts->clear();
     }
     else
     {
-        statusBar()->showMessage(tr("Select data to remove."));
+        QMessageBox::warning(this, tr("Nothing selected"),
+                             tr("Please select entries to remove."));
     }
 }
 
@@ -409,9 +406,6 @@ void DialogAdd::accept()
     {
         database::add_receipt(data.user, receipt);
     }
-
-    _parent->statusBar()->showMessage(tr("Added %1 to database.")
-                                      .arg(QString::fromStdString(data.user)));
 
     delete this;
 }
