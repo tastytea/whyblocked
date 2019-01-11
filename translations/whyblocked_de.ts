@@ -89,12 +89,12 @@
     <message>
         <location filename="../src/whyblocked.ui" line="56"/>
         <source>Search for Users/Instances</source>
-        <translation>Suche nach Benutzern/Instanzen</translation>
+        <translation>Suche nach benutzern/instanzen</translation>
     </message>
     <message>
         <location filename="../src/whyblocked.ui" line="69"/>
         <source>Search for Reasons</source>
-        <translation>Suche nach Begründungen</translation>
+        <translation>Suche nach begründungen</translation>
     </message>
     <message>
         <location filename="../src/whyblocked.ui" line="88"/>
@@ -210,7 +210,7 @@
     <message>
         <location filename="../src/whyblocked.ui" line="303"/>
         <source>Find entries</source>
-        <translation>Dinde Einträge</translation>
+        <translation>Finde einträge</translation>
     </message>
     <message>
         <location filename="../src/whyblocked.ui" line="306"/>
