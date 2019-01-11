@@ -26,6 +26,60 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
+     <widget class="QWidget" name="widget_find" native="true">
+      <layout class="QHBoxLayout" name="hbox_find">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLineEdit" name="text_find">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="check_user">
+         <property name="toolTip">
+          <string>Search for Users/Instances</string>
+         </property>
+         <property name="text">
+          <string>User/Instance</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="check_reason">
+         <property name="toolTip">
+          <string>Search for Reasons</string>
+         </property>
+         <property name="text">
+          <string>Reason</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
      <widget class="QTableView" name="tableview">
       <property name="acceptDrops">
        <bool>false</bool>
@@ -113,6 +167,7 @@
    <addaction name="action_edit"/>
    <addaction name="action_remove"/>
    <addaction name="action_reload"/>
+   <addaction name="action_find"/>
    <addaction name="separator"/>
    <addaction name="action_about"/>
    <addaction name="action_quit"/>
@@ -134,6 +189,7 @@
     <addaction name="action_edit"/>
     <addaction name="action_remove"/>
     <addaction name="action_reload"/>
+    <addaction name="action_find"/>
     <addaction name="action_quit"/>
    </widget>
    <widget class="QMenu" name="menu_help">
@@ -230,6 +286,23 @@
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+E</string>
+   </property>
+  </action>
+  <action name="action_find">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="edit-find"/>
+   </property>
+   <property name="text">
+    <string>&amp;Find</string>
+   </property>
+   <property name="toolTip">
+    <string>Find entries</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
    </property>
   </action>
  </widget>
@@ -363,6 +436,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>action_find</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>find()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>add()</slot>
@@ -371,5 +460,6 @@
   <slot>about()</slot>
   <slot>show_details(QModelIndex)</slot>
   <slot>edit()</slot>
+  <slot>find()</slot>
  </slots>
 </ui>

@@ -84,7 +84,11 @@ MainWindow::MainWindow(QMainWindow *parent)
             const libconfig::Setting &value = root[key.c_str()];
             _headersize = { value[0], value[1], value[2] };
         }
+
     }
+
+    widget_find->hide();
+    text_find->installEventFilter(this);
 
     populate_tableview();
     statusBar()->showMessage(tr("Try dragging an account from your webbrowser "
@@ -247,6 +251,28 @@ void MainWindow::remove()
         QMessageBox::warning(this, tr("Nothing selected"),
                              tr("Please select entries to remove."));
     }
+}
+
+void MainWindow::find()
+{
+    if (widget_find->isVisible())
+    {
+        widget_find->hide();
+    }
+    else
+    {
+        widget_find->show();
+        text_find->setFocus();
+    }
+}
+
+bool MainWindow::eventFilter(QObject *obj, QEvent *event)
+{
+    if (obj == text_find && event->type() == QEvent::KeyPress)
+    {
+        //
+    }
+    return QObject::eventFilter(obj, event);
 }
 
 void MainWindow::about()

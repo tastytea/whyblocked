@@ -55,6 +55,7 @@ private:
     const string urls_to_hyperlinks(const string &text);
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
+    bool eventFilter(QObject *obj, QEvent *event);
 
     QStandardItemModel *_model;
     xdgcfg _config;
@@ -66,6 +67,7 @@ private slots:
     void about();
     void show_details(QModelIndex index);
     void populate_tableview();
+    void find();
 
 };
 

@@ -74,7 +74,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="375"/>
+        <location filename="../src/interface_qt.cpp" line="401"/>
         <source>Insert receipt here.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -87,173 +87,200 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="34"/>
+        <location filename="../src/whyblocked.ui" line="56"/>
+        <source>Search for Users/Instances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/whyblocked.ui" line="69"/>
+        <source>Search for Reasons</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/whyblocked.ui" line="88"/>
         <source>Click or press enter to view receipts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="77"/>
+        <location filename="../src/whyblocked.ui" line="131"/>
         <source>Memory aids, proof</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="101"/>
+        <location filename="../src/whyblocked.ui" line="155"/>
         <source>Toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="131"/>
+        <location filename="../src/whyblocked.ui" line="186"/>
         <source>&amp;Database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="141"/>
+        <location filename="../src/whyblocked.ui" line="197"/>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="154"/>
+        <location filename="../src/whyblocked.ui" line="210"/>
         <source>&amp;Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="157"/>
+        <location filename="../src/whyblocked.ui" line="213"/>
         <source>Add user or instance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="160"/>
+        <location filename="../src/whyblocked.ui" line="216"/>
         <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="169"/>
+        <location filename="../src/whyblocked.ui" line="225"/>
         <source>Re&amp;move</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="172"/>
+        <location filename="../src/whyblocked.ui" line="228"/>
         <source>Remove user or instance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="175"/>
+        <location filename="../src/whyblocked.ui" line="231"/>
         <source>Del</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="184"/>
+        <location filename="../src/whyblocked.ui" line="240"/>
         <source>&amp;About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="187"/>
+        <location filename="../src/whyblocked.ui" line="243"/>
         <source>About this application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="196"/>
+        <location filename="../src/whyblocked.ui" line="252"/>
         <source>&amp;Reload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="199"/>
+        <location filename="../src/whyblocked.ui" line="255"/>
         <source>Reload database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="202"/>
+        <location filename="../src/whyblocked.ui" line="258"/>
         <source>Ctrl+R</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="211"/>
+        <location filename="../src/whyblocked.ui" line="267"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="214"/>
+        <location filename="../src/whyblocked.ui" line="270"/>
         <source>Quit application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="217"/>
+        <location filename="../src/whyblocked.ui" line="273"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="226"/>
+        <location filename="../src/whyblocked.ui" line="282"/>
         <source>&amp;Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/whyblocked.ui" line="229"/>
-        <location filename="../src/interface_qt.cpp" line="209"/>
+        <location filename="../src/whyblocked.ui" line="285"/>
+        <location filename="../src/interface_qt.cpp" line="213"/>
         <source>Edit entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="156"/>
+        <location filename="../src/whyblocked.ui" line="299"/>
+        <source>&amp;Find</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/whyblocked.ui" line="302"/>
+        <source>Find entries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/whyblocked.ui" line="305"/>
+        <source>Ctrl+F</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/whyblocked.ui" line="59"/>
+        <location filename="../src/interface_qt.cpp" line="160"/>
         <source>User/Instance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="157"/>
+        <location filename="../src/interface_qt.cpp" line="161"/>
         <source>Blocked/Silenced</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="158"/>
+        <location filename="../src/whyblocked.ui" line="72"/>
+        <location filename="../src/interface_qt.cpp" line="162"/>
         <source>Reason</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="90"/>
+        <location filename="../src/interface_qt.cpp" line="94"/>
         <source>Try dragging an account from your webbrowser into this window.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="183"/>
+        <location filename="../src/interface_qt.cpp" line="187"/>
         <source>blocked</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="187"/>
+        <location filename="../src/interface_qt.cpp" line="191"/>
         <source>silenced</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="203"/>
+        <location filename="../src/interface_qt.cpp" line="207"/>
         <source>Invalid selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="204"/>
+        <location filename="../src/interface_qt.cpp" line="208"/>
         <source>Please select only 1 entry to edit.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="247"/>
+        <location filename="../src/interface_qt.cpp" line="251"/>
         <source>Nothing selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="248"/>
+        <location filename="../src/interface_qt.cpp" line="252"/>
         <source>Please select entries to remove.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="254"/>
+        <location filename="../src/interface_qt.cpp" line="280"/>
         <source>About Whyblocked</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="255"/>
+        <location filename="../src/interface_qt.cpp" line="281"/>
         <source>&lt;p&gt;&lt;b&gt;Whyblocked&lt;/b&gt; %1&lt;/p&gt;&lt;p&gt;Reminds you why you blocked someone.&lt;/p&gt;&lt;p&gt;Sourcecode: &lt;a href=&quot;https://schlomp.space/tastytea/whyblocked&quot;&gt;https://schlomp.space/tastytea/whyblocked&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;small&gt;Copyright © 2018 &lt;a href=&quot;mailto:tastytea@tastytea.de&quot;&gt;tastytea&lt;/a&gt;.&lt;br&gt;Licence GPLv3: &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0.html&quot;&gt;GNU GPL version 3&lt;/a&gt;.&lt;br&gt;This program comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it under certain conditions.&lt;/small&gt;&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="278"/>
+        <location filename="../src/interface_qt.cpp" line="304"/>
         <source>Receipts:</source>
         <translation type="unfinished"></translation>
     </message>
