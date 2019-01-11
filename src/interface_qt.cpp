@@ -91,6 +91,14 @@ MainWindow::MainWindow(QMainWindow *parent)
             _headersize = { value[0], value[1], value[2] };
         }
 
+        key = "find_in";
+        if (root.exists(key) && root[key.c_str()].isGroup())
+        {
+            const libconfig::Setting &value = root[key.c_str()];
+            check_user->setChecked(value["user"]);
+            check_reason->setChecked(value["reason"]);
+        }
+
     }
 
     widget_find->hide();
@@ -107,7 +115,8 @@ MainWindow::~MainWindow()
     libconfig::Setting &root = _config.get_cfg().getRoot();
     // We can't add an element that already exists, so we delete it beforehand.
     for (const string &key :
-         { "size", "toolbar_position", "toolbar_visible", "table_headers" })
+         { "size", "toolbar_position", "toolbar_visible", "table_headers",
+           "find_in" })
     {
         if (root.exists(key))
         {
@@ -155,6 +164,13 @@ MainWindow::~MainWindow()
         tableview->horizontalHeader()->sectionSize(1);
     headers.add(libconfig::Setting::TypeInt) =
         tableview->horizontalHeader()->sectionSize(2);
+
+    libconfig::Setting &find_in = root.add("find_in",
+                                           libconfig::Setting::TypeGroup);
+    find_in.add("user", libconfig::Setting::TypeBoolean) =
+        check_user->isChecked();
+    find_in.add("reason", libconfig::Setting::TypeBoolean) =
+        check_reason->isChecked();
 
     _config.write();
 }
