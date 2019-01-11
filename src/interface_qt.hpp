@@ -25,6 +25,7 @@
 #include <QDialog>
 #include <QtGui/qevent.h>
 #include "xdgcfg.hpp"
+#include "whyblocked.hpp"
 #include "ui_whyblocked.h"
 #include "ui_whyblocked_add.h"
 
@@ -66,7 +67,8 @@ private slots:
     void edit();
     void about();
     void show_details(QModelIndex index);
-    void populate_tableview();
+    void populate_tableview(const result_view &entries);
+    void reload();
     void find();
 
 };

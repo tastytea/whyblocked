@@ -293,7 +293,8 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="edit-find"/>
+    <iconset theme="edit-find">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>&amp;Find</string>
@@ -360,7 +361,7 @@
    <sender>action_reload</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>populate_tableview()</slot>
+   <slot>reload()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -461,5 +462,6 @@
   <slot>show_details(QModelIndex)</slot>
   <slot>edit()</slot>
   <slot>find()</slot>
+  <slot>reload()</slot>
  </slots>
 </ui>

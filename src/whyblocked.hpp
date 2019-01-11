@@ -32,7 +32,7 @@ namespace database
                          const string &reason);
     const bool add_receipt(const string &user, const string &receipt);
     const bool remove(const string &user);
-    const bool view(result_view &result);
+    const bool view(result_view &result, const string &sql_query = "");
     const bool details(const string &user, result_details &result);
 }
 

@@ -111,12 +111,21 @@ const bool database::remove(const string &user)
     return true;
 }
 
-const bool database::view(result_view &result)
+const bool database::view(result_view &result, const string &sql_query)
 {
     try
     {
+        string query;
+        if (sql_query.empty())
+        {
+            query = "SELECT * FROM blocks;";
+        }
+        else
+        {
+            query = sql_query;
+        }
         sqlite::connection con(get_filepath());
-        sqlite::query q(con, "SELECT * FROM blocks;");
+        sqlite::query q(con, query);
         sqlite::result_type res = q.get_result();
         while(res->next_row())
         {

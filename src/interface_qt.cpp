@@ -16,20 +16,26 @@
 
 #include <regex>
 #include <array>
+#include <locale>
+#include <codecvt>
+#include <algorithm>
 #include <QMessageBox>
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QtCore/qmimedata.h>
 #include <libconfig.h++>
 #include "version.hpp"
-#include "whyblocked.hpp"
 #include "interface_qt.hpp"
+
+using std::wstring;
 
 MainWindow::MainWindow(QMainWindow *parent)
 : QMainWindow(parent)
 , _config("whyblocked.cfg")
 , _headersize({ 250, 125, 125 })
 {
+    std::locale::global(std::locale(""));
+
     setupUi(this);
 
     _model = new QStandardItemModel;
@@ -90,7 +96,8 @@ MainWindow::MainWindow(QMainWindow *parent)
     widget_find->hide();
     text_find->installEventFilter(this);
 
-    populate_tableview();
+    reload();
+
     statusBar()->showMessage(tr("Try dragging an account from your webbrowser "
                                 "into this window."));
 }
@@ -152,7 +159,7 @@ MainWindow::~MainWindow()
     _config.write();
 }
 
-void MainWindow::populate_tableview()
+void MainWindow::populate_tableview(const result_view &entries)
 {
     _model->clear();
     _model->setHorizontalHeaderLabels(
@@ -165,16 +172,19 @@ void MainWindow::populate_tableview()
     tableview->horizontalHeader()->resizeSection(1, _headersize[1]);
     tableview->horizontalHeader()->resizeSection(2, _headersize[2]);
 
-    result_view result;
-    if (database::view(result))
+    for (const std::tuple<string, int, string> &line : entries)
     {
-        for (const std::tuple<string, int, string> &line : result)
-        {
-            add_row(QString::fromStdString(std::get<0>(line)),
-                    std::get<1>(line),
-                    QString::fromStdString(std::get<2>(line)));
-        }
+        add_row(QString::fromStdString(std::get<0>(line)),
+                std::get<1>(line),
+                QString::fromStdString(std::get<2>(line)));
     }
+}
+
+void MainWindow::reload()
+{
+    result_view entries;
+    database::view(entries);
+    populate_tableview(entries);
 }
 
 void MainWindow::add_row(const QString &user, const int &blocked,
@@ -268,9 +278,47 @@ void MainWindow::find()
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
-    if (obj == text_find && event->type() == QEvent::KeyPress)
+    if (obj == text_find && event->type() == QEvent::KeyRelease)
     {
-        //
+        string columns;
+        if (check_user->isChecked())
+        {
+            columns = "user";
+        }
+
+        result_view entries;
+        result_view filtered_entries;
+        if (database::view(entries))
+        {
+            for (const std::tuple<string, int, string> &line : entries)
+            {
+                const string user = std::get<0>(line);
+                const string reason = std::get<2>(line);
+                wstring searchstring;
+
+                std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> convert;
+
+                if (check_user->isChecked())
+                {
+                    searchstring += convert.from_bytes(user);
+                }
+                if (check_reason->isChecked())
+                {
+                    searchstring += convert.from_bytes(reason);
+                }
+                std::transform(searchstring.begin(), searchstring.end(),
+                               searchstring.begin(), ::towlower);
+                if (searchstring.find(
+                    text_find->text().toLower().toStdWString())
+                    != std::string::npos)
+                {
+                    filtered_entries.push_back({
+                        user, std::get<1>(line), reason });
+                }
+            }
+        }
+
+        populate_tableview(filtered_entries);
     }
     return QObject::eventFilter(obj, event);
 }
