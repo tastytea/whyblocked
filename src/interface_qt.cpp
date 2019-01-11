@@ -294,7 +294,8 @@ void MainWindow::find()
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
-    if (obj == text_find && event->type() == QEvent::KeyRelease)
+    if (obj == text_find &&
+        (event->type() == QEvent::KeyRelease || event->type() == QEvent::Enter))
     {
         string columns;
         if (check_user->isChecked())
@@ -336,6 +337,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
         populate_tableview(filtered_entries);
     }
+
     return QObject::eventFilter(obj, event);
 }
 

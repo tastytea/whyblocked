@@ -74,7 +74,7 @@
         <translation>Du kannst URLs hier hineinziehen</translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="465"/>
+        <location filename="../src/interface_qt.cpp" line="467"/>
         <source>Insert receipt here.</source>
         <translation>Beleg hier einfügen.</translation>
     </message>
@@ -270,17 +270,17 @@
         <translation>Bitte wähle einträge aus, die gelöscht werden sollen.</translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="344"/>
+        <location filename="../src/interface_qt.cpp" line="346"/>
         <source>About Whyblocked</source>
         <translation>Über Whyblocked</translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="345"/>
+        <location filename="../src/interface_qt.cpp" line="347"/>
         <source>&lt;p&gt;&lt;b&gt;Whyblocked&lt;/b&gt; %1&lt;/p&gt;&lt;p&gt;Reminds you why you blocked someone.&lt;/p&gt;&lt;p&gt;Sourcecode: &lt;a href=&quot;https://schlomp.space/tastytea/whyblocked&quot;&gt;https://schlomp.space/tastytea/whyblocked&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;small&gt;Copyright © 2018 &lt;a href=&quot;mailto:tastytea@tastytea.de&quot;&gt;tastytea&lt;/a&gt;.&lt;br&gt;Licence GPLv3: &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0.html&quot;&gt;GNU GPL version 3&lt;/a&gt;.&lt;br&gt;This program comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it under certain conditions.&lt;/small&gt;&lt;/p&gt;</source>
         <translation>&lt;p&gt;&lt;b&gt;Whyblocked&lt;/b&gt; %1&lt;/p&gt;&lt;p&gt;Erinnert dich, warum du jemanden blockiertest.&lt;/p&gt;&lt;p&gt;Quelltext: &lt;a href=&quot;https://schlomp.space/tastytea/whyblocked&quot;&gt;https://schlomp.space/tastytea/whyblocked&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;small&gt;Copyright © 2018 &lt;a href=&quot;mailto:tastytea@tastytea.de&quot;&gt;tastytea&lt;/a&gt;.&lt;br&gt;Lizenz GPLv3: &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0.html&quot;&gt;GNU GPL version 3&lt;/a&gt;.&lt;br&gt;Für dieses Programm besteht KEINERLEI GARANTIE. Dies ist freie Software, die Sie unter bestimmten Bedingungen weitergeben dürfen.&lt;/small&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="368"/>
+        <location filename="../src/interface_qt.cpp" line="370"/>
         <source>Receipts:</source>
         <translation>Belege:</translation>
     </message>
