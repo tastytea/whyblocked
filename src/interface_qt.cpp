@@ -33,7 +33,6 @@ MainWindow::MainWindow(QMainWindow *parent)
 : QMainWindow(parent)
 , _config("whyblocked.cfg")
 , _headersize({ 250, 125, 125 })
-, _database()
 {
     std::locale::global(std::locale(""));
 
@@ -199,9 +198,8 @@ void MainWindow::populate_tableview(const vector<Database::data> &entries)
 
 void MainWindow::reload()
 {
-    vector<Database::data> entries;
-    entries = _database.query();
-    populate_tableview(entries);
+    _dbdata = Database::query();
+    populate_tableview(_dbdata);
 }
 
 void MainWindow::add_row(const QString &user, const int &blocked,
@@ -243,13 +241,17 @@ void MainWindow::edit()
     const string user = index.sibling(index.row(), 0).data()
                                                      .toString().toStdString();
 
-    Database::data dbdata =
-        _database.query("SELECT * FROM blocks WHERE user = '" +
-                        user + "';").front();
-    dbdata.reason = dbdata.reason;
-    dbdata.receipts = dbdata.receipts;
+    Database::data data;
+    for (const Database::data &entry : _dbdata)
+    {
+        if (entry.user == user)
+        {
+            data = entry;
+            break;
+        }
+    }
 
-    dialog->set_data(dbdata);
+    dialog->set_data(data);
     dialog->setProperty("edit", true);
     dialog->show();
 }
@@ -262,7 +264,7 @@ void MainWindow::remove()
         for (auto &row : selection->selectedRows())
         {
             const string user = row.data().toString().toStdString();
-            _database.remove(user);
+            Database::remove(user);
             _model->removeRow(row.row());
         }
         label_receipts->clear();
@@ -292,17 +294,10 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     if (obj == text_find &&
         (event->type() == QEvent::KeyRelease || event->type() == QEvent::Enter))
     {
-        string columns;
-        if (check_user->isChecked())
-        {
-            columns = "user";
-        }
-
-        vector<Database::data> entries = _database.query();
         vector<Database::data> filtered_entries;
-        if (!entries.empty())
+        if (!_dbdata.empty())
         {
-            for (const Database::data &entry : entries)
+            for (const Database::data &entry : _dbdata)
             {
                 wstring searchstring;
 
@@ -352,23 +347,27 @@ void MainWindow::show_details(QModelIndex index)
 {
     const string user = index.sibling(index.row(), 0).data()
                                                      .toString().toStdString();
-    vector<Database::data> dbdata =
-        _database.query("SELECT * FROM blocks WHERE user = '" + user + "';");
+    Database::data data;
+    for (const Database::data &entry : _dbdata)
+    {
+        if (entry.user == user)
+        {
+            data = entry;
+            break;
+        }
+    }
     string text = "";
 
-    if (!dbdata.empty())
+    if (!data.receipts.empty())
     {
-        if (!dbdata.front().receipts.empty())
+        text += string("<b>") + tr("Receipts:").toStdString() + "</b>";
+        for (const string &url : data.receipts)
         {
-            text += string("<b>") + tr("Receipts:").toStdString() + "</b>";
-            for (const string &url : dbdata.front().receipts)
-            {
-                text += "<br>" + url;
-            }
-            text = urls_to_hyperlinks(text);
+            text += "<br>" + url;
         }
-        label_receipts->setText(QString::fromStdString((text)));
+        text = urls_to_hyperlinks(text);
     }
+    label_receipts->setText(QString::fromStdString((text)));
 }
 
 const string MainWindow::urls_to_hyperlinks(const string &text)

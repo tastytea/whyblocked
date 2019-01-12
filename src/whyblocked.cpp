@@ -28,8 +28,6 @@
 using std::cerr;
 namespace fs = std::experimental::filesystem;
 
-Database::Database() {};
-
 Database::data::operator bool() const
 {
     return !user.empty();

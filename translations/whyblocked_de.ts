@@ -74,7 +74,7 @@
         <translation>Du kannst URLs hier hineinziehen</translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="460"/>
+        <location filename="../src/interface_qt.cpp" line="465"/>
         <source>Insert receipt here.</source>
         <translation>Beleg hier einfügen.</translation>
     </message>
@@ -198,7 +198,7 @@
     </message>
     <message>
         <location filename="../src/whyblocked.ui" line="285"/>
-        <location filename="../src/interface_qt.cpp" line="240"/>
+        <location filename="../src/interface_qt.cpp" line="238"/>
         <source>Edit entry</source>
         <translation>Eintrag bearbeiten</translation>
     </message>
@@ -219,68 +219,68 @@
     </message>
     <message>
         <location filename="../src/whyblocked.ui" line="59"/>
-        <location filename="../src/interface_qt.cpp" line="184"/>
+        <location filename="../src/interface_qt.cpp" line="183"/>
         <source>User/Instance</source>
         <translation>Benutzer/Instanz</translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="185"/>
+        <location filename="../src/interface_qt.cpp" line="184"/>
         <source>Blocked/Silenced</source>
         <translation>Blockiert/Gedämpft</translation>
     </message>
     <message>
         <location filename="../src/whyblocked.ui" line="72"/>
-        <location filename="../src/interface_qt.cpp" line="186"/>
+        <location filename="../src/interface_qt.cpp" line="185"/>
         <source>Reason</source>
         <translation>Begründung</translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="110"/>
+        <location filename="../src/interface_qt.cpp" line="109"/>
         <source>Try dragging an account from your webbrowser into this window.</source>
         <translation>Versuche, einen account von deinem webbrowser in dieses fenster zu ziehen.</translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="214"/>
+        <location filename="../src/interface_qt.cpp" line="212"/>
         <source>blocked</source>
         <translation>blockiert</translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="218"/>
+        <location filename="../src/interface_qt.cpp" line="216"/>
         <source>silenced</source>
         <translation>gedämpft</translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="234"/>
+        <location filename="../src/interface_qt.cpp" line="232"/>
         <source>Invalid selection</source>
         <translation>Ungültige Auswahl</translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="235"/>
+        <location filename="../src/interface_qt.cpp" line="233"/>
         <source>Please select only 1 entry to edit.</source>
         <translation>Bitte nur 1 Eintrag zum bearbeiten auswählen.</translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="272"/>
+        <location filename="../src/interface_qt.cpp" line="274"/>
         <source>Nothing selected</source>
         <translation>Nichts ausgewählt</translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="273"/>
+        <location filename="../src/interface_qt.cpp" line="275"/>
         <source>Please select entries to remove.</source>
         <translation>Bitte wähle einträge aus, die gelöscht werden sollen.</translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="338"/>
+        <location filename="../src/interface_qt.cpp" line="339"/>
         <source>About Whyblocked</source>
         <translation>Über Whyblocked</translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="339"/>
+        <location filename="../src/interface_qt.cpp" line="340"/>
         <source>&lt;p&gt;&lt;b&gt;Whyblocked&lt;/b&gt; %1&lt;/p&gt;&lt;p&gt;Reminds you why you blocked someone.&lt;/p&gt;&lt;p&gt;Sourcecode: &lt;a href=&quot;https://schlomp.space/tastytea/whyblocked&quot;&gt;https://schlomp.space/tastytea/whyblocked&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;small&gt;Copyright © 2018 &lt;a href=&quot;mailto:tastytea@tastytea.de&quot;&gt;tastytea&lt;/a&gt;.&lt;br&gt;Licence GPLv3: &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0.html&quot;&gt;GNU GPL version 3&lt;/a&gt;.&lt;br&gt;This program comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it under certain conditions.&lt;/small&gt;&lt;/p&gt;</source>
         <translation>&lt;p&gt;&lt;b&gt;Whyblocked&lt;/b&gt; %1&lt;/p&gt;&lt;p&gt;Erinnert dich, warum du jemanden blockiertest.&lt;/p&gt;&lt;p&gt;Quelltext: &lt;a href=&quot;https://schlomp.space/tastytea/whyblocked&quot;&gt;https://schlomp.space/tastytea/whyblocked&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;small&gt;Copyright © 2018 &lt;a href=&quot;mailto:tastytea@tastytea.de&quot;&gt;tastytea&lt;/a&gt;.&lt;br&gt;Lizenz GPLv3: &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0.html&quot;&gt;GNU GPL version 3&lt;/a&gt;.&lt;br&gt;Für dieses Programm besteht KEINERLEI GARANTIE. Dies ist freie Software, die Sie unter bestimmten Bedingungen weitergeben dürfen.&lt;/small&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/interface_qt.cpp" line="363"/>
+        <location filename="../src/interface_qt.cpp" line="369"/>
         <source>Receipts:</source>
         <translation>Belege:</translation>
     </message>

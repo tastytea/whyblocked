@@ -37,7 +37,6 @@ public:
         explicit operator bool() const;
     };
 
-    Database();
     static bool add_user(const string &user, const bool blocked,
                          const string &reason);
     static bool add_receipt(const string &user, const string &receipt);

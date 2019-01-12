@@ -63,7 +63,7 @@ private:
     QStandardItemModel *_model;
     xdgcfg _config;
     std::array<int, 3> _headersize;
-    Database _database;
+    std::vector<Database::data> _dbdata;
 
 private slots:
     void add();
