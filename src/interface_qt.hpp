@@ -20,6 +20,7 @@
 #include <string>
 #include <memory>
 #include <array>
+#include <vector>
 #include <QMainWindow>
 #include <QStandardItemModel>
 #include <QDialog>
@@ -30,14 +31,15 @@
 #include "ui_whyblocked_add.h"
 
 using std::string;
+using std::vector;
 
-struct Dialogdata
-{
-    string user = "";
-    bool blocked = true;
-    string reason = "";
-    std::vector<string> receipts = {};
-};
+// struct Dialogdata
+// {
+//     string user = "";
+//     bool blocked = true;
+//     string reason = "";
+//     std::vector<string> receipts = {};
+// };
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
@@ -61,13 +63,14 @@ private:
     QStandardItemModel *_model;
     xdgcfg _config;
     std::array<int, 3> _headersize;
+    Database _database;
 
 private slots:
     void add();
     void edit();
     void about();
     void show_details(QModelIndex index);
-    void populate_tableview(const result_view &entries);
+    void populate_tableview(const vector<Database::data> &entries);
     void reload();
     void find();
 
@@ -79,10 +82,10 @@ class DialogAdd : public QDialog, private Ui::DialogAdd
 
 public:
     explicit DialogAdd(QMainWindow *parent = nullptr);
-    void set_data(const Dialogdata &data);
+    void set_data(const Database::data &data);
 
 private:
-    const Dialogdata get_data() const;
+    const Database::data get_data() const;
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
 

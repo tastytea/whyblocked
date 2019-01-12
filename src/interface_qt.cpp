@@ -33,6 +33,7 @@ MainWindow::MainWindow(QMainWindow *parent)
 : QMainWindow(parent)
 , _config("whyblocked.cfg")
 , _headersize({ 250, 125, 125 })
+, _database()
 {
     std::locale::global(std::locale(""));
 
@@ -175,7 +176,7 @@ MainWindow::~MainWindow()
     _config.write();
 }
 
-void MainWindow::populate_tableview(const result_view &entries)
+void MainWindow::populate_tableview(const vector<Database::data> &entries)
 {
     _model->clear();
     _model->setHorizontalHeaderLabels(
@@ -188,18 +189,18 @@ void MainWindow::populate_tableview(const result_view &entries)
     tableview->horizontalHeader()->resizeSection(1, _headersize[1]);
     tableview->horizontalHeader()->resizeSection(2, _headersize[2]);
 
-    for (const std::tuple<string, int, string> &line : entries)
+    for (const Database::data &entry : entries)
     {
-        add_row(QString::fromStdString(std::get<0>(line)),
-                std::get<1>(line),
-                QString::fromStdString(std::get<2>(line)));
+        add_row(QString::fromStdString(entry.user),
+                entry.blocked,
+                QString::fromStdString(entry.reason));
     }
 }
 
 void MainWindow::reload()
 {
-    result_view entries;
-    database::view(entries);
+    vector<Database::data> entries;
+    entries = _database.query();
     populate_tableview(entries);
 }
 
@@ -238,23 +239,17 @@ void MainWindow::edit()
     DialogAdd *dialog = new DialogAdd(this);
     dialog->setWindowTitle(tr("Edit entry"));
 
-    Dialogdata data;
     QModelIndex index = tableview->selectionModel()->selectedRows().first();
-    data.user = index.sibling(index.row(), 0).data().toString().toStdString();
-    result_details details;
-    database::details(data.user, details);
-    if (std::get<0>(details) == true)
-    {
-        data.blocked = 1;
-    }
-    else
-    {
-        data.blocked = 0;
-    }
-    data.reason = std::get<1>(details);
-    data.receipts = std::get<2>(details);
+    const string user = index.sibling(index.row(), 0).data()
+                                                     .toString().toStdString();
 
-    dialog->set_data(data);
+    Database::data dbdata =
+        _database.query("SELECT * FROM blocks WHERE user = '" +
+                        user + "';").front();
+    dbdata.reason = dbdata.reason;
+    dbdata.receipts = dbdata.receipts;
+
+    dialog->set_data(dbdata);
     dialog->setProperty("edit", true);
     dialog->show();
 }
@@ -267,7 +262,7 @@ void MainWindow::remove()
         for (auto &row : selection->selectedRows())
         {
             const string user = row.data().toString().toStdString();
-            database::remove(user);
+            _database.remove(user);
             _model->removeRow(row.row());
         }
         label_receipts->clear();
@@ -303,25 +298,23 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
             columns = "user";
         }
 
-        result_view entries;
-        result_view filtered_entries;
-        if (database::view(entries))
+        vector<Database::data> entries = _database.query();
+        vector<Database::data> filtered_entries;
+        if (!entries.empty())
         {
-            for (const std::tuple<string, int, string> &line : entries)
+            for (const Database::data &entry : entries)
             {
-                const string user = std::get<0>(line);
-                const string reason = std::get<2>(line);
                 wstring searchstring;
 
                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> convert;
 
                 if (check_user->isChecked())
                 {
-                    searchstring += convert.from_bytes(user);
+                    searchstring += convert.from_bytes(entry.user);
                 }
                 if (check_reason->isChecked())
                 {
-                    searchstring += convert.from_bytes(reason);
+                    searchstring += convert.from_bytes(entry.reason);
                 }
                 std::transform(searchstring.begin(), searchstring.end(),
                                searchstring.begin(), ::towlower);
@@ -329,8 +322,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
                     text_find->text().toLower().toStdWString())
                     != std::string::npos)
                 {
-                    filtered_entries.push_back({
-                        user, std::get<1>(line), reason });
+                    filtered_entries.push_back(entry);
                 }
             }
         }
@@ -360,15 +352,16 @@ void MainWindow::show_details(QModelIndex index)
 {
     const string user = index.sibling(index.row(), 0).data()
                                                      .toString().toStdString();
-    result_details result;
+    vector<Database::data> dbdata =
+        _database.query("SELECT * FROM blocks WHERE user = '" + user + "';");
     string text = "";
 
-    if (database::details(user, result))
+    if (!dbdata.empty())
     {
-        if (!std::get<2>(result).empty())
+        if (!dbdata.front().receipts.empty())
         {
             text += string("<b>") + tr("Receipts:").toStdString() + "</b>";
-            for (const string &url : std::get<2>(result))
+            for (const string &url : dbdata.front().receipts)
             {
                 text += "<br>" + url;
             }
@@ -417,7 +410,7 @@ void MainWindow::dropEvent(QDropEvent *event)
     }
 
     DialogAdd *dialog = new DialogAdd(this);
-    Dialogdata data;
+    Database::data data;
     data.user = text;
     dialog->set_data(data);
     dialog->show();
@@ -430,7 +423,7 @@ DialogAdd::DialogAdd(QMainWindow *parent)
     setupUi(this);
 }
 
-const Dialogdata DialogAdd::get_data() const
+const Database::data DialogAdd::get_data() const
 {
     std::vector<string> receipts;
     for (int row = 0; row <= list_receipts->count() - 1; ++row)
@@ -438,7 +431,7 @@ const Dialogdata DialogAdd::get_data() const
         receipts.push_back(list_receipts->item(row)->text().toStdString());
     }
 
-    Dialogdata data;
+    Database::data data;
     data.user = text_user->text().toStdString();
     data.blocked = radio_blocked->isChecked();
     data.reason = text_reason->text().toStdString();
@@ -447,7 +440,7 @@ const Dialogdata DialogAdd::get_data() const
     return data;
 }
 
-void DialogAdd::set_data(const Dialogdata &data)
+void DialogAdd::set_data(const Database::data &data)
 {
     text_user->setText(QString::fromStdString(data.user));
     radio_blocked->setChecked(data.blocked);
@@ -484,19 +477,19 @@ void DialogAdd::accept()
     {
         _parent->remove();
     }
-    Dialogdata data = get_data();
+    Database::data data = get_data();
 
     if (data.user.empty())
     {
         return;
     }
-    database::add_block(data.user, data.blocked, data.reason);
+    Database::add_user(data.user, data.blocked, data.reason);
     _parent->add_row(QString::fromStdString(data.user),
                      data.blocked,
                      QString::fromStdString(data.reason));
     for (const string &receipt : data.receipts)
     {
-        database::add_receipt(data.user, receipt);
+        Database::add_receipt(data.user, receipt);
     }
 
     delete this;

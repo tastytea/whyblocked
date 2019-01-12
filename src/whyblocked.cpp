@@ -35,7 +35,7 @@ Database::data::operator bool() const
     return !user.empty();
 }
 
-const string Database::get_filepath() const
+const string Database::get_filepath()
 {
     fs::path filepath;
     xdgHandle xdg;
@@ -60,14 +60,19 @@ const string Database::get_filepath() const
     return filepath;
 }
 
-bool Database::add_user(const string &user, const int blocked,
+bool Database::add_user(const string &user, const bool blocked,
                         const string &reason)
 {
     try
     {
+        int blocked_int = 0;
+        if (blocked)
+        {
+            blocked_int = 1;
+        }
         sqlite::connection con(get_filepath());
         sqlite::execute ins(con, "INSERT INTO blocks VALUES(?, ?, ?);");
-        ins % user % blocked % reason;
+        ins % user % blocked_int % reason;
         ins();
     }
     catch (const std::exception &e)
@@ -118,7 +123,7 @@ bool Database::remove(const string &user)
     return true;
 }
 
-const vector<Database::data> Database::query(const string &sql_query) const
+const vector<Database::data> Database::query(const string &sql_query)
 {
     try
     {
@@ -132,6 +137,11 @@ const vector<Database::data> Database::query(const string &sql_query) const
             const string user = res_blocks->get_string(0);
             const int blocked = res_blocks->get_int(1);
             const string reason = res_blocks->get_string(2);
+            bool blocked_bool = false;
+            if (blocked == 1)
+            {
+                blocked_bool = true;
+            }
 
             sqlite::query q_urls(con,
                 "SELECT * FROM urls WHERE user = \'" + user + "\';");
@@ -145,7 +155,7 @@ const vector<Database::data> Database::query(const string &sql_query) const
             result.push_back(
             {
                 user,
-                blocked,
+                blocked_bool,
                 reason,
                 receipts
             });

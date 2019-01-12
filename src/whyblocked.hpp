@@ -29,23 +29,24 @@ class Database
 public:
     struct data
     {
-        const string user;
-        const int blocked;
-        const string reason;
-        const vector<string> receipts;
+        string user;
+        bool blocked;
+        string reason;
+        vector<string> receipts;
 
         explicit operator bool() const;
     };
 
     Database();
-    bool add_user(const string &user, const int blocked, const string &reason);
-    bool add_receipt(const string &user, const string &receipt);
-    bool remove(const string &user);
-    const vector<data> query(const string &sql_query = "SELECT * FROM blocks;")
-        const;
+    static bool add_user(const string &user, const bool blocked,
+                         const string &reason);
+    static bool add_receipt(const string &user, const string &receipt);
+    static bool remove(const string &user);
+    static const vector<data> query(const string &sql_query =
+                                    "SELECT * FROM blocks;");
 
 private:
-    const string get_filepath() const;
+    static const string get_filepath();
 };
 
 #endif  // WHYBLOCKED_HPP
