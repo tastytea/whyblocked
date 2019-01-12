@@ -1,5 +1,5 @@
 /*  This file is part of whyblocked.
- *  Copyright © 2018 tastytea <tastytea@tastytea.de>
+ *  Copyright © 2018, 2019 tastytea <tastytea@tastytea.de>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -53,7 +53,7 @@ const string get_filepath()
     return filepath;
 }
 
-const bool database::add_block(const string &user, const int blocked,
+bool database::add_block(const string &user, const int blocked,
                                const string &reason)
 {
     try
@@ -72,7 +72,7 @@ const bool database::add_block(const string &user, const int blocked,
     return true;
 }
 
-const bool database::add_receipt(const string &user, const string &receipt)
+bool database::add_receipt(const string &user, const string &receipt)
 {
     try
     {
@@ -90,7 +90,7 @@ const bool database::add_receipt(const string &user, const string &receipt)
     return true;
 }
 
-const bool database::remove(const string &user)
+bool database::remove(const string &user)
 {
     try
     {
@@ -111,7 +111,7 @@ const bool database::remove(const string &user)
     return true;
 }
 
-const bool database::view(result_view &result, const string &sql_query)
+bool database::view(result_view &result, const string &sql_query)
 {
     try
     {
@@ -146,7 +146,7 @@ const bool database::view(result_view &result, const string &sql_query)
     return true;
 }
 
-const bool database::details(const string &user, result_details &result)
+bool database::details(const string &user, result_details &result)
 {
     try
     {

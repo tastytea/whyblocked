@@ -1,5 +1,5 @@
 /*  This file is part of whyblocked.
- *  Copyright © 2018 tastytea <tastytea@tastytea.de>
+ *  Copyright © 2018, 2019 tastytea <tastytea@tastytea.de>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -447,7 +447,7 @@ const Dialogdata DialogAdd::get_data() const
     return data;
 }
 
-const void DialogAdd::set_data(const Dialogdata &data)
+void DialogAdd::set_data(const Dialogdata &data)
 {
     text_user->setText(QString::fromStdString(data.user));
     radio_blocked->setChecked(data.blocked);

@@ -1,5 +1,5 @@
 /*  This file is part of whyblocked.
- *  Copyright © 2018 tastytea <tastytea@tastytea.de>
+ *  Copyright © 2018, 2019 tastytea <tastytea@tastytea.de>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -79,7 +79,7 @@ class DialogAdd : public QDialog, private Ui::DialogAdd
 
 public:
     explicit DialogAdd(QMainWindow *parent = nullptr);
-    const void set_data(const Dialogdata &data);
+    void set_data(const Dialogdata &data);
 
 private:
     const Dialogdata get_data() const;

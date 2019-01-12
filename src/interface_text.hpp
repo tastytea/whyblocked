@@ -31,14 +31,14 @@ public:
 
 private:
     const string get_answer(const QString &question);
-    const bool askblocked();
-    const void askrecipes(const string &user);
-    const void add();
-    const void edit();
-    const void remove();
-    const void view();
-    const void details();
-    const void help();
+    bool askblocked();
+    void askrecipes(const string &user);
+    void add();
+    void edit();
+    void remove();
+    void view();
+    void details();
+    void help();
 };
 
 #endif  // INTERFACE_TEXT_HPP

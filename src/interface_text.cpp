@@ -44,7 +44,7 @@ const string Text::get_answer(const QString &question)
     return answer;
 }
 
-const bool Text::askblocked()
+bool Text::askblocked()
 {
     while (true)
     {
@@ -61,7 +61,7 @@ const bool Text::askblocked()
     }
 }
 
-const void Text::askrecipes(const string &user)
+void Text::askrecipes(const string &user)
 {
     while (true)
     {
@@ -86,7 +86,7 @@ const void Text::askrecipes(const string &user)
     }
 }
 
-const void Text::add()
+void Text::add()
 {
     const string user = get_answer(tr("User or instance"));
     int blocked;
@@ -109,7 +109,7 @@ const void Text::add()
     askrecipes(user);
 }
 
-const void Text::edit()
+void Text::edit()
 {
     result_details olddata;
     const string olduser = get_answer(tr("User or instance"));
@@ -170,7 +170,7 @@ const void Text::edit()
     }
 }
 
-const void Text::remove()
+void Text::remove()
 {
     const string user = get_answer(tr("User or instance"));
 
@@ -180,7 +180,7 @@ const void Text::remove()
     }
 }
 
-const void Text::view()
+void Text::view()
 {
     result_view result;
     if (database::view(result))
@@ -201,7 +201,7 @@ const void Text::view()
     }
 }
 
-const void Text::details()
+void Text::details()
 {
     const string user = get_answer(tr("User or instance"));
     {
@@ -231,7 +231,7 @@ const void Text::details()
     }
 }
 
-const void Text::help()
+void Text::help()
 {
     cout << tr(
         "Type add, edit, remove, view or details. Or just the first letter.")
