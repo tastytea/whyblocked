@@ -46,10 +46,10 @@ configure_file (
 set(COMMON_LIBRARIES
     ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp stdc++fs)
 
-add_executable(whyblocked
-               src/interface_text.cpp src/whyblocked.cpp)
-target_link_libraries(whyblocked ${COMMON_LIBRARIES} Qt5::Core)
-install(TARGETS whyblocked DESTINATION ${CMAKE_INSTALL_BINDIR})
+# add_executable(whyblocked
+#                src/interface_text.cpp src/whyblocked.cpp)
+# target_link_libraries(whyblocked ${COMMON_LIBRARIES} Qt5::Core)
+# install(TARGETS whyblocked DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 if(NOT WITHOUT_GUI)
     add_executable(whyblocked-gui
