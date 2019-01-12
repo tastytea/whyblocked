@@ -33,14 +33,6 @@
 using std::string;
 using std::vector;
 
-// struct Dialogdata
-// {
-//     string user = "";
-//     bool blocked = true;
-//     string reason = "";
-//     std::vector<string> receipts = {};
-// };
-
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
     Q_OBJECT
@@ -63,7 +55,8 @@ private:
     QStandardItemModel *_model;
     xdgcfg _config;
     std::array<int, 3> _headersize;
-    std::vector<Database::data> _dbdata;
+    Database _database;
+    std::vector<Database::data> &_dbdata;
 
 private slots:
     void add();
@@ -81,7 +74,7 @@ class DialogAdd : public QDialog, private Ui::DialogAdd
     Q_OBJECT
 
 public:
-    explicit DialogAdd(QMainWindow *parent = nullptr);
+    explicit DialogAdd(Database &database, QMainWindow *parent = nullptr);
     void set_data(const Database::data &data);
 
 private:
@@ -90,6 +83,7 @@ private:
     void dropEvent(QDropEvent *event);
 
     MainWindow *_parent;
+    Database &_database;
 
 private slots:
     void add_receipt();

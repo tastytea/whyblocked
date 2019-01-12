@@ -18,7 +18,6 @@
 #define WHYBLOCKED_HPP
 
 #include <vector>
-#include <tuple>
 #include <string>
 
 using std::string;
@@ -37,15 +36,19 @@ public:
         explicit operator bool() const;
     };
 
-    static bool add_user(const string &user, const bool blocked,
-                         const string &reason);
-    static bool add_receipt(const string &user, const string &receipt);
-    static bool remove(const string &user);
-    static const vector<data> query(const string &sql_query =
-                                    "SELECT * FROM blocks;");
+    bool add_user(const data &userdata);
+    bool remove(const string &user);
+    const vector<data> query(const string &sql_query =
+                                    "SELECT * FROM blocks;") const;
+    bool reload();
+    std::vector<data> &get_data();
+    const data get_user(const string &user) const;
 
 private:
-    static const string get_filepath();
+    std::vector<data> _data;
+
+private:
+    const string get_filepath() const;
 };
 
 #endif  // WHYBLOCKED_HPP

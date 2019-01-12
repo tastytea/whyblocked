@@ -17,7 +17,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <tuple>
+#include <iterator>
 #include <experimental/filesystem>
 #include <basedir.h>
 #include <sqlite/connection.hpp>
@@ -33,7 +33,7 @@ Database::data::operator bool() const
     return !user.empty();
 }
 
-const string Database::get_filepath()
+const string Database::get_filepath() const
 {
     fs::path filepath;
     xdgHandle xdg;
@@ -58,38 +58,30 @@ const string Database::get_filepath()
     return filepath;
 }
 
-bool Database::add_user(const string &user, const bool blocked,
-                        const string &reason)
+bool Database::add_user(const Database::data &userdata)
 {
     try
     {
         int blocked_int = 0;
-        if (blocked)
+        if (userdata.blocked)
         {
             blocked_int = 1;
         }
         sqlite::connection con(get_filepath());
-        sqlite::execute ins(con, "INSERT INTO blocks VALUES(?, ?, ?);");
-        ins % user % blocked_int % reason;
-        ins();
-    }
-    catch (const std::exception &e)
-    {
-        cerr << "An error occurred: " << e.what() << std::endl;
-        return false;
-    }
-
-    return true;
-}
-
-bool Database::add_receipt(const string &user, const string &receipt)
-{
-    try
-    {
-        sqlite::connection con(get_filepath());
-        sqlite::execute ins(con, "INSERT INTO urls VALUES(?, ?);");
-        ins % user % receipt;
-        ins();
+        {
+            sqlite::execute ins(con, "INSERT INTO blocks VALUES(?, ?, ?);");
+            ins % userdata.user % blocked_int % userdata.reason;
+            ins();
+        }
+        {
+            for (const string &receipt : userdata.receipts)
+            {
+                sqlite::execute ins(con, "INSERT INTO urls VALUES(?, ?);");
+                ins % userdata.user % receipt;
+                ins();
+            }
+        }
+        _data.push_back(userdata);
     }
     catch (const std::exception &e)
     {
@@ -111,6 +103,7 @@ bool Database::remove(const string &user)
         rm_urls % user;
         rm_blocks();
         rm_urls();
+        reload();
     }
     catch (const std::exception &e)
     {
@@ -121,7 +114,7 @@ bool Database::remove(const string &user)
     return true;
 }
 
-const vector<Database::data> Database::query(const string &sql_query)
+const vector<Database::data> Database::query(const string &sql_query) const
 {
     try
     {
@@ -166,4 +159,35 @@ const vector<Database::data> Database::query(const string &sql_query)
         cerr << "An error occurred: " << e.what() << std::endl;
         return {};
     }
+}
+
+bool Database::reload()
+{
+    auto buffer = query();
+    if (buffer.empty())
+    {
+        return false;
+    }
+    else
+    {
+        _data = std::move(buffer);
+        return true;
+    }
+}
+
+std::vector<Database::data> &Database::get_data()
+{
+    return _data;
+}
+
+const Database::data Database::get_user(const string &user) const
+{
+    for (const Database::data &entry : _data)
+    {
+        if (entry.user == user)
+        {
+            return entry;
+        }
+    }
+    return {};
 }

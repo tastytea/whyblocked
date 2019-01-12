@@ -33,6 +33,8 @@ MainWindow::MainWindow(QMainWindow *parent)
 : QMainWindow(parent)
 , _config("whyblocked.cfg")
 , _headersize({ 250, 125, 125 })
+, _database()
+, _dbdata(_database.get_data())
 {
     std::locale::global(std::locale(""));
 
@@ -198,7 +200,7 @@ void MainWindow::populate_tableview(const vector<Database::data> &entries)
 
 void MainWindow::reload()
 {
-    _dbdata = Database::query();
+    _database.reload();
     populate_tableview(_dbdata);
 }
 
@@ -221,7 +223,7 @@ void MainWindow::add_row(const QString &user, const int &blocked,
 
 void MainWindow::add()
 {
-    DialogAdd *dialog = new DialogAdd(this);
+    DialogAdd *dialog = new DialogAdd(_database, this);
     dialog->show();
 }
 
@@ -234,24 +236,14 @@ void MainWindow::edit()
         return;
     }
 
-    DialogAdd *dialog = new DialogAdd(this);
+    DialogAdd *dialog = new DialogAdd(_database, this);
     dialog->setWindowTitle(tr("Edit entry"));
 
     QModelIndex index = tableview->selectionModel()->selectedRows().first();
     const string user = index.sibling(index.row(), 0).data()
                                                      .toString().toStdString();
 
-    Database::data data;
-    for (const Database::data &entry : _dbdata)
-    {
-        if (entry.user == user)
-        {
-            data = entry;
-            break;
-        }
-    }
-
-    dialog->set_data(data);
+    dialog->set_data(_database.get_user(user));
     dialog->setProperty("edit", true);
     dialog->show();
 }
@@ -264,7 +256,7 @@ void MainWindow::remove()
         for (auto &row : selection->selectedRows())
         {
             const string user = row.data().toString().toStdString();
-            Database::remove(user);
+            _database.remove(user);
             _model->removeRow(row.row());
         }
         label_receipts->clear();
@@ -347,15 +339,7 @@ void MainWindow::show_details(QModelIndex index)
 {
     const string user = index.sibling(index.row(), 0).data()
                                                      .toString().toStdString();
-    Database::data data;
-    for (const Database::data &entry : _dbdata)
-    {
-        if (entry.user == user)
-        {
-            data = entry;
-            break;
-        }
-    }
+    Database::data data = _database.get_user(user);
     string text = "";
 
     if (!data.receipts.empty())
@@ -408,16 +392,17 @@ void MainWindow::dropEvent(QDropEvent *event)
         }
     }
 
-    DialogAdd *dialog = new DialogAdd(this);
+    DialogAdd *dialog = new DialogAdd(_database, this);
     Database::data data;
     data.user = text;
     dialog->set_data(data);
     dialog->show();
 }
 
-DialogAdd::DialogAdd(QMainWindow *parent)
+DialogAdd::DialogAdd(Database &database, QMainWindow *parent)
 : QDialog(parent)
 , _parent(static_cast<MainWindow*>(parent))
+, _database(database)
 {
     setupUi(this);
 }
@@ -478,18 +463,15 @@ void DialogAdd::accept()
     }
     Database::data data = get_data();
 
-    if (data.user.empty())
+    if (!data)
     {
         return;
     }
-    Database::add_user(data.user, data.blocked, data.reason);
+
+    _database.add_user(data);
     _parent->add_row(QString::fromStdString(data.user),
                      data.blocked,
                      QString::fromStdString(data.reason));
-    for (const string &receipt : data.receipts)
-    {
-        Database::add_receipt(data.user, receipt);
-    }
 
     delete this;
 }
