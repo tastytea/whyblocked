@@ -28,20 +28,27 @@
 using std::cerr;
 namespace fs = std::experimental::filesystem;
 
-const string get_filepath()
+Database::Database() {};
+
+Database::data::operator bool() const
 {
-    string filepath;
+    return !user.empty();
+}
+
+const string Database::get_filepath() const
+{
+    fs::path filepath;
     xdgHandle xdg;
     xdgInitHandle(&xdg);
     filepath = xdgDataHome(&xdg);
     xdgWipeHandle(&xdg);
 
-    filepath += "/whyblocked";
+    filepath /= "whyblocked";
     if (!fs::exists(filepath))
     {
         fs::create_directories(filepath);
     }
-    filepath += "/database.sqlite";
+    filepath /= "database.sqlite";
     if (!fs::exists(filepath))
     {
         sqlite::connection con(filepath);
@@ -53,8 +60,8 @@ const string get_filepath()
     return filepath;
 }
 
-bool database::add_block(const string &user, const int blocked,
-                               const string &reason)
+bool Database::add_user(const string &user, const int blocked,
+                        const string &reason)
 {
     try
     {
@@ -72,7 +79,7 @@ bool database::add_block(const string &user, const int blocked,
     return true;
 }
 
-bool database::add_receipt(const string &user, const string &receipt)
+bool Database::add_receipt(const string &user, const string &receipt)
 {
     try
     {
@@ -90,7 +97,7 @@ bool database::add_receipt(const string &user, const string &receipt)
     return true;
 }
 
-bool database::remove(const string &user)
+bool Database::remove(const string &user)
 {
     try
     {
@@ -111,78 +118,44 @@ bool database::remove(const string &user)
     return true;
 }
 
-bool database::view(result_view &result, const string &sql_query)
+const vector<Database::data> Database::query(const string &sql_query) const
 {
     try
     {
-        string query;
-        if (sql_query.empty())
-        {
-            query = "SELECT * FROM blocks;";
-        }
-        else
-        {
-            query = sql_query;
-        }
         sqlite::connection con(get_filepath());
-        sqlite::query q(con, query);
-        sqlite::result_type res = q.get_result();
-        while(res->next_row())
+        sqlite::query q_blocks(con, sql_query);
+        sqlite::result_type res_blocks = q_blocks.get_result();
+        std::vector<data> result;
+
+        while(res_blocks->next_row())
         {
+            const string user = res_blocks->get_string(0);
+            const int blocked = res_blocks->get_int(1);
+            const string reason = res_blocks->get_string(2);
+
+            sqlite::query q_urls(con,
+                "SELECT * FROM urls WHERE user = \'" + user + "\';");
+            sqlite::result_type res_urls = q_urls.get_result();
+            vector<string> receipts;
+            while(res_urls->next_row())
+            {
+                receipts.push_back(res_urls->get_string(1));
+            }
+
             result.push_back(
             {
-                res->get_string(0),
-                res->get_int(1),
-                res->get_string(2)
+                user,
+                blocked,
+                reason,
+                receipts
             });
         }
+
+        return result;
     }
     catch (const std::exception &e)
     {
         cerr << "An error occurred: " << e.what() << std::endl;
-        return false;
+        return {};
     }
-
-    return true;
-}
-
-bool database::details(const string &user, result_details &result)
-{
-    try
-    {
-        sqlite::connection con(get_filepath());
-        sqlite::query q_blocks(con,
-            "SELECT * FROM blocks WHERE user = \'" + user + "\';");
-        sqlite::result_type res_blocks = q_blocks.get_result();
-
-        sqlite::query q_urls(con,
-            "SELECT * FROM urls WHERE user = \'" + user + "\';");
-        sqlite::result_type res_urls = q_urls.get_result();
-
-        if (!res_blocks->next_row())
-        {
-            cerr << user << " is not in the database.\n";
-            return false;
-        }
-
-        std::vector<string> urls;
-        while (res_urls->next_row())
-        {
-            urls.push_back(res_urls->get_string(1));
-        }
-
-        result =
-        {
-            res_blocks->get_int(1),
-            res_blocks->get_string(2),
-            urls
-        };
-    }
-    catch (const std::exception &e)
-    {
-        cerr << "An error occurred: " << e.what() << std::endl;
-        return false;
-    }
-
-    return true;
 }

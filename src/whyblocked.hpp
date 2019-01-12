@@ -22,18 +22,30 @@
 #include <string>
 
 using std::string;
-using result_view = std::vector<std::tuple<string, int, string>>;
-using result_details = std::tuple<int, string, std::vector<string>>;
+using std::vector;
 
-const string get_filepath();
-namespace database
+class Database
 {
-    bool add_block(const string &user, const int blocked,
-                         const string &reason);
+public:
+    struct data
+    {
+        const string user;
+        const int blocked;
+        const string reason;
+        const vector<string> receipts;
+
+        explicit operator bool() const;
+    };
+
+    Database();
+    bool add_user(const string &user, const int blocked, const string &reason);
     bool add_receipt(const string &user, const string &receipt);
     bool remove(const string &user);
-    bool view(result_view &result, const string &sql_query = "");
-    bool details(const string &user, result_details &result);
-}
+    const vector<data> query(const string &sql_query = "SELECT * FROM blocks;")
+        const;
+
+private:
+    const string get_filepath() const;
+};
 
 #endif  // WHYBLOCKED_HPP
