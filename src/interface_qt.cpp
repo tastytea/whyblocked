@@ -283,39 +283,56 @@ void MainWindow::find()
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
-    if (obj == text_find &&
-        (event->type() == QEvent::KeyRelease || event->type() == QEvent::Enter))
+    wstring searchfor;
+
+    if (obj == text_find)
     {
-        vector<Database::data> filtered_entries;
-        if (!_dbdata.empty())
+        if (event->type() == QEvent::KeyRelease)
         {
-            for (const Database::data &entry : _dbdata)
+            searchfor = text_find->text().toLower().toStdWString();
+        }
+        else if (event->type() == QEvent::Drop)
+        {
+            QDropEvent *drop = static_cast<QDropEvent*>(event);
+            searchfor = drop->mimeData()->text().toLower().toStdWString();
+        }
+        else
+        {
+            return QObject::eventFilter(obj, event);
+        }
+    }
+    else
+    {
+        return QObject::eventFilter(obj, event);
+    }
+
+    vector<Database::data> filtered_entries;
+    if (!_dbdata.empty())
+    {
+        for (const Database::data &entry : _dbdata)
+        {
+            wstring searchstring;
+
+            std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> convert;
+
+            if (check_user->isChecked())
             {
-                wstring searchstring;
-
-                std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> convert;
-
-                if (check_user->isChecked())
-                {
-                    searchstring += convert.from_bytes(entry.user);
-                }
-                if (check_reason->isChecked())
-                {
-                    searchstring += convert.from_bytes(entry.reason);
-                }
-                std::transform(searchstring.begin(), searchstring.end(),
-                               searchstring.begin(), ::towlower);
-                if (searchstring.find(
-                    text_find->text().toLower().toStdWString())
-                    != std::string::npos)
-                {
-                    filtered_entries.push_back(entry);
-                }
+                searchstring += convert.from_bytes(entry.user);
+            }
+            if (check_reason->isChecked())
+            {
+                searchstring += convert.from_bytes(entry.reason);
+            }
+            std::transform(searchstring.begin(), searchstring.end(),
+                           searchstring.begin(), ::towlower);
+            if (searchstring.find(searchfor) != std::string::npos)
+            {
+                filtered_entries.push_back(entry);
             }
         }
-
-        populate_tableview(filtered_entries);
     }
+
+    populate_tableview(filtered_entries);
 
     return QObject::eventFilter(obj, event);
 }
