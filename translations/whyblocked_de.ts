@@ -89,12 +89,12 @@
     <message>
         <location filename="../src/whyblocked.ui" line="56"/>
         <source>Search for Users/Instances</source>
-        <translation>Suche nach benutzern/instanzen</translation>
+        <translation>Suche nach Benutzern/Instanzen</translation>
     </message>
     <message>
         <location filename="../src/whyblocked.ui" line="69"/>
         <source>Search for Reasons</source>
-        <translation>Suche nach begründungen</translation>
+        <translation>Suche nach Begründungen</translation>
     </message>
     <message>
         <location filename="../src/whyblocked.ui" line="88"/>
@@ -210,7 +210,7 @@
     <message>
         <location filename="../src/whyblocked.ui" line="303"/>
         <source>Find entries</source>
-        <translation>Finde einträge</translation>
+        <translation>Finde Einträge</translation>
     </message>
     <message>
         <location filename="../src/whyblocked.ui" line="306"/>
@@ -237,7 +237,7 @@
     <message>
         <location filename="../src/interface_qt.cpp" line="111"/>
         <source>Try dragging an account from your webbrowser into this window.</source>
-        <translation>Versuche, einen account von deinem webbrowser in dieses fenster zu ziehen.</translation>
+        <translation>Versuche, einen Account von deinem Webbrowser in dieses Fenster zu ziehen.</translation>
     </message>
     <message>
         <location filename="../src/interface_qt.cpp" line="214"/>
@@ -267,7 +267,7 @@
     <message>
         <location filename="../src/interface_qt.cpp" line="267"/>
         <source>Please select entries to remove.</source>
-        <translation>Bitte wähle einträge aus, die gelöscht werden sollen.</translation>
+        <translation>Bitte wähle Einträge aus, die gelöscht werden sollen.</translation>
     </message>
     <message>
         <location filename="../src/interface_qt.cpp" line="342"/>
