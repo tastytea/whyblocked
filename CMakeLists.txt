@@ -13,10 +13,8 @@ pkg_check_modules(LIBXDG_BASEDIR REQUIRED libxdg-basedir)
 # because the sqlite3 in Debian jessie doesn't come with a pkg-config module.
 pkg_check_modules(SQLITE3 sqlite3)
 find_package(Qt5Core CONFIG REQUIRED)
-if(NOT WITHOUT_GUI)
-    find_package(Qt5Widgets CONFIG REQUIRED)
-    pkg_check_modules(LIBCONFIG REQUIRED libconfig++)
-endif()
+find_package(Qt5Widgets CONFIG REQUIRED)
+pkg_check_modules(LIBCONFIG REQUIRED libconfig++)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -44,28 +42,21 @@ configure_file (
 )
 
 set(COMMON_LIBRARIES
-    ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp stdc++fs)
+    )
 
-# add_executable(whyblocked
-#                src/interface_text.cpp src/whyblocked.cpp)
-# target_link_libraries(whyblocked ${COMMON_LIBRARIES} Qt5::Core)
-# install(TARGETS whyblocked DESTINATION ${CMAKE_INSTALL_BINDIR})
+add_executable(whyblocked-gui
+               src/interface_qt.cpp src/whyblocked.cpp src/xdgcfg.cpp)
+target_link_libraries(whyblocked-gui
+                      ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp Qt5::Widgets
+                      ${LIBCONFIG_LIBRARIES} stdc++fs)
 
-if(NOT WITHOUT_GUI)
-    add_executable(whyblocked-gui
-                   src/interface_qt.cpp src/whyblocked.cpp src/xdgcfg.cpp)
-    target_link_libraries(whyblocked-gui
-                          ${COMMON_LIBRARIES} Qt5::Widgets
-                          ${LIBCONFIG_LIBRARIES} stdc++fs)
-
-    install(TARGETS whyblocked-gui DESTINATION ${CMAKE_INSTALL_BINDIR})
-    install(FILES de.tastytea.Whyblocked.desktop DESTINATION
-            ${CMAKE_INSTALL_DATAROOTDIR}/applications)
-    install(FILES de.tastytea.Whyblocked.appdata.xml DESTINATION
-            ${CMAKE_INSTALL_DATAROOTDIR}/metainfo)
-    install(FILES de.tastytea.Whyblocked.svg DESTINATION
-            ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/scalable/apps)
-endif()
+install(TARGETS whyblocked-gui DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(FILES de.tastytea.Whyblocked.desktop DESTINATION
+        ${CMAKE_INSTALL_DATAROOTDIR}/applications)
+install(FILES de.tastytea.Whyblocked.appdata.xml DESTINATION
+        ${CMAKE_INSTALL_DATAROOTDIR}/metainfo)
+install(FILES de.tastytea.Whyblocked.svg DESTINATION
+        ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/scalable/apps)
 
 if(NOT WITHOUT_TRANSLATIONS)
   add_subdirectory(translations)
