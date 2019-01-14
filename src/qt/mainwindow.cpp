@@ -20,12 +20,11 @@
 #include <codecvt>
 #include <algorithm>
 #include <QMessageBox>
-#include <QTranslator>
-#include <QLibraryInfo>
 #include <QtCore/qmimedata.h>
 #include <libconfig.h++>
 #include "version.hpp"
-#include "interface_qt.hpp"
+#include "mainwindow.hpp"
+#include "dialog_add.hpp"
 
 using std::wstring;
 
@@ -177,33 +176,6 @@ MainWindow::~MainWindow()
     _config.write();
 }
 
-void MainWindow::populate_tableview(const vector<Database::data> &entries)
-{
-    _model->clear();
-    _model->setHorizontalHeaderLabels(
-    {
-        tr("User/Instance"),
-        tr("Blocked/Silenced"),
-        tr("Reason")
-    });
-    tableview->horizontalHeader()->resizeSection(0, _headersize[0]);
-    tableview->horizontalHeader()->resizeSection(1, _headersize[1]);
-    tableview->horizontalHeader()->resizeSection(2, _headersize[2]);
-
-    for (const Database::data &entry : entries)
-    {
-        add_row(QString::fromStdString(entry.user),
-                entry.blocked,
-                QString::fromStdString(entry.reason));
-    }
-}
-
-void MainWindow::reload()
-{
-    _database.reload();
-    populate_tableview(_dbdata);
-}
-
 void MainWindow::add_row(const QString &user, const int &blocked,
                          const QString &reason)
 {
@@ -219,33 +191,6 @@ void MainWindow::add_row(const QString &user, const int &blocked,
     }
     items.append(new QStandardItem(reason));
     _model->appendRow(items);
-}
-
-void MainWindow::add()
-{
-    DialogAdd *dialog = new DialogAdd(_database, this);
-    dialog->show();
-}
-
-void MainWindow::edit()
-{
-    if (tableview->selectionModel()->selectedRows().count() != 1)
-    {
-        QMessageBox::warning(this, tr("Invalid selection"),
-                             tr("Please select only 1 entry to edit."));
-        return;
-    }
-
-    DialogAdd *dialog = new DialogAdd(_database, this);
-    dialog->setWindowTitle(tr("Edit entry"));
-
-    QModelIndex index = tableview->selectionModel()->selectedRows().first();
-    const string user = index.sibling(index.row(), 0).data()
-                                                     .toString().toStdString();
-
-    dialog->set_data(_database.get_user(user));
-    dialog->setProperty("edit", true);
-    dialog->show();
 }
 
 void MainWindow::remove()
@@ -268,17 +213,49 @@ void MainWindow::remove()
     }
 }
 
-void MainWindow::find()
+const string MainWindow::urls_to_hyperlinks(const string &text)
 {
-    if (widget_find->isVisible())
+    std::regex re_url("((https?|gopher|ftps?)\\://[^ <]*)");
+    return std::regex_replace(text, re_url, "<a href=\"$1\">$1</a>");
+}
+
+void MainWindow::dragEnterEvent(QDragEnterEvent *event)
+{
+    if (event->mimeData()->hasFormat("text/plain"))
     {
-        widget_find->hide();
+        event->acceptProposedAction();
     }
-    else
+}
+
+void MainWindow::dropEvent(QDropEvent *event)
+{
+    string text = event->mimeData()->text().toStdString();
+    const std::array<const std::regex, 4> fediverse =
     {
-        widget_find->show();
-        text_find->setFocus();
+        std::regex("https://([^/]+)/@([^/]+)"),         // Mastodon
+        std::regex("https://([^/]+)/profile/([^/]+)"),  // Friendica
+        std::regex("https://([^/]+)/users/([^/]+)"),    // Pleroma
+        std::regex("https://([^/]+)/([^/]+)")           // Gnusocial
+    };
+    std::smatch match;
+
+    for (const std::regex &re : fediverse)
+    {
+        std::regex_match(text, match, re);
+        const string instance = match[1];
+        const string user = match[2];
+        if (!instance.empty() && !user.empty())
+        {
+            text = '@' + user + '@' + instance;
+            break;
+        }
     }
+
+    DialogAdd *dialog = new DialogAdd(_database, this);
+    Database::data data;
+    data.user = text;
+    dialog->set_data(data);
+    dialog->show();
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
@@ -337,6 +314,33 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     return QObject::eventFilter(obj, event);
 }
 
+void MainWindow::add()
+{
+    DialogAdd *dialog = new DialogAdd(_database, this);
+    dialog->show();
+}
+
+void MainWindow::edit()
+{
+    if (tableview->selectionModel()->selectedRows().count() != 1)
+    {
+        QMessageBox::warning(this, tr("Invalid selection"),
+                             tr("Please select only 1 entry to edit."));
+        return;
+    }
+
+    DialogAdd *dialog = new DialogAdd(_database, this);
+    dialog->setWindowTitle(tr("Edit entry"));
+
+    QModelIndex index = tableview->selectionModel()->selectedRows().first();
+    const string user = index.sibling(index.row(), 0).data()
+                                                     .toString().toStdString();
+
+    dialog->set_data(_database.get_user(user));
+    dialog->setProperty("edit", true);
+    dialog->show();
+}
+
 void MainWindow::about()
 {
     QMessageBox::about(this, tr("About Whyblocked"),
@@ -371,160 +375,42 @@ void MainWindow::show_details(QModelIndex index)
     label_receipts->setText(QString::fromStdString((text)));
 }
 
-const string MainWindow::urls_to_hyperlinks(const string &text)
+void MainWindow::populate_tableview(const vector<Database::data> &entries)
 {
-    std::regex re_url("((https?|gopher|ftps?)\\://[^ <]*)");
-    return std::regex_replace(text, re_url, "<a href=\"$1\">$1</a>");
-}
-
-void MainWindow::dragEnterEvent(QDragEnterEvent *event)
-{
-    if (event->mimeData()->hasFormat("text/plain"))
+    _model->clear();
+    _model->setHorizontalHeaderLabels(
     {
-        event->acceptProposedAction();
+        tr("User/Instance"),
+        tr("Blocked/Silenced"),
+        tr("Reason")
+    });
+    tableview->horizontalHeader()->resizeSection(0, _headersize[0]);
+    tableview->horizontalHeader()->resizeSection(1, _headersize[1]);
+    tableview->horizontalHeader()->resizeSection(2, _headersize[2]);
+
+    for (const Database::data &entry : entries)
+    {
+        add_row(QString::fromStdString(entry.user),
+                entry.blocked,
+                QString::fromStdString(entry.reason));
     }
 }
 
-void MainWindow::dropEvent(QDropEvent *event)
+void MainWindow::reload()
 {
-    string text = event->mimeData()->text().toStdString();
-    const std::array<const std::regex, 4> fediverse =
-    {
-        std::regex("https://([^/]+)/@([^/]+)"),         // Mastodon
-        std::regex("https://([^/]+)/profile/([^/]+)"),  // Friendica
-        std::regex("https://([^/]+)/users/([^/]+)"),    // Pleroma
-        std::regex("https://([^/]+)/([^/]+)")           // Gnusocial
-    };
-    std::smatch match;
+    _database.reload();
+    populate_tableview(_dbdata);
+}
 
-    for (const std::regex &re : fediverse)
+void MainWindow::find()
+{
+    if (widget_find->isVisible())
     {
-        std::regex_match(text, match, re);
-        const string instance = match[1];
-        const string user = match[2];
-        if (!instance.empty() && !user.empty())
-        {
-            text = '@' + user + '@' + instance;
-            break;
-        }
+        widget_find->hide();
     }
-
-    DialogAdd *dialog = new DialogAdd(_database, this);
-    Database::data data;
-    data.user = text;
-    dialog->set_data(data);
-    dialog->show();
-}
-
-DialogAdd::DialogAdd(Database &database, QMainWindow *parent)
-: QDialog(parent)
-, _parent(static_cast<MainWindow*>(parent))
-, _database(database)
-{
-    setupUi(this);
-}
-
-const Database::data DialogAdd::get_data() const
-{
-    std::vector<string> receipts;
-    for (int row = 0; row <= list_receipts->count() - 1; ++row)
+    else
     {
-        receipts.push_back(list_receipts->item(row)->text().toStdString());
+        widget_find->show();
+        text_find->setFocus();
     }
-
-    Database::data data;
-    data.user = text_user->text().toStdString();
-    data.blocked = radio_blocked->isChecked();
-    data.reason = text_reason->text().toStdString();
-    data.receipts = receipts;
-
-    return data;
-}
-
-void DialogAdd::set_data(const Database::data &data)
-{
-    text_user->setText(QString::fromStdString(data.user));
-    radio_blocked->setChecked(data.blocked);
-    radio_silcenced->setChecked(!data.blocked);
-    text_reason->setText(QString::fromStdString(data.reason));
-    for (const string &receipt : data.receipts)
-    {
-        QListWidgetItem *item =
-            new QListWidgetItem(QString::fromStdString(receipt));
-        item->setFlags(item->flags() | Qt::ItemIsEditable);
-        list_receipts->insertItem(list_receipts->count(), item);
-    }
-}
-
-void DialogAdd::add_receipt()
-{
-    QListWidgetItem *item = new QListWidgetItem(tr("Insert receipt here."));
-    item->setFlags(item->flags() | Qt::ItemIsEditable);
-    list_receipts->insertItem(list_receipts->count(), item);
-    list_receipts->editItem(item);
-}
-
-void DialogAdd::remove_receipt()
-{
-    for (auto item :list_receipts->selectedItems())
-    {
-        delete item;
-    }
-}
-
-void DialogAdd::accept()
-{
-    if (property("edit").toBool())
-    {
-        _parent->remove();
-    }
-    Database::data data = get_data();
-
-    if (!data)
-    {
-        return;
-    }
-
-    _database.add_user(data);
-    _parent->add_row(QString::fromStdString(data.user),
-                     data.blocked,
-                     QString::fromStdString(data.reason));
-
-    delete this;
-}
-
-void DialogAdd::dragEnterEvent(QDragEnterEvent *event)
-{
-    if (event->mimeData()->hasFormat("text/plain"))
-    {
-        event->acceptProposedAction();
-    }
-}
-
-void DialogAdd::dropEvent(QDropEvent *event)
-{
-    const QString text = event->mimeData()->text();
-    QListWidgetItem *item = new QListWidgetItem(text);
-    item->setFlags(item->flags() | Qt::ItemIsEditable);
-    list_receipts->insertItem(list_receipts->count(), item);
-}
-
-int main(int argc, char *argv[])
-{
-    QApplication app(argc, argv);
-    QCoreApplication::setApplicationName("Whyblocked");
-    
-    QTranslator qtTranslator;
-    qtTranslator.load("qt_" + QLocale::system().name(),
-                      QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-    app.installTranslator(&qtTranslator);
-    QTranslator appTranslator;
-    appTranslator.load("whyblocked_" + QLocale::system().name(),
-                       QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-    app.installTranslator(&appTranslator);
-
-    MainWindow win;
-    win.show();
-
-    return app.exec();
 }

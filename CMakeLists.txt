@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.2)
 project (whyblocked
-         VERSION 0.14.0
+         VERSION 0.14.1
          LANGUAGES CXX
 )
 
@@ -41,11 +41,9 @@ configure_file (
     "${PROJECT_BINARY_DIR}/version.hpp"
 )
 
-set(COMMON_LIBRARIES
-    )
-
 add_executable(whyblocked-gui
-               src/interface_qt.cpp src/whyblocked.cpp src/xdgcfg.cpp)
+               src/qt/main.cpp src/qt/mainwindow.cpp src/qt/dialog_add.cpp
+               src/whyblocked.cpp src/xdgcfg.cpp)
 target_link_libraries(whyblocked-gui
                       ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp Qt5::Widgets
                       ${LIBCONFIG_LIBRARIES} stdc++fs)

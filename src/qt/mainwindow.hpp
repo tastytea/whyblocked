@@ -14,8 +14,8 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INTERFACE_QT_HPP
-#define INTERFACE_QT_HPP
+#ifndef MAINWINDOW_HPP
+#define MAINWINDOW_HPP
 
 #include <string>
 #include <memory>
@@ -25,10 +25,9 @@
 #include <QStandardItemModel>
 #include <QDialog>
 #include <QtGui/qevent.h>
-#include "xdgcfg.hpp"
-#include "whyblocked.hpp"
+#include "../xdgcfg.hpp"
+#include "../whyblocked.hpp"
 #include "ui_whyblocked.h"
-#include "ui_whyblocked_add.h"
 
 using std::string;
 using std::vector;
@@ -69,27 +68,4 @@ private slots:
 
 };
 
-class DialogAdd : public QDialog, private Ui::DialogAdd
-{
-    Q_OBJECT
-
-public:
-    explicit DialogAdd(Database &database, QMainWindow *parent = nullptr);
-    void set_data(const Database::data &data);
-
-private:
-    const Database::data get_data() const;
-    void dragEnterEvent(QDragEnterEvent *event);
-    void dropEvent(QDropEvent *event);
-
-    MainWindow *_parent;
-    Database &_database;
-
-private slots:
-    void add_receipt();
-    void remove_receipt();
-    void accept();
-
-};
-
-#endif  // INTERFACE_QT_HPP
+#endif  // MAINWINDOW_HPP
