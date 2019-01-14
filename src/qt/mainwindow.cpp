@@ -162,8 +162,7 @@ MainWindow::~MainWindow()
         tableview->horizontalHeader()->sectionSize(0);
     headers.add(libconfig::Setting::TypeInt) =
         tableview->horizontalHeader()->sectionSize(1);
-    headers.add(libconfig::Setting::TypeInt) =
-        tableview->horizontalHeader()->sectionSize(2);
+    headers.add(libconfig::Setting::TypeInt) = 125;
 
     libconfig::Setting &find_in = root.add("find_in",
                                            libconfig::Setting::TypeGroup);
