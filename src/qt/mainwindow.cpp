@@ -103,7 +103,6 @@ MainWindow::MainWindow(QMainWindow *parent)
     }
 
     widget_find->hide();
-    text_find->installEventFilter(this);
 
     reload();
 
@@ -258,62 +257,6 @@ void MainWindow::dropEvent(QDropEvent *event)
     dialog->show();
 }
 
-bool MainWindow::eventFilter(QObject *obj, QEvent *event)
-{
-    wstring searchfor;
-
-    if (obj == text_find)
-    {
-        if (event->type() == QEvent::KeyRelease)
-        {
-            searchfor = text_find->text().toLower().toStdWString();
-        }
-        else if (event->type() == QEvent::Drop)
-        {
-            QDropEvent *drop = static_cast<QDropEvent*>(event);
-            searchfor = drop->mimeData()->text().toLower().toStdWString();
-        }
-        else
-        {
-            return QObject::eventFilter(obj, event);
-        }
-    }
-    else
-    {
-        return QObject::eventFilter(obj, event);
-    }
-
-    vector<Database::data> filtered_entries;
-    if (!_dbdata.empty())
-    {
-        for (const Database::data &entry : _dbdata)
-        {
-            wstring searchstring;
-
-            std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> convert;
-
-            if (check_user->isChecked())
-            {
-                searchstring += convert.from_bytes(entry.user);
-            }
-            if (check_reason->isChecked())
-            {
-                searchstring += convert.from_bytes(entry.reason);
-            }
-            std::transform(searchstring.begin(), searchstring.end(),
-                           searchstring.begin(), ::towlower);
-            if (searchstring.find(searchfor) != std::string::npos)
-            {
-                filtered_entries.push_back(entry);
-            }
-        }
-    }
-
-    populate_tableview(filtered_entries);
-
-    return QObject::eventFilter(obj, event);
-}
-
 void MainWindow::add()
 {
     DialogAdd *dialog = new DialogAdd(_database, this);
@@ -413,4 +356,41 @@ void MainWindow::find()
         widget_find->show();
         text_find->setFocus();
     }
+}
+
+void MainWindow::update_search(const QString &text)
+{
+    const wstring searchfor = text.toLower().toStdWString();
+
+    vector<Database::data> filtered_entries;
+    if (!_dbdata.empty())
+    {
+        for (const Database::data &entry : _dbdata)
+        {
+            wstring searchstring;
+            std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> convert;
+
+            if (check_user->isChecked())
+            {
+                searchstring += convert.from_bytes(entry.user);
+            }
+            if (check_reason->isChecked())
+            {
+                searchstring += convert.from_bytes(entry.reason);
+            }
+            std::transform(searchstring.begin(), searchstring.end(),
+                           searchstring.begin(), ::towlower);
+            if (searchstring.find(searchfor) != std::string::npos)
+            {
+                filtered_entries.push_back(entry);
+            }
+        }
+    }
+
+    populate_tableview(filtered_entries);
+}
+
+void MainWindow::update_search()
+{
+    update_search(text_find->text());
 }

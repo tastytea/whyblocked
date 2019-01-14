@@ -46,7 +46,7 @@
           <bool>true</bool>
          </property>
          <property name="clearButtonEnabled">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -453,6 +453,54 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>text_find</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>update_search(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>201</x>
+     <y>83</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>check_user</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>update_search()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>455</x>
+     <y>82</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>check_reason</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>update_search()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>553</x>
+     <y>82</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>add()</slot>
@@ -463,5 +511,9 @@
   <slot>edit()</slot>
   <slot>find()</slot>
   <slot>reload()</slot>
+  <slot>check_user_changed(int)</slot>
+  <slot>check_reason_changed(int)</slot>
+  <slot>update_search(QString)</slot>
+  <slot>update_search()</slot>
  </slots>
 </ui>

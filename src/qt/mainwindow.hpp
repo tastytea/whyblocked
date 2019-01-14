@@ -49,7 +49,6 @@ private:
     const string urls_to_hyperlinks(const string &text);
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
-    bool eventFilter(QObject *obj, QEvent *event);
 
     QStandardItemModel *_model;
     xdgcfg _config;
@@ -65,6 +64,8 @@ private slots:
     void populate_tableview(const vector<Database::data> &entries);
     void reload();
     void find();
+    void update_search(const QString &text);
+    void update_search();
 
 };
 
