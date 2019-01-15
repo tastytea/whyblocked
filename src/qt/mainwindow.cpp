@@ -196,8 +196,11 @@ void MainWindow::remove()
     QItemSelectionModel *selection = tableview->selectionModel();
     if (selection->hasSelection())
     {
-        for (auto &row : selection->selectedRows())
+        // I use this construct here because the number of selected rows
+        // decrease by 1 each iteration.
+        for (; selection->selectedRows().count() > 0;)
         {
+            const QModelIndex row = selection->selectedRows().front();
             const string user = row.data().toString().toStdString();
             _database.remove(user);
             _model->removeRow(row.row());

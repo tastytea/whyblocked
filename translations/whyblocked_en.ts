@@ -198,7 +198,7 @@
     </message>
     <message>
         <location filename="../src/qt/whyblocked.ui" line="285"/>
-        <location filename="../src/qt/mainwindow.cpp" line="275"/>
+        <location filename="../src/qt/mainwindow.cpp" line="277"/>
         <source>Edit entry</source>
         <translation type="unfinished"></translation>
     </message>
@@ -219,18 +219,18 @@
     </message>
     <message>
         <location filename="../src/qt/whyblocked.ui" line="59"/>
-        <location filename="../src/qt/mainwindow.cpp" line="325"/>
+        <location filename="../src/qt/mainwindow.cpp" line="327"/>
         <source>User/Instance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qt/mainwindow.cpp" line="326"/>
+        <location filename="../src/qt/mainwindow.cpp" line="328"/>
         <source>Blocked/Silenced</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qt/whyblocked.ui" line="72"/>
-        <location filename="../src/qt/mainwindow.cpp" line="327"/>
+        <location filename="../src/qt/mainwindow.cpp" line="329"/>
         <source>Reason</source>
         <translation type="unfinished"></translation>
     </message>
@@ -250,37 +250,37 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qt/mainwindow.cpp" line="269"/>
+        <location filename="../src/qt/mainwindow.cpp" line="271"/>
         <source>Invalid selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qt/mainwindow.cpp" line="270"/>
+        <location filename="../src/qt/mainwindow.cpp" line="272"/>
         <source>Please select only 1 entry to edit.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qt/mainwindow.cpp" line="209"/>
+        <location filename="../src/qt/mainwindow.cpp" line="211"/>
         <source>Nothing selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qt/mainwindow.cpp" line="210"/>
+        <location filename="../src/qt/mainwindow.cpp" line="212"/>
         <source>Please select entries to remove.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qt/mainwindow.cpp" line="288"/>
+        <location filename="../src/qt/mainwindow.cpp" line="290"/>
         <source>About Whyblocked</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qt/mainwindow.cpp" line="289"/>
+        <location filename="../src/qt/mainwindow.cpp" line="291"/>
         <source>&lt;p&gt;&lt;b&gt;Whyblocked&lt;/b&gt; %1&lt;/p&gt;&lt;p&gt;Reminds you why you blocked someone.&lt;/p&gt;&lt;p&gt;Sourcecode: &lt;a href=&quot;https://schlomp.space/tastytea/whyblocked&quot;&gt;https://schlomp.space/tastytea/whyblocked&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;small&gt;Copyright © 2018 &lt;a href=&quot;mailto:tastytea@tastytea.de&quot;&gt;tastytea&lt;/a&gt;.&lt;br&gt;Licence GPLv3: &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0.html&quot;&gt;GNU GPL version 3&lt;/a&gt;.&lt;br&gt;This program comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it under certain conditions.&lt;/small&gt;&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qt/mainwindow.cpp" line="310"/>
+        <location filename="../src/qt/mainwindow.cpp" line="312"/>
         <source>Receipts:</source>
         <translation type="unfinished"></translation>
     </message>
