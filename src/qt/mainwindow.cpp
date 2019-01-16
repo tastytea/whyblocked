@@ -255,6 +255,7 @@ void MainWindow::dropEvent(QDropEvent *event)
     DialogAdd *dialog = new DialogAdd(_database, this);
     Database::data data;
     data.user = text;
+    data.blocked = true;
     dialog->set_data(data);
     dialog->show();
 }

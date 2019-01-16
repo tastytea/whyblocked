@@ -198,7 +198,7 @@
     </message>
     <message>
         <location filename="../src/qt/whyblocked.ui" line="285"/>
-        <location filename="../src/qt/mainwindow.cpp" line="277"/>
+        <location filename="../src/qt/mainwindow.cpp" line="279"/>
         <source>Edit entry</source>
         <translation>Eintrag bearbeiten</translation>
     </message>
@@ -219,18 +219,18 @@
     </message>
     <message>
         <location filename="../src/qt/whyblocked.ui" line="59"/>
-        <location filename="../src/qt/mainwindow.cpp" line="327"/>
+        <location filename="../src/qt/mainwindow.cpp" line="329"/>
         <source>User/Instance</source>
         <translation>Benutzer/Instanz</translation>
     </message>
     <message>
-        <location filename="../src/qt/mainwindow.cpp" line="328"/>
+        <location filename="../src/qt/mainwindow.cpp" line="330"/>
         <source>Blocked/Silenced</source>
         <translation>Blockiert/Gedämpft</translation>
     </message>
     <message>
         <location filename="../src/qt/whyblocked.ui" line="72"/>
-        <location filename="../src/qt/mainwindow.cpp" line="329"/>
+        <location filename="../src/qt/mainwindow.cpp" line="331"/>
         <source>Reason</source>
         <translation>Begründung</translation>
     </message>
@@ -250,37 +250,37 @@
         <translation>gedämpft</translation>
     </message>
     <message>
-        <location filename="../src/qt/mainwindow.cpp" line="271"/>
+        <location filename="../src/qt/mainwindow.cpp" line="273"/>
         <source>Invalid selection</source>
         <translation>Ungültige Auswahl</translation>
     </message>
     <message>
-        <location filename="../src/qt/mainwindow.cpp" line="272"/>
+        <location filename="../src/qt/mainwindow.cpp" line="274"/>
         <source>Please select only 1 entry to edit.</source>
         <translation>Bitte nur 1 Eintrag zum bearbeiten auswählen.</translation>
     </message>
     <message>
-        <location filename="../src/qt/mainwindow.cpp" line="211"/>
+        <location filename="../src/qt/mainwindow.cpp" line="212"/>
         <source>Nothing selected</source>
         <translation>Nichts ausgewählt</translation>
     </message>
     <message>
-        <location filename="../src/qt/mainwindow.cpp" line="212"/>
+        <location filename="../src/qt/mainwindow.cpp" line="213"/>
         <source>Please select entries to remove.</source>
         <translation>Bitte wähle Einträge aus, die gelöscht werden sollen.</translation>
     </message>
     <message>
-        <location filename="../src/qt/mainwindow.cpp" line="290"/>
+        <location filename="../src/qt/mainwindow.cpp" line="292"/>
         <source>About Whyblocked</source>
         <translation>Über Whyblocked</translation>
     </message>
     <message>
-        <location filename="../src/qt/mainwindow.cpp" line="291"/>
+        <location filename="../src/qt/mainwindow.cpp" line="293"/>
         <source>&lt;p&gt;&lt;b&gt;Whyblocked&lt;/b&gt; %1&lt;/p&gt;&lt;p&gt;Reminds you why you blocked someone.&lt;/p&gt;&lt;p&gt;Sourcecode: &lt;a href=&quot;https://schlomp.space/tastytea/whyblocked&quot;&gt;https://schlomp.space/tastytea/whyblocked&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;small&gt;Copyright © 2018 &lt;a href=&quot;mailto:tastytea@tastytea.de&quot;&gt;tastytea&lt;/a&gt;.&lt;br&gt;Licence GPLv3: &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0.html&quot;&gt;GNU GPL version 3&lt;/a&gt;.&lt;br&gt;This program comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it under certain conditions.&lt;/small&gt;&lt;/p&gt;</source>
         <translation>&lt;p&gt;&lt;b&gt;Whyblocked&lt;/b&gt; %1&lt;/p&gt;&lt;p&gt;Erinnert dich, warum du jemanden blockiertest.&lt;/p&gt;&lt;p&gt;Quelltext: &lt;a href=&quot;https://schlomp.space/tastytea/whyblocked&quot;&gt;https://schlomp.space/tastytea/whyblocked&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;small&gt;Copyright © 2018 &lt;a href=&quot;mailto:tastytea@tastytea.de&quot;&gt;tastytea&lt;/a&gt;.&lt;br&gt;Lizenz GPLv3: &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0.html&quot;&gt;GNU GPL version 3&lt;/a&gt;.&lt;br&gt;Für dieses Programm besteht KEINERLEI GARANTIE. Dies ist freie Software, die Sie unter bestimmten Bedingungen weitergeben dürfen.&lt;/small&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/qt/mainwindow.cpp" line="312"/>
+        <location filename="../src/qt/mainwindow.cpp" line="314"/>
         <source>Receipts:</source>
         <translation>Belege:</translation>
     </message>
