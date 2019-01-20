@@ -52,7 +52,7 @@ if(WITH_MAN)
   add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
                      WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
                      COMMAND ${CMAKE_SOURCE_DIR}/build_manpage.sh
-                     ARGS ${CMAKE_VERSION})
+                     ARGS ${PROJECT_VERSION})
 endif()
 add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
                    WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"

@@ -1,6 +1,6 @@
 = whyblocked(1)
 :Author:        tastytea
-:Email:         tasttytea@tastytea.de
+:Email:         tastytea@tastytea.de
 :Date:          2019-01-20
 :Revision:      0.0.0
 :man source:    Whyblocked
