@@ -1,5 +1,5 @@
-**Whyblocked** allows you to store the reason why you blocked someone, along with
-"receipts", URLs to the posts that led you to block them.
+**Whyblocked** allows you to store the reason why you blocked someone, along
+with "receipts", URLs to the posts that led you to block them.
 
 It has a Qt-interface and uses an SQLite-database.
 
@@ -7,7 +7,7 @@ It has a Qt-interface and uses an SQLite-database.
 
 ## Usage
 
-Start `whyblocked-gui`. You can also start it from the menu of your desktop
+Run `whyblocked`. You can also start it from the menu of your desktop
 environment.
 
 ## Install
