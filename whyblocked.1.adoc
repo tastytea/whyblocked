@@ -20,6 +20,10 @@ whyblocked - reminds you why you blocked someone.
 Whyblocked allows you to store the reason why you blocked someone, along with
 "receipts", URLs to the posts that led you to block them.
 
+Apart from the obvious method, you can add entries by dropping the link to a
+profile into the main window. In the "Add entry" dialog, you can add receipts by
+dropping links or text into the receipts list.
+
 == REPORTING BUGS
 
 Bugtracker: https://schlomp.space/tastytea/whyblocked/issues

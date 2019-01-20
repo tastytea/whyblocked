@@ -73,7 +73,7 @@ if(WITH_MAN)
           DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
 endif()
 
-set(WITH_TRANSLATIONS, "YES")
+set(WITH_TRANSLATIONS "YES")
 if(WITH_TRANSLATIONS)
   add_subdirectory(translations)
 endif()
