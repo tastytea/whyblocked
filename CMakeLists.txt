@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.2)
 project (whyblocked
-         VERSION 0.14.6
+         VERSION 0.15
          LANGUAGES CXX
 )
 
@@ -41,29 +41,36 @@ configure_file (
     "${PROJECT_BINARY_DIR}/version.hpp"
 )
 
-add_executable(whyblocked-gui
+add_executable(${CMAKE_PROJECT_NAME}
                src/qt/main.cpp src/qt/mainwindow.cpp src/qt/dialog_add.cpp
                src/whyblocked.cpp src/xdgcfg.cpp)
-target_link_libraries(whyblocked-gui
+target_link_libraries(${CMAKE_PROJECT_NAME}
                       ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp Qt5::Widgets
                       ${LIBCONFIG_LIBRARIES} stdc++fs)
 set(WITH_MAN "YES")
 if(WITH_MAN)
-  add_custom_command(TARGET whyblocked-gui POST_BUILD
+  add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+                     WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
                      COMMAND ${CMAKE_SOURCE_DIR}/build_manpage.sh
                      ARGS ${CMAKE_VERSION})
 endif()
+add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+                   WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
+                   COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_PROJECT_NAME} whyblocked-gui)
 
-install(TARGETS whyblocked-gui DESTINATION ${CMAKE_INSTALL_BINDIR})
-install(FILES de.tastytea.Whyblocked.desktop DESTINATION
-        ${CMAKE_INSTALL_DATAROOTDIR}/applications)
-install(FILES de.tastytea.Whyblocked.appdata.xml DESTINATION
-        ${CMAKE_INSTALL_DATAROOTDIR}/metainfo)
-install(FILES de.tastytea.Whyblocked.svg DESTINATION
-        ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/scalable/apps)
+install(TARGETS ${CMAKE_PROJECT_NAME}
+        DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(FILES "${PROJECT_BINARY_DIR}/whyblocked-gui"
+        DESTINATION "${CMAKE_INSTALL_BINDIR}")
+install(FILES de.tastytea.Whyblocked.desktop
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
+install(FILES de.tastytea.Whyblocked.appdata.xml
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/metainfo)
+install(FILES de.tastytea.Whyblocked.svg
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/scalable/apps)
 if(WITH_MAN)
-  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/whyblocked.1 DESTINATION
-          ${CMAKE_INSTALL_MANDIR}/man1)
+  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/whyblocked.1
+          DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
 endif()
 
 set(WITH_TRANSLATIONS, "YES")
