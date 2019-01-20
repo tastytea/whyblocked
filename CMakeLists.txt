@@ -47,6 +47,12 @@ add_executable(whyblocked-gui
 target_link_libraries(whyblocked-gui
                       ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp Qt5::Widgets
                       ${LIBCONFIG_LIBRARIES} stdc++fs)
+set(WITH_MAN "YES")
+if(WITH_MAN)
+  add_custom_command(TARGET whyblocked-gui POST_BUILD
+                     COMMAND ${CMAKE_SOURCE_DIR}/build_manpage.sh
+                     ARGS ${CMAKE_VERSION})
+endif()
 
 install(TARGETS whyblocked-gui DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(FILES de.tastytea.Whyblocked.desktop DESTINATION
@@ -55,8 +61,13 @@ install(FILES de.tastytea.Whyblocked.appdata.xml DESTINATION
         ${CMAKE_INSTALL_DATAROOTDIR}/metainfo)
 install(FILES de.tastytea.Whyblocked.svg DESTINATION
         ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/scalable/apps)
+if(WITH_MAN)
+  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/whyblocked.1 DESTINATION
+          ${CMAKE_INSTALL_MANDIR}/man1)
+endif()
 
-if(NOT WITHOUT_TRANSLATIONS)
+set(WITH_TRANSLATIONS, "YES")
+if(WITH_TRANSLATIONS)
   add_subdirectory(translations)
 endif()
 

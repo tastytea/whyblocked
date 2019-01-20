@@ -38,6 +38,7 @@ Gentoo ebuilds are available via my
 * [libconfig++](https://github.com/hyperrealm/libconfig) (tested: 1.5)
 * Optional
     * Translations: [lupdate & lrelease](http://doc.qt.io/qt-5/linguist-manager.html) (tested: 5.11/5.5)
+    * Manpage: [asciidoc](http://asciidoc.org/) (tested: 8.6)
 
 #### Get sourcecode
 
@@ -62,7 +63,8 @@ make install
 
 cmake options:
 * `-DCMAKE_BUILD_TYPE=Debug` for a debug build
-* `-DWITHOUT_TRANSLATIONS=YES` to not compile translations
+* `-DWITH_TRANSLATIONS=NO` to not compile translations
+* `-DWITH_MAN=NO` to not compile the manpage
 * One of:
     * `-DWITH_DEB=YES` if you want to be able to generate a deb-package
     * `-DWITH_RPM=YES` if you want to be able to generate an rpm-package

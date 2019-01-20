@@ -1,0 +1,25 @@
+= whyblocked(1)
+:Author:        tastytea
+:Email:         tasttytea@tastytea.de
+:Date:          2019-01-20
+:Revision:      0.0.0
+:man source:    Whyblocked
+:man version:   {revision}
+:man manual:    General Commands Manual
+
+== NAME
+
+whyblocked - reminds you why you blocked someone.
+
+== SYNOPSIS
+
+*whyblocked*
+
+== DESCRIPTION
+
+Whyblocked allows you to store the reason why you blocked someone, along with
+"receipts", URLs to the posts that led you to block them.
+
+== REPORTING BUGS
+
+Bugtracker: https://schlomp.space/tastytea/whyblocked/issues
