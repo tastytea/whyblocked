@@ -48,15 +48,16 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
                       ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp Qt5::Widgets
                       ${LIBCONFIG_LIBRARIES} stdc++fs)
 set(WITH_MAN "YES" CACHE STRING "WITH_MAN defaults to \"YES\"")
+add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+                   WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
+                   COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_PROJECT_NAME} whyblocked-gui)
+
 if(WITH_MAN)
   add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
                      WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
                      COMMAND ${CMAKE_SOURCE_DIR}/build_manpage.sh
                      ARGS ${PROJECT_VERSION})
 endif()
-add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
-                   WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
-                   COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_PROJECT_NAME} whyblocked-gui)
 
 install(TARGETS ${CMAKE_PROJECT_NAME}
         DESTINATION ${CMAKE_INSTALL_BINDIR})
