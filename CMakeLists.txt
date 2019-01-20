@@ -47,7 +47,7 @@ add_executable(${CMAKE_PROJECT_NAME}
 target_link_libraries(${CMAKE_PROJECT_NAME}
                       ${LIBXDG_BASEDIR_LIBRARIES} vsqlitepp Qt5::Widgets
                       ${LIBCONFIG_LIBRARIES} stdc++fs)
-set(WITH_MAN "YES")
+set(WITH_MAN "YES" CACHE STRING "WITH_MAN defaults to \"YES\"")
 if(WITH_MAN)
   add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
                      WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
@@ -73,7 +73,7 @@ if(WITH_MAN)
           DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
 endif()
 
-set(WITH_TRANSLATIONS "YES")
+set(WITH_TRANSLATIONS "YES" CACHE STRING "WITH_TRANSLATIONS defaults to \"YES\"")
 if(WITH_TRANSLATIONS)
   add_subdirectory(translations)
 endif()
