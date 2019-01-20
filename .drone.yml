@@ -13,7 +13,7 @@ pipeline:
       - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
       - apt-get update -q
       - apt-get install -qy g++-6 cmake pkg-config
-      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev
+      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev asciidoc
       - apt-get install -qy dpkg-dev rpm file wget
       - gpg --import /var/autosign_gpg.key
       - rm -rf build && mkdir -p build && cd build
@@ -53,7 +53,7 @@ pipeline:
       - apt-get update -q
       - apt-get install -qy -t xenial g++-7
       - apt-get install -qy cmake pkg-config
-      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev
+      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev asciidoc
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
       - make VERBOSE=1
@@ -82,7 +82,7 @@ pipeline:
       - apt-get update -q
       - apt-get install -qy -t xenial g++-8
       - apt-get install -qy cmake pkg-config
-      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev
+      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev asciidoc
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
       - make VERBOSE=1
@@ -105,7 +105,7 @@ pipeline:
       - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/backports.list
       - apt-get update -q
       - apt-get install -qy clang cmake pkg-config
-      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev
+      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev asciidoc
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
       - make VERBOSE=1
@@ -129,7 +129,7 @@ pipeline:
       - apt-get update -q
       - apt-get install -qy -t stretch-backports clang-5.0
       - apt-get install -qy cmake pkg-config
-      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev
+      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev asciidoc
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
       - make VERBOSE=1
@@ -153,7 +153,7 @@ pipeline:
       - apt-get update -q
       - apt-get install -qy -t stretch-backports clang-6.0
       - apt-get install -qy cmake pkg-config
-      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev
+      - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev asciidoc
       - rm -rf build && mkdir -p build && cd build
       - cmake ..
       - make VERBOSE=1
