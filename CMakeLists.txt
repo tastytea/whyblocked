@@ -53,10 +53,15 @@ add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_PROJECT_NAME} whyblocked-gui)
 
 if(WITH_MAN)
-  add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+  add_custom_command(
+                     OUTPUT "${PROJECT_BINARY_DIR}/whyblocked.1"
                      WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
+                     DEPENDS "${CMAKE_SOURCE_DIR}/whyblocked.1.adoc"
                      COMMAND ${CMAKE_SOURCE_DIR}/build_manpage.sh
                      ARGS ${PROJECT_VERSION})
+  add_custom_target(run ALL
+                    DEPENDS "${PROJECT_BINARY_DIR}/whyblocked.1"
+)
 endif()
 
 install(TARGETS ${CMAKE_PROJECT_NAME}

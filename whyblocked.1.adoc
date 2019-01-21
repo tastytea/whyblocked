@@ -1,7 +1,7 @@
 = whyblocked(1)
 :Author:        tastytea
 :Email:         tastytea@tastytea.de
-:Date:          2019-01-20
+:Date:          2019-01-21
 :Revision:      0.0.0
 :man source:    Whyblocked
 :man version:   {revision}
@@ -23,6 +23,14 @@ Whyblocked allows you to store the reason why you blocked someone, along with
 Apart from the obvious method, you can add entries by dropping the link to a
 profile into the main window. In the "Add entry" dialog, you can add receipts by
 dropping links or text into the receipts list.
+
+== FILES
+
+* Configuration file: `${XDG_CONFIG_HOME}/whyblocked.cfg`
+* Database: `${XDG_DATA_HOME}/whyblocked/database.sqlite`
+
+`${XDG_CONFIG_HOME}` is usually `~/.config` and `${XDG_DATA_HOME}` is usually
+`~/.local/share`
 
 == REPORTING BUGS
 
