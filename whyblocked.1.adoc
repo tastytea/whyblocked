@@ -1,7 +1,7 @@
 = whyblocked(1)
 :Author:        tastytea
 :Email:         tastytea@tastytea.de
-:Date:          2019-01-21
+:Date:          2019-04-12
 :Revision:      0.0.0
 :man source:    Whyblocked
 :man version:   {revision}
@@ -26,8 +26,8 @@ dropping links or text into the receipts list.
 
 == FILES
 
-* Configuration file: `${XDG_CONFIG_HOME}/whyblocked.cfg`
-* Database: `${XDG_DATA_HOME}/whyblocked/database.sqlite`
+- *Configuration file*: `${XDG_CONFIG_HOME}/whyblocked.cfg`
+- *Database*: `${XDG_DATA_HOME}/whyblocked/database.sqlite`
 
 `${XDG_CONFIG_HOME}` is usually `~/.config` and `${XDG_DATA_HOME}` is usually
 `~/.local/share`
