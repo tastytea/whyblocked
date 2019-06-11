@@ -29,11 +29,11 @@ steps:
   - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
   - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
   - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
-  - rm /var/cache/apt/archives/lock
+  - rm -f /var/cache/apt/archives/lock
   - apt-get update -q
-  - rm /var/cache/apt/archives/lock
+  - rm -f /var/cache/apt/archives/lock
   - apt-get install -qy g++-6 cmake pkg-config
-  - rm /var/cache/apt/archives/lock
+  - rm -f /var/cache/apt/archives/lock
   - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev asciidoc
   - rm -rf build && mkdir -p build && cd build
   - cmake -DCMAKE_INSTALL_PREFIX=/usr ..
@@ -51,22 +51,22 @@ steps:
     CXXFLAGS: -pipe -O2
   commands:
   - rm /etc/apt/apt.conf.d/docker-clean
-  - rm /var/cache/apt/archives/lock
+  - rm -f /var/cache/apt/archives/lock
   - apt-get update -q
   - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
   - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/backports.list
   - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
-  - rm /var/cache/apt/archives/lock
+  - rm -f /var/cache/apt/archives/lock
   - apt-get install -qy gnupg
   - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
   - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
-  - rm /var/cache/apt/archives/lock
+  - rm -f /var/cache/apt/archives/lock
   - apt-get update -q
-  - rm /var/cache/apt/archives/lock
+  - rm -f /var/cache/apt/archives/lock
   - apt-get install -qy -t xenial g++-9
-  - rm /var/cache/apt/archives/lock
+  - rm -f /var/cache/apt/archives/lock
   - apt-get install -qy cmake pkg-config
-  - rm /var/cache/apt/archives/lock
+  - rm -f /var/cache/apt/archives/lock
   - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev asciidoc
   - rm -rf build && mkdir -p build && cd build
   - cmake ..
@@ -86,11 +86,11 @@ steps:
   - rm /etc/apt/apt.conf.d/docker-clean
   - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
   - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/backports.list
-  - rm /var/cache/apt/archives/lock
+  - rm -f /var/cache/apt/archives/lock
   - apt-get update -q
-  - rm /var/cache/apt/archives/lock
+  - rm -f /var/cache/apt/archives/lock
   - apt-get install -qy clang cmake pkg-config
-  - rm /var/cache/apt/archives/lock
+  - rm -f /var/cache/apt/archives/lock
   - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev asciidoc
   - rm -rf build && mkdir -p build && cd build
   - cmake ..
@@ -110,13 +110,13 @@ steps:
   - rm /etc/apt/apt.conf.d/docker-clean
   - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
   - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/stretch.list
-  - rm /var/cache/apt/archives/lock
+  - rm -f /var/cache/apt/archives/lock
   - apt-get update -q
-  - rm /var/cache/apt/archives/lock
+  - rm -f /var/cache/apt/archives/lock
   - apt-get install -qy -t stretch-backports clang-6.0
-  - rm /var/cache/apt/archives/lock
+  - rm -f /var/cache/apt/archives/lock
   - apt-get install -qy cmake pkg-config
-  - rm /var/cache/apt/archives/lock
+  - rm -f /var/cache/apt/archives/lock
   - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev asciidoc
   - rm -rf build && mkdir -p build && cd build
   - cmake ..
@@ -173,13 +173,13 @@ steps:
   - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
   - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
   - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
-  - rm /var/cache/apt/archives/lock
+  - rm -f /var/cache/apt/archives/lock
   - apt-get update -q
-  - rm /var/cache/apt/archives/lock
+  - rm -f /var/cache/apt/archives/lock
   - apt-get install -qy g++-6 cmake pkg-config
-  - rm /var/cache/apt/archives/lock
+  - rm -f /var/cache/apt/archives/lock
   - apt-get install -qy libvsqlitepp-dev libboost-dev libxdg-basedir-dev qt5-default qttools5-dev-tools qttools5-dev libconfig++-dev asciidoc
-  - rm /var/cache/apt/archives/lock
+  - rm -f /var/cache/apt/archives/lock
   - apt-get install -qy dpkg-dev rpm file wget
   - gpg --import /var/autosign_gpg.key
   - rm -rf build && mkdir -p build && cd build
