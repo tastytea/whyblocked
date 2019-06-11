@@ -17,8 +17,9 @@ environment.
 Every [release](https://schlomp.space/tastytea/whyblocked/releases) includes
 a .deb-package, an .rpm-package and a .tar.gz-package with precompiled binaries
 for x86_64(amd64) ([more info](https://schlomp.space/tastytea/whyblocked/wiki/Binary-Packages)). These are automatically built and not tested. You can install
-them with `dpkg -i` or `rpm -i`, respectively. The packages are signed with the
-PGP key [242E5AC4DA587BF9](https://tastytea.de/tastytea_autosign.asc)
+them with `apt install ./whyblocked*.deb` or `yum install ./whyblocked*.rpm`,
+respectively. The packages are signed with the PGP key
+[242E5AC4DA587BF9](https://tastytea.de/tastytea_autosign.asc)
 (Fingerprint: `F730 1ADF C9ED 2624 48C4  2B64 242E 5AC4 DA58 7BF9`).
 
 Gentoo ebuilds are available via my
@@ -33,8 +34,8 @@ Gentoo ebuilds are available via my
 * [cmake](https://cmake.org/) (at least 3.2)
 * [vsqlite++](http://vsqlite.virtuosic-bytes.com/) (tested: 0.3)
 * [libxdg-basedir](http://repo.or.cz/w/libxdg-basedir.git) (tested: 1.2)
-* [qtcore](https://www.qt.io/) (tested: 5.11/5.5)
-* [qtwidgets](https://www.qt.io/) (tested: 5.11/5.5)
+* [qtcore](https://www.qt.io/) (tested: 5.12/5.5)
+* [qtwidgets](https://www.qt.io/) (tested: 5.12/5.5)
 * [libconfig++](https://github.com/hyperrealm/libconfig) (tested: 1.5)
 * Optional
     * Translations: [lupdate & lrelease](http://doc.qt.io/qt-5/linguist-manager.html) (tested: 5.11/5.5)
@@ -53,7 +54,7 @@ further info.
 
 #### Compile
 
-```SH
+``` zsh
 mkdir build
 cd build
 cmake ..
@@ -92,7 +93,7 @@ Please report them on the
 
 ## Licence & Copyright
 
-```PLAIN
+``` plain
 Copyright © 2018 tastytea <tastytea@tastytea.de>.
 License GPLv3: GNU GPL version 3 <https://www.gnu.org/licenses/gpl-3.0.html>.
 This program comes with ABSOLUTELY NO WARRANTY. This is free software,
