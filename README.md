@@ -28,8 +28,8 @@ Gentoo ebuilds are available via my
 
 #### Dependencies
 
-* C++ compiler (tested: [gcc](https://gcc.gnu.org/) 6/7/8,
-  [clang](https://llvm.org/) 3/5/6)
+* C++ compiler (tested: [gcc](https://gcc.gnu.org/) 6/8/9,
+  [clang](https://llvm.org/) 3/6)
 * [cmake](https://cmake.org/) (at least 3.2)
 * [vsqlite++](http://vsqlite.virtuosic-bytes.com/) (tested: 0.3)
 * [libxdg-basedir](http://repo.or.cz/w/libxdg-basedir.git) (tested: 1.2)
