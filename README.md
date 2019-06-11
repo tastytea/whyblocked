@@ -1,9 +1,9 @@
 **Whyblocked** allows you to store the reason why you blocked someone, along
-with "receipts", URLs to the posts that led you to block them.
+with “receipts”, URLs to the posts that led you to block them.
 
 It has a Qt-interface and uses an SQLite-database.
 
-![Screenshot Qt interface](https://doc.schlomp.space/whyblocked/whyblocked_screenshot.png)
+![Screenshot](https://doc.schlomp.space/whyblocked/whyblocked_screenshot.png)
 
 ## Usage
 
@@ -16,8 +16,10 @@ environment.
 
 Every [release](https://schlomp.space/tastytea/whyblocked/releases) includes
 a .deb-package, an .rpm-package and a .tar.gz-package with precompiled binaries
-for x86_64(amd64) ([more info](https://schlomp.space/tastytea/whyblocked/wiki/Binary-Packages)). These are automatically built and not tested. You can install
-them with `apt install ./whyblocked*.deb` or `yum install ./whyblocked*.rpm`,
+for x86_64(amd64)
+([more info](https://schlomp.space/tastytea/whyblocked/wiki/Binary-Packages)).
+These are automatically built and not tested. You can install them with
+`apt install ./whyblocked*.deb` or `yum install ./whyblocked*.rpm`,
 respectively. The packages are signed with the PGP key
 [242E5AC4DA587BF9](https://tastytea.de/tastytea_autosign.asc)
 (Fingerprint: `F730 1ADF C9ED 2624 48C4  2B64 242E 5AC4 DA58 7BF9`).
@@ -38,7 +40,7 @@ Gentoo ebuilds are available via my
 * [qtwidgets](https://www.qt.io/) (tested: 5.12/5.5)
 * [libconfig++](https://github.com/hyperrealm/libconfig) (tested: 1.5)
 * Optional
-    * Translations: [lupdate & lrelease](http://doc.qt.io/qt-5/linguist-manager.html) (tested: 5.11/5.5)
+    * Translations: [lupdate & lrelease](http://doc.qt.io/qt-5/linguist-manager.html) (tested: 5.12/5.5)
     * Manpage: [asciidoc](http://asciidoc.org/) (tested: 8.6)
 
 #### Get sourcecode
@@ -100,7 +102,7 @@ This program comes with ABSOLUTELY NO WARRANTY. This is free software,
 and you are welcome to redistribute it under certain conditions.
 ```
 
-The icon is derived from the icons `messagebox critical` and `help` of the
+The icon is derived from the icons *“messagebox critical”* and *“help”* of the
 [Gartoon icon theme](https://commons.wikimedia.org/wiki/Gartoon_icons). The
 original authors were Zeus, Patrick Yavitz and La Mula Francis, who released
 them under the terms of the
