@@ -1,5 +1,5 @@
 /*  This file is part of whyblocked.
- *  Copyright © 2019 tastytea <tastytea@tastytea.de>
+ *  Copyright © 2019, 2020 tastytea <tastytea@tastytea.de>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -14,21 +14,24 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QTranslator>
-#include <QLibraryInfo>
 #include "mainwindow.hpp"
+
+#include <QLibraryInfo>
+#include <QLocale>
+#include <QTranslator>
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     QCoreApplication::setApplicationName("Whyblocked");
-    
+
     QTranslator qtTranslator;
-    qtTranslator.load("qt_" + QLocale::system().name(),
+    qtTranslator.load(QLocale(), "qt", "_",
                       QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+
     app.installTranslator(&qtTranslator);
     QTranslator appTranslator;
-    appTranslator.load("whyblocked_" + QLocale::system().name(),
+    appTranslator.load(QLocale(), "whyblocked", "_",
                        QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     app.installTranslator(&appTranslator);
 
